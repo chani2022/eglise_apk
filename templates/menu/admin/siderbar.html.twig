@@ -1,0 +1,73 @@
+{# {% extends "admin-base.html.twig" %}
+{% block sidebar %} #}
+	<!-- Left sidebar menu start -->
+	
+	<div class="ttr-sidebar">
+		<div
+			class="ttr-sidebar-wrapper content-scroll">
+			<!-- side menu logo start -->
+
+			
+			<div class="ttr-sidebar-logo">
+				<a href="#">Menu</a>
+				<!-- <div class="ttr-sidebar-pin-button" title="Pin/Unpin Menu">
+																																																					<i class="material-icons ttr-fixed-icon">gps_fixed</i>
+																																																					<i class="material-icons ttr-not-fixed-icon">gps_not_fixed</i>
+																																																				</div> -->
+				<div class="ttr-sidebar-toggle-button">
+					<i class="ti-arrow-left"></i>
+				</div>
+			</div>
+			<!-- side menu logo end -->
+			<!-- sidebar menu start -->
+			<nav class="ttr-sidebar-navi">
+				<ul>
+					<li>
+						<a href=" {{ path ('app_dashboard') }} " class="ttr-material-button">
+							<span class="ttr-icon">
+								<i class="ti-home"></i>
+							</span>
+							<span class="ttr-label">Panneaux de configuration</span>
+						</a>
+					</li>
+					<li>
+						<a href="{{ path ('app_article') }}" class="ttr-material-button">
+							<span class="ttr-icon">
+								<i class="ti-book"></i>
+							</span>
+							<span class="ttr-label">Article et Calendrier d'évènement</span>
+						</a>
+					</li>
+					<li>
+						<a href="#" class="ttr-material-button">
+							<span class="ttr-icon">
+								<i class="ti-email"></i>
+							</span>
+							<span class="ttr-label">Mail</span>
+							<span class="ttr-arrow-icon">
+								<i class="fa fa-angle-down"></i>
+							</span>
+						</a>
+						<ul>
+							<li><a href="mailbox.html" class="ttr-material-button"><span class="ttr-label">Boîte de réception</span></a></li>
+							<li><a href="mailbox-compose.html" class="ttr-material-button"><span class="ttr-label">Ecrire</span></a></li>
+							<li><a href="mailbox-read.html" class="ttr-material-button"><span class="ttr-label">Message lu</span></a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="user-profile.html" class="ttr-material-button">
+							<span class="ttr-icon">
+								<i class="ti-user"></i>
+							</span>
+							<span class="ttr-label">Mon profil</span>
+						</a>
+					</li>
+					<li class="ttr-seperate"></li>
+				</ul>
+				<!-- sidebar menu end -->
+			</nav>
+			<!-- sidebar menu end -->
+		</div>
+	</div>
+	<!-- Left sidebar menu end -->
+{# {% endblock %} #}

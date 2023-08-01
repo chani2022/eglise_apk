@@ -1,0 +1,187 @@
+{% extends 'admin-base.html.twig' %}
+
+{% block title %}Article
+{% endblock %}
+{% block stylesheets %}
+	{{parent()}}
+{% endblock %}
+{% block body %}
+	<!--Main container start -->
+
+	<div class="container-fluid" id="container" data-categorie=" {{ categorie }}">
+		<div class="db-breadcrumb">
+			<h4 class="breadcrumb-title">Admin</h4>
+			<ul class="db-breadcrumb-list">
+				<li>
+					<a href="#">
+						<i class="fa fa-home"></i>Home</a>
+				</li>
+				<li>Articles</li>
+			</ul>
+		</div>
+		<div
+			class="row">
+			<!-- Your Profile Views Chart -->
+			<div class="col-lg-12 m-b30">
+				<div class="widget-box">
+					<div class="email-wrapper">
+						<div class="email-menu-bar">
+							<div class="email-menu-bar-inner">
+								<ul>
+									<li class="active">
+										<a href="mailbox.html">
+											<i class="fa fa-file-text-o"></i>Tous les articles
+											<span class="badge badge-success">8</span>
+										</a>
+									</li>
+									<li>
+										<a href="mailbox.html">
+											<i class="fa fa-send-o"></i>Article publié<span class="badge badge-success">8</span>
+										</a>
+									</li>
+									<li>
+										<a href="mailbox.html">
+											<i class="fa fa-trash-o"></i>Corbeille<span class="badge badge-success">3</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="">
+
+
+							{{ form_start(form, {'attr': {'class':'mail-compose', 'novalidate': 'novalidate'}}) }}
+							{% for message in app.flashes('error') %}
+								<div class="form-group col-12 alert alert-danger" role="alert">
+									{{ message }}
+								</div>
+							{% endfor %}
+							{{ form_errors(form) }}
+							<div class="form-group col-12">
+								{{ form_row(form.titre)}}
+							</div>
+							<div class="form-group col-12">
+								<div class="summernote">
+									{{ form_row(form.commentaire)}}
+								</div>
+							</div>
+							<div class="form-group col-12">
+								{{ form_row(form.categorie) }}
+							</div>
+
+							<div class="form-group col-12" id="form_event">
+								{{ form_row(form.event_at)}}
+							</div>
+
+							{# <div class="form-group col-12" id="form_galerie">
+																																																																																																																																																																{{ form_row(form.galerie)}}
+																																																																																																																																																																</div> #}
+							<div class="form-group col-12">
+								{{ form_row(form.langue)}}
+							</div>
+							<div class="form-group col-12">
+								{{ form_row(form.image_article)}}
+							</div>
+							<div class="form-group col-12" id="form_galerie">
+								{{ form_row(form.galerie_pop)}}
+							</div>
+							<div class="form-group col-12">
+								<button type="submit" class="btn btn-lg" id="btn-register">
+									<i class="fa fa-save"></i>&nbsp;Enregistrer</button>
+							</div>
+							{{ form_end(form) }}
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Your Profile Views Chart END-->
+		</div>
+		<div
+			class="row">
+			<!-- Your Profile Views Chart -->
+			<div class="col-lg-12 m-b30">
+				<div class="widget-box">
+					<div class="wc-title">
+						<h4>Tous les articles</h4>
+					</div>
+					<div class="widget-inner">
+						{% for article in articles %}
+							<div class="card-courses-list bookmarks-bx">
+								<div class="card-courses-media">
+									<img src="{{ asset('article/'~ article.getImage() ) }}" alt=""/>
+								</div>
+								<div class="card-courses-full-dec">
+									<div class="card-courses-title">
+										<p style="font-size:14px;color:black">
+											<strong>Catégorie: </strong>: {{article.categorie.type}}<br/>
+											<strong>Langue: </strong>: {{article.langue.type}}<br/>
+											<strong>Publié par: </strong>: {{article.user.username}}<br/>
+											{% if  article.isIsPublished() %}
+											<strong>Status: </strong>: <span style="color:#1bd111">Publier</span><br/>
+											{% else %}
+											<strong>Status: </strong>: <span style="color:#ff2e2e">Dépublier</span><br/>
+											
+											{% endif %}
+											
+										</p>
+										<p></p>
+										<h4 class="m-b5">{{ article.titre }}</h4>
+									</div>
+									<div class="row card-courses-dec">
+										<div class="col-md-12">
+											<p>
+												{{ article.getCommentaire()|markdown_to_html }}
+											</p>
+										</div>
+										<div class="col-md-12">
+											<a href="#" title="Visionner" class="btn radius-xl">
+												<i class="fa fa-eye"></i>
+											</a>
+											<a href="{{ path ('app_article', {'article_get': article.getId(), 'option':'update' })}}" title="Modifier" class="btn radius-xl">
+												<i class="fa fa-edit"></i>
+											</a>
+											<a href="{{ path('app_article', {'article_get': article.getId(), 'option': 'delete'})}}" title="Supprimer" class="btn radius-xl">
+												<i class="fa fa-trash-o"></i>
+											</a>
+											{% set class = "fa fa-check" %}
+											{% set option = "publish" %}
+											{% set style = "" %}
+											{% set title = "publier" %}
+											{% if  article.isIsPublished() %}
+												{% set class = "fa fa-close" %}
+												{% set style = "background:coral;color:#fff;border-color: none;" %}
+												{% set option = "unPublish" %}
+												{% set title = "Depublier" %}
+											{% endif %}
+
+											<a href="{{ path('app_article', {'article_get': article.getId(), 'option': option } )}}" title=" {{ title }}" style="background:coral;color:#fff;border-color: coral;" class="btn red outline radius-xl ">
+												<i class=" {{class}}"></i>
+											</a>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						{% endfor %}
+
+					</div>
+				</div>
+			</div>
+			<!-- Your Profile Views Chart END-->
+		</div>
+	</div>
+{% endblock %}
+{% block javascripts %}
+	{{parent()}}
+	<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin" defer></script>
+	<script src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-jquery@1/dist/tinymce-jquery.min.js" defer></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js" defer></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" defer></script>
+
+	<script src="{{ asset ('js/variable/varGlobale.js') }}" defer></script>
+	<script src="{{ asset ('js/articleManager.js') }}" defer></script>
+	<script src="{{ asset ('js/notificationManager.js') }}" defer></script>
+	<script src="{{ asset ('js/articleSocket.js') }}" defer></script>
+	<script src="{{ asset ('js/admin/article/article.js')}}" defer></script>
+{% endblock %}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta
+		name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Meta tags -->
+		<meta
+		name="description" content="FAM : L'apocalypse et la prophétie du jour">
+
+		<!-- Open Graph meta tags -->
+		<meta property="og:title" content="FAM : Eglise Apokalypsy Universelle">
+		<meta property="og:description" content="FAM : L'apocalypse et la prophétie du jour">
+		<meta
+		property="og:image" content="Pasteur mailhol">
+
+		<!-- Other meta tags -->
+		<meta name="robots" content="">
+		<meta name="format-detection" content="telephone=(+261) 22 657 87">
+
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link rel="icon" type="text/css" type="image/x-icon" href="{{ asset('assets/images/favicon.png') }}"><link rel="stylesheet" type="text/css" href="{{ asset('assets/css/assets.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/typography.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/shortcodes/shortcodes.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+		<link class="skin" rel="stylesheet" type="text/css" href="{{ asset('assets/css/color/color-1.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/revolution/css/layers.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/revolution/css/settings.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/revolution/css/navigation.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bani.css') }}">
+		<link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon.png') }}"/>
+
+
+		<link
+		rel="stylesheet" type="text/css" href="{{ asset ('assets/css/iconstyle.css') }}">
+		{# javascript file #}
+		<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+		<script src="{{ asset('assets/vendors/bootstrap/js/popper.min.js') }}"></script>
+		<script src="{{ asset('assets/vendors/bootstrap/js/popper.min.js') }}"></script>
+		<script src="{{ asset('assets/vendors/bootstrap/js/bootstrap.min.js') }}"></script>
+		<script src="{{ asset('assets/vendors/bootstrap-select/bootstrap-select.min.js') }}"></script>
+		<script src="{{ asset('assets/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js') }}"></script>
+		<script src="{{ asset('assets/vendors/magnific-popup/magnific-popup.js') }}"></script>
+		<script src="{{ asset('assets/vendors/counter/waypoints-min.js') }}"></script>
+		<script src="{{ asset('assets/vendors/counter/counterup.min.js') }}"></script>
+		<script src="{{ asset('assets/vendors/imagesloaded/imagesloaded.js') }}"></script>
+
+		<script src="{{ asset('assets/vendors/owl-carousel/owl.carousel.js') }}"></script>
+		<script src="{{ asset('assets/js/functions.js') }}"></script>
+		<script src="{{ asset('assets/js/contact.js') }}"></script>
+		<!-- Revolution JavaScripts Files -->
+		<script src="{{ asset('assets/vendors/revolution/js/jquery.themepunch.tools.min.js') }}" defer></script>
+		<script src="{{ asset('assets/vendors/revolution/js/jquery.themepunch.revolution.min.js') }}" defer></script>
+		<!-- Slider revolution 5.0 Extensions  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+		<script src="{{ asset('assets/vendors/revolution/js/extensions/revolution.extension.actions.min.js') }}" defer></script>
+		<script src="{{ asset('assets/vendors/revolution/js/extensions/revolution.extension.carousel.min.js') }}" defer></script>
+		<script src="{{ asset('assets/vendors/revolution/js/extensions/revolution.extension.kenburn.min.js') }}" defer></script>
+		<script src="{{ asset('assets/vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js') }}" defer></script>
+		<script src="{{ asset('assets/vendors/revolution/js/extensions/revolution.extension.migration.min.js') }}" defer></script>
+		<script src="{{ asset('assets/vendors/revolution/js/extensions/revolution.extension.navigation.min.js') }}" defer></script>
+		<script src="{{ asset('assets/vendors/revolution/js/extensions/revolution.extension.parallax.min.js') }}" defer></script>
+		<script src="{{ asset('assets/vendors/revolution/js/extensions/revolution.extension.slideanims.min.js') }}" defer></script>
+		<script src="{{ asset('assets/vendors/revolution/js/extensions/revolution.extension.video.min.js') }}" defer></script>
+		<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+		<script src="https://unpkg.com/@webcreate/infinite-ajax-scroll@^3/dist/infinite-ajax-scroll.min.js" defer></script>
+		<script src="{{ asset ('js/variable/varGlobale.js') }}" defer></script>
+		<script src="{{ asset ('js/articleManager.js') }}" defer></script>
+		<script src="{{ asset ('js/notificationManager.js') }}" defer></script>
+		{# <script src="{{ asset ('js/articleSocket.js') }}" defer></script> #}
+		<script src="{{ asset ('js/infinityScroll/infinityScrollManager.js') }}" defer></script>
+		<script src="{{ asset ('js/admin.js') }}" defer></script>
+
+		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+		{% block stylesheets %}
+			{# {{ encore_entry_link_tags('app') }} #}
+		{% endblock %}
+
+		{% block javascripts %}{% endblock %}
+	</head>
+	<body>
+		<div class="info-socket" data-user-id="{{ app.user ? app.user.getId(): null }}" data-path-image="{{ asset('article/') }}" data-path-galerie="{{ asset('galerie/') }}" data-id-remove="{{ app.session.get('idArticleToRemoveInArticleRecent') ? null }}"></div>
+		<div class="page-wraper">
+			<div id="loading-icon-bx"></div>
+			<!-- Header Top xx==== -->
+			{{ include ('menu/home/header.html.twig') }}
+			<div class="page-content bg-white">
+				<div class="content-block">
+					{{ include ('menu/home/content.html.twig') }}
+					{{ include ('popup/dialog.html.twig') }}
+					{% block body %}{% endblock %}
+				</div>
+			</div>
+			{# <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" id="launch-modal">
+																Launch demo modal
+															</button> #}
+		</div>
+		<!-- Content END-->
+		<!-- Footer ==== -->
+
+
+		<!-- Footer END ==== --><button class="back-to-top fa fa-chevron-up"> </button>
+
+	</body>
+</html>

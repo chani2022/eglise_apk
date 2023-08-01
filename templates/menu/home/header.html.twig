@@ -1,0 +1,248 @@
+<header class="header rs-nav ttr-header">
+	<div class="top-bar">
+		<div class="container">
+			<div class="ttr-header-wrapper">
+				<div class="topbar-left">
+					<ul>
+						<li><a href="#"><i class="fa fa-question-circle"></i>Question</a></li>
+						<li><a href="javascript:;"><i class="fa fa-envelope-o"></i>designer.eline@gmail.com</a></li>
+					</ul>
+				</div>
+				<div class="topbar-right">
+					<ul>
+						<li>
+							<select class="header-lang-bx">
+								<option data-icon="flag flag-fr">Fr</option>
+								<option data-icon="flag flag-us">En</option>
+								<option data-icon="flag flag-mg">Mg</option>
+							</select>
+						</li>
+						<li>
+							<a href="#" class="ttr-material-button ttr-search-toggle">
+								<i title="Recherche rapide" class="fa fa-search"></i>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;" class="btn-link">
+								<i title="Page facebook officielle" class="fa fa-facebook"></i>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;" class="btn-link">
+								<i title="Page youtube officielle" class="fa fa-youtube"></i>
+							</a>
+						</li>
+
+						<li>
+							{# {{dump(app.user)}} #}
+							{% set href= path('app_login')  %}
+							{% set label = "Se connecter" %}
+							{% if app.user %}
+								{% set href = "" %}
+								{% set label = app.user.nom ? app.user.prenom ~' '~ app.user.nom : app.user.getEmail() %}
+							{% endif %}
+							<a href={{ href }} id="signIn">
+								{{label}}
+							</a>
+						</li>
+						<li>
+							{% if app.user is null %}
+								<a href="{{ path('app_register') }}">S'inscrire</a>
+							{% else %}
+								<a href="{{ path('app_logout') }}">Déconnexion</a>
+							{% endif %}
+						</li>
+
+					</ul>
+
+				</div>
+				<div class="ttr-search-bar">
+					<form class="ttr-search-form">
+						<div class="ttr-search-input-wrapper">
+							<input type="text" name="qq" placeholder="Recherche rapide..." class="ttr-search-input">
+							<button type="submit" name="search" class="ttr-search-submit">
+								<i class="ti-arrow-right"></i>
+							</button>
+						</div>
+						<span class="ttr-search-close ttr-search-toggle">
+							<i class="ti-close"></i>
+						</span>
+					</form>
+				</div>
+				<br/>
+			</div>
+		</div>
+	</div>
+	<div class="sticky-header navbar-expand-lg">
+		<div class="menu-bar clearfix">
+			<div
+				class="container clearfix">
+				<!-- Header Logo ==== -->
+				<div class="menu-logo">
+					<a href="{{ path ('app_home') }}"><img src="{{ asset ('assets/images/logo.png') }}" alt="logo-white"></a>
+				</div>
+				<!-- Mobile Nav Button ==== -->
+				<button class="navbar-toggler collapsed menuicon justify-content-end" type="button" data-toggle="collapse" data-target="#menuDropdown" aria-controls="menuDropdown" aria-expanded="false" aria-label="Toggle navigation">
+					<span></span>
+					<span></span>
+					<span></span>
+				</button>
+				<!-- Author Nav ==== -->
+				<div class="secondary-menu">
+					<div class="secondary-inner">
+						{% if app.user %}
+							<ul class="notification-drop">
+								<li>
+									<a href="#" class="ttr-material-button ttr-submenu-toggle">
+										<i class="fa fa-bell-o" aria-hidden="true"></i>
+										<span class="pulse-button">4</span>
+									</a>
+									<div class="ttr-header-submenu noti-menu" style="z-index:1000">
+										<div class="ttr-notify-header">
+											<center>
+												<span style="color:#292a2e85 ;font-size: 15px;background:none" class="translate-middle badge rounded-pill badge-danger" id="nb_notification">
+													Aucune notification
+												</span>
+											</center>
+										</div>
+										<div class="noti-box-list" style="height: 310px;overflow-y: scroll;scroll-behavior: smooth;">
+											<ul id="liste_notification">
+												<li style="background-color: #fcfcff;">
+													<span style="border-radius: 100px;" class="notification-icon dashbg-gray">
+														<i style="color: var(--primary);" class="fa fa-check"></i>
+													</span>
+													&nbsp;
+													<div class="row">
+														<div>
+															<h2 style="font-size:15px" class="title-head m-b0">Prophétie du jour</h2>
+															<p class="m-b0">Pasteur mailhol a annoncé hier un nouveau prophétie.
+															</p>
+														</div>
+													</div>
+													<span class="notification-time">
+														<a href="#" class="fa fa-close"></a>
+														<span>
+															02:14</span>
+													</span>
+												</li>
+												<li style="background-color: #fcfcff;">
+													<span style="border-radius: 100px;" class="notification-icon dashbg-gray">
+														<i style="color:#e00000" class="fa fa-comments-o"></i>
+													</span>
+													&nbsp;
+													<div class="row">
+														<div>
+															<h2 style="font-size:15px" class="title-head m-b0">Prophétie du jour</h2>
+															<p class="m-b0">Pasteur mailhol a annoncé hier un nouveau prophétie.
+															</p>
+														</div>
+													</div>
+													<span class="notification-time">
+														<a href="#" class="fa fa-close"></a>
+														<span>
+															02:14</span>
+													</span>
+												</li>
+												<li style="background-color: #fcfcff;">
+													<span style="border-radius: 100px;" class="notification-icon dashbg-gray">
+														<i style="color:#0abd22" class="fa fa-comments-o"></i>
+													</span>
+													&nbsp;
+													<div class="row">
+														<div>
+															<h2 style="font-size:15px" class="title-head m-b0">Prophétie du jour</h2>
+															<p class="m-b0">Pasteur mailhol a annoncé hier un nouveau prophétie.
+															</p>
+														</div>
+													</div>
+													<span class="notification-time">
+														<a href="#" class="fa fa-close"></a>
+														<span>
+															02:14</span>
+													</span>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</li>
+
+							</ul>
+						{% endif %}
+					</div>
+				</div>
+				<!-- Search Box ==== -->
+				<div class="nav-search-bar">
+					<form action="#">
+						<input name="search" value="" type="text" class="form-control" placeholder="Recherche">
+						<span>
+							<i class="ti-search"></i>
+						</span>
+					</form>
+					<span id="search-remove">
+						<i class="ti-close"></i>
+					</span>
+				</div>
+				<!-- Navigation Menu ==== -->
+				<div class="menu-links navbar-collapse collapse justify-content-start" id="menuDropdown">
+					<div class="menu-logo">
+						<a href="{{ path ('app_home') }}"><img src="{{ asset ('assets/images/logo.png') }}" alt="logo"></a>
+					</div>
+					<ul class="nav navbar-nav">
+						<li class="active">
+							<a href="{{ path ('app_home') }}" class="test">
+								<i class="fa fa-home"></i>&nbsp;Accueil</i>
+						</li>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:;">
+						<i class="fa fa-question-circle"></i>&nbsp;A savoir
+						<i class="fa fa-chevron-down"></i>
+					</a>
+					<ul class="sub-menu add-menu">
+						<li class="add-menu-left">
+							<h5 class="menu-adv-title">Personnel</h5>
+							<ul>
+								<li><a href="#">Président fondateur</a></li>
+								<li><a href="#">Secrétaire Générale</a></li>
+								<li><a href="#">Trésorier</a></li>
+								<li><a href="#">Organisation</a></li>
+								<li><a href="#">Archives apokalypsy</a></li>
+							</ul>
+						</li>
+						<li class="add-menu-right">
+							<img src="{{ asset ('assets/images/adv/adv.jpg') }}" alt=""/>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="javascript:;">
+						<i class="fa fa-fire"></i>&nbsp;Spiritualité</i>
+				</li>
+			</a>
+		</li>
+		{# <li class="nav-dashboard">
+						        <a href="javascript:;">
+						            <i class="fa fa-book"></i>&nbsp;Pages
+						            <i class="fa fa-chevron-down"></i>
+						        </a>
+						        <ul class="sub-menu">
+						            <li>
+						            <a href="#">Panneau de configuration</a>
+						            </li>
+						        </ul>
+						        </li> #}
+	</ul>
+	<div class="nav-social-link">
+		<a href="javascript:;">
+			<i class="fa fa-facebook"></i>
+		</a>
+		<a href="javascript:;">
+			<i class="fa fa-google-plus"></i>
+		</a>
+		<a href="javascript:;">
+			<i class="fa fa-linkedin"></i>
+		</a>
+	</div>
+</div>
+<!-- Navigation Menu END ==== --></div></div></div></header><!-- Header Top END ==== --><!-- Content -->

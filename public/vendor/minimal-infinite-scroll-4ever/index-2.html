@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Scroll4Ever jQuery Infinite Scroll Plugin Example Page 2</title>
+    <style>
+    * { margin:0; padding:0; margin:0;  font-family: 'Inter'; box-sizing: border-box; }
+    body { padding:20px;background-color: #fafafa; line-height:1.6; }
+    h1, p { margin:10px 0; }
+    li { background: #4F46E5; color: #fff; display:block; margin:10px 0; padding:15px; }
+    .trigger { padding:5px 10px; background:red; color:black; display:block; margin:20px 0; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!--script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script-->
+    <script src="jquery.scroll4ever.js"></script>
+    <script>
+    $(document).ready(function()
+    {
+        $('#scope').scroll4ever({ //scope element, must NOT be body
+            trigger:'.next-page-link', // link to the next page
+            container: '#items', // element where next page items are going to be added
+            selector:'.item', // elements to be added to the page
+            distance:100, // distance to the end of window to trigger page load, if avoided, it will not auto trigger
+            debug: true, // if you want some messages in console...
+            start: function(){ $('.next-page-link').html('Loading...'); }, // callback called when a new page load begins, good for loading messages
+            complete: function(){}, // callback called when a new page load ends
+        });
+    });
+    </script>
+</head>
+<body>
+    <h1>Awesome useless list</h1>
+    <p>Scroll to load more.</p>
+    <div id="scope">
+        <ul id="items">
+
+            <li class="item">lorem lorem ipsum ftw ipsum</li>
+
+            <li class="item">ipsum dolor sit lorem</li>
+
+            <li class="item">sit lorem dolor lorem</li>
+
+            <li class="item">dolor lorem dolor ipsum dolor</li>
+
+            <li class="item">ipsum ipsum lorem sit ipsum</li>
+
+            <li class="item">dolor lorem sit lorem ipsum</li>
+
+            <li class="item">lorem lorem ipsum ftw ipsum</li>
+
+            <li class="item">ipsum dolor sit lorem</li>
+
+            <li class="item">sit lorem dolor lorem</li>
+
+            <li class="item">dolor lorem dolor ipsum dolor</li>
+
+            <li class="item">ipsum ipsum lorem sit ipsum</li>
+
+            <li class="item">dolor lorem sit lorem ipsum</li>
+
+            <li class="item">lorem lorem ipsum ftw ipsum</li>
+
+            <li class="item">ipsum dolor sit lorem</li>
+
+            <li class="item">sit lorem dolor lorem</li>
+
+            <li class="item">dolor lorem dolor ipsum dolor</li>
+
+            <li class="item">ipsum ipsum lorem sit ipsum</li>
+
+            <li class="item">dolor lorem sit lorem ipsum</li>
+
+        </ul>
+
+        <a class="next-page-link" href="index-3.html" rel="next">Load more stuff!</a>
+
+    </div>
+    <p>The End</p>
+</body>
+</html>

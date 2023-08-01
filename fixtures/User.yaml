@@ -1,0 +1,20 @@
+App\Entity\User:
+    user:
+        email: 'user@test.com'
+        roles: '[ROLE_USER]'
+        password: <hashPass('user')>
+        username: 'user'
+
+    redacteur:
+        email: 'redac@test.com'
+        roles: '[ROLE_REDAC]'
+        password: <hashPass('redacteur')>
+        username: 'redac'
+    
+    admin:
+        email: 'admin@test.com'
+        roles: '[ROLE_ADMIN]'
+        password: <hashPass('admin')>
+        username: 'admin'
+
+    

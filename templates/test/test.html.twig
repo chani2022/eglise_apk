@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TestController!
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<style>
+		#container-post {
+			height: 70px;
+			overflow-y: auto;
+		}
+	</style>
+{% endblock %}
+
+{% block body %}
+	{{form(form)}}{% endblock %}
+
+	{% block javascripts %}
+		{{ parent() }}
+		<script>
+			$(function () {
+let $article_categorie = $('#article_categorie')
+
+$article_categorie.change(() => {
+var $form = $(this).closest('form')
+// Simulate form data, but only include the selected sport value.
+var data = {}
+data[$article_categorie.attr('name')] = $article_categorie.val()
+// Submit data via AJAX to the form's action path.
+$.ajax({
+url: $form.attr('action'),
+type: $form.attr('method'),
+data: data,
+complete: function (html) {
+let $galerie = $(html.responseText).find('#article_galerie').parent().parent()
+let $file = $('#article_image_article').parent().parent()
+$galerie.insertAfter($file)
+// Replace current position field ...
+// $('#meetup_position').replaceWith(
+//     // ... with the returned one from the AJAX response.
+//     $(html.responseText).find('#meetup_position')
+// );
+// Position field now displays the appropriate positions.
+}
+})
+})
+})
+		</script>
+	{% endblock %}

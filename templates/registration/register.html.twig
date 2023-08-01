@@ -1,0 +1,44 @@
+{% extends 'loginAndRegisterBase.html.twig' %}
+
+{% block title %}Inscription
+{% endblock %}
+
+{% block body %}
+<section class="container forms">
+	<div class="form signup" style="box-shadow: 2px 6px 16px 1px rgba(0, 0, 0, 0.2);">
+		<div class="form-content">
+			<a href="{{ path ('app_home') }}">
+				<center><img width="150" height="150" src="assets/images/logo.png" alt=""></center>
+			</a>
+			<header>S'inscrire</header>
+			{{ form_start(registrationForm, {'attr': {'class': 'contact-bx'}}) }}
+					{{ form_errors(registrationForm) }}
+					{{ form_errors(registrationForm.username) }}
+					{{ form_row(registrationForm.email, {'label': 'Email','attr': {'class': 'password'}}) }}
+					{{ form_row(registrationForm.username, {'label': 'Utilisateur','attr': {'class': 'input'}}) }}
+					{% if app.user is null %}
+					{{ form_row(registrationForm.plainPassword, {'label': 'Confirmation','placeholder': 'Confirm password','attr': {'class': 'password'}}) }}
+					<i class='bx bx-hide eye-icon'></i>
+				{% endif %}
+				
+				<div class="field button-field">
+					<button><i class="fa fa-save"></i>&nbsp;Enregistrer</button>
+				</div>
+				{{ form_end(registrationForm) }}
+				
+			<div class="form-link">
+				<span>Se connecter avec votre compte? <a href="{{ path ('app_login') }}" class="link login-link">Cliquer ici</a></span>
+			</div>
+		</div>
+
+		
+
+	</div>
+
+	
+</section>
+
+
+	
+
+{% endblock %}
