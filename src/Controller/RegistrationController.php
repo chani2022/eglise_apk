@@ -16,7 +16,7 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class RegistrationController extends AbstractController
 {
-    #[Route('/inscription', name: 'app_register')]
+    #[Route('/{_locale}/inscription', name: 'app_register', requirements: ['_locale' => 'en|fr|mg'], defaults: ['_locale' => 'fr'])]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
     {
         /**

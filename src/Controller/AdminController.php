@@ -28,7 +28,7 @@ class AdminController extends AbstractController
     public function __construct(private CacheInterface $cache)
     {
     }
-    #[Route('/admin/dashboard', name: 'app_dashboard')]
+    #[Route('/{_locale}/admin/dashboard', name: 'app_dashboard', requirements: ['_locale' => 'en|fr|mg'], defaults: ['_locale' => 'fr'])]
     public function dashboard(Request $request, VisitorRepository $visitorRep): Response
     {
         $dates = [
@@ -101,7 +101,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/article/{article_get}', name: 'app_article')]
+    #[Route('/{_locale}/admin/article/{article_get}', name: 'app_article', requirements: ['_locale' => 'en|fr|mg'], defaults: ['_locale' => 'fr'])]
     public function article(
         ?Article $article_get = null,
         Request $request,

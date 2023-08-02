@@ -15,7 +15,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 #[IsGranted('ROLE_USER')]
 class ProfilController extends AbstractController
 {
-    #[Route('/profil', name: 'app_profil')]
+    #[Route('/{_locale}/profil', name: 'app_profil', requirements: ['_locale' => 'en|fr|mg'], defaults: ['_locale' => 'fr'])]
     public function index(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $hasher): Response
     {
         $form = $this->createForm(ProfilType::class, $this->getUser());
