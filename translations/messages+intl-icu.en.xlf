@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="eOeSABC" resname="Titre">
+        <source>Titre</source>
+        <target>__Titre</target>
+      </trans-unit>
+      <trans-unit id="_V8sZpt" resname="Titre doit être renseigner!">
+        <source>Titre doit être renseigner!</source>
+        <target>__Titre doit être renseigner!</target>
+      </trans-unit>
+      <trans-unit id="Cufcid1" resname="Titre doit contenir au moins {{ limit }} caractère!">
+        <source>Titre doit contenir au moins {{ limit }} caractère!</source>
+        <target>__Titre doit contenir au moins {{ limit }} caractère!</target>
+      </trans-unit>
+      <trans-unit id="Um4Ah8w" resname="Description">
+        <source>Description</source>
+        <target>__Description</target>
+      </trans-unit>
+      <trans-unit id="c7_lxRh" resname="Description doit être renseigner!">
+        <source>Description doit être renseigner!</source>
+        <target>__Description doit être renseigner!</target>
+      </trans-unit>
+      <trans-unit id="AIpjPy." resname="Description doit contenir au moins {{ limit }} caractère!">
+        <source>Description doit contenir au moins {{ limit }} caractère!</source>
+        <target>__Description doit contenir au moins {{ limit }} caractère!</target>
+      </trans-unit>
+      <trans-unit id="GH_yobF" resname="-Selectionnez-">
+        <source>-Selectionnez-</source>
+        <target>__-Selectionnez-</target>
+      </trans-unit>
+      <trans-unit id="FeeFrJO" resname="Catégorie doit être renseigner!">
+        <source>Catégorie doit être renseigner!</source>
+        <target>__Catégorie doit être renseigner!</target>
+      </trans-unit>
+      <trans-unit id="V4oC.ul" resname="Langue doit être renseigner!">
+        <source>Langue doit être renseigner!</source>
+        <target>__Langue doit être renseigner!</target>
+      </trans-unit>
+      <trans-unit id="jN4faW1" resname="Date d'évènement">
+        <source>Date d'évènement</source>
+        <target>__Date d'évènement</target>
+      </trans-unit>
+      <trans-unit id="06GPx_R" resname="Galerie d'image">
+        <source>Galerie d'image</source>
+        <target>__Galerie d'image</target>
+      </trans-unit>
+      <trans-unit id="Ufnavbn" resname="Email obligatoire">
+        <source>Email obligatoire</source>
+        <target>__Email obligatoire</target>
+      </trans-unit>
+      <trans-unit id="G7BOy89" resname="Mot de passe actuel invalide!">
+        <source>Mot de passe actuel invalide!</source>
+        <target>__Mot de passe actuel invalide!</target>
+      </trans-unit>
+      <trans-unit id="iqxxcjO" resname="Mot de passe actuel obligatoire">
+        <source>Mot de passe actuel obligatoire</source>
+        <target>__Mot de passe actuel obligatoire</target>
+      </trans-unit>
+      <trans-unit id="xpXZKsv" resname="Les 2 mots de passe sont differents.">
+        <source>Les 2 mots de passe sont differents.</source>
+        <target>__Les 2 mots de passe sont differents.</target>
+      </trans-unit>
+      <trans-unit id="o9ZcpWl" resname="Nouveau mot de passe">
+        <source>Nouveau mot de passe</source>
+        <target>__Nouveau mot de passe</target>
+      </trans-unit>
+      <trans-unit id="d77OiMk" resname="Répetez votre mot de passe">
+        <source>Répetez votre mot de passe</source>
+        <target>__Répetez votre mot de passe</target>
+      </trans-unit>
+      <trans-unit id="haEIuZB" resname="Nom obligatoire">
+        <source>Nom obligatoire</source>
+        <target>__Nom obligatoire</target>
+      </trans-unit>
+      <trans-unit id="Ydt037C" resname="Prénom obligatoire">
+        <source>Prénom obligatoire</source>
+        <target>__Prénom obligatoire</target>
+      </trans-unit>
+      <trans-unit id="5VgTxw_" resname="Les 2 mots de passe sont différentes!.">
+        <source>Les 2 mots de passe sont différentes!.</source>
+        <target>__Les 2 mots de passe sont différentes!.</target>
+      </trans-unit>
+      <trans-unit id=".5yLjAZ" resname="Mot de passe">
+        <source>Mot de passe</source>
+        <target>__Mot de passe</target>
+      </trans-unit>
+      <trans-unit id="OnhpU4i" resname="Home">
+        <source>Home</source>
+        <target>Home</target>
+      </trans-unit>
+      <trans-unit id="sUrHikb" resname="Articles">
+        <source>Articles</source>
+        <target>__Articles</target>
+      </trans-unit>
+      <trans-unit id="TvBzUlU" resname="Tous les articles">
+        <source>Tous les articles</source>
+        <target>__Tous les articles</target>
+      </trans-unit>
+      <trans-unit id="92hkAji" resname="Article publié">
+        <source>Article publié</source>
+        <target>__Article publié</target>
+      </trans-unit>
+      <trans-unit id="tPA7Nxb" resname="Corbeille">
+        <source>Corbeille</source>
+        <target>__Corbeille</target>
+      </trans-unit>
+      <trans-unit id="cdx0hz4" resname="Enregistrer">
+        <source>Enregistrer</source>
+        <target>__Enregistrer</target>
+      </trans-unit>
+      <trans-unit id="SxWowuh" resname="Catégorie:">
+        <source>Catégorie:</source>
+        <target>__Catégorie:</target>
+      </trans-unit>
+      <trans-unit id="cblI3gP" resname="Langue:">
+        <source>Langue:</source>
+        <target>__Langue:</target>
+      </trans-unit>
+      <trans-unit id="G3o48Tn" resname="Publié par:">
+        <source>Publié par:</source>
+        <target>__Publié par:</target>
+      </trans-unit>
+      <trans-unit id="0eVCbdw" resname="Publier">
+        <source>Publier</source>
+        <target>__Publier</target>
+      </trans-unit>
+      <trans-unit id="dVyLKp_" resname="Status:">
+        <source>Status:</source>
+        <target>__Status:</target>
+      </trans-unit>
+      <trans-unit id="cc6Qhrr" resname="Dépublier">
+        <source>Dépublier</source>
+        <target>__Dépublier</target>
+      </trans-unit>
+      <trans-unit id="Kl_Pmkq" resname="Etude du livre de l'apokalypsy">
+        <source>Etude du livre de l'apokalypsy</source>
+        <target>Study of the book of the apokalypsy</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

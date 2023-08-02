@@ -14,9 +14,10 @@
 			<ul class="db-breadcrumb-list">
 				<li>
 					<a href="#">
-						<i class="fa fa-home"></i>Home</a>
+						<i class="fa fa-home"></i>
+						{% trans %}Home{% endtrans %}</a>
 				</li>
-				<li>Articles</li>
+				<li>{% trans %}Articles{% endtrans %}</li>
 			</ul>
 		</div>
 		<div
@@ -30,18 +31,21 @@
 								<ul>
 									<li class="active">
 										<a href="mailbox.html">
-											<i class="fa fa-file-text-o"></i>Tous les articles
+											<i class="fa fa-file-text-o"></i>
+											{% trans %}Tous les articles{% endtrans %}
 											<span class="badge badge-success">8</span>
 										</a>
 									</li>
 									<li>
 										<a href="mailbox.html">
-											<i class="fa fa-send-o"></i>Article publié<span class="badge badge-success">8</span>
+											<i class="fa fa-send-o"></i>
+											{% trans %}Article publié{% endtrans %}<span class="badge badge-success">8</span>
 										</a>
 									</li>
 									<li>
 										<a href="mailbox.html">
-											<i class="fa fa-trash-o"></i>Corbeille<span class="badge badge-success">3</span>
+											<i class="fa fa-trash-o"></i>
+											{% trans %}Corbeille{% endtrans %}<span class="badge badge-success">3</span>
 										</a>
 									</li>
 								</ul>
@@ -74,8 +78,8 @@
 							</div>
 
 							{# <div class="form-group col-12" id="form_galerie">
-																																																																																																																																																																{{ form_row(form.galerie)}}
-																																																																																																																																																																</div> #}
+																																																																																																																																																																																												{{ form_row(form.galerie)}}
+																																																																																																																																																																																												</div> #}
 							<div class="form-group col-12">
 								{{ form_row(form.langue)}}
 							</div>
@@ -87,7 +91,7 @@
 							</div>
 							<div class="form-group col-12">
 								<button type="submit" class="btn btn-lg" id="btn-register">
-									<i class="fa fa-save"></i>&nbsp;Enregistrer</button>
+									<i class="fa fa-save"></i>&nbsp;{% trans %}Enregistrer{% endtrans %}</button>
 							</div>
 							{{ form_end(form) }}
 
@@ -114,16 +118,26 @@
 								<div class="card-courses-full-dec">
 									<div class="card-courses-title">
 										<p style="font-size:14px;color:black">
-											<strong>Catégorie: </strong>: {{article.categorie.type}}<br/>
-											<strong>Langue: </strong>: {{article.langue.type}}<br/>
-											<strong>Publié par: </strong>: {{article.user.username}}<br/>
+											<strong>{% trans %}Catégorie:{% endtrans %}
+											</strong>:
+											{{article.categorie.type}}<br/>
+											<strong>{% trans %}Langue:{% endtrans %}
+											</strong>:
+											{{article.langue.type}}<br/>
+											<strong>{% trans %}Publié par:{% endtrans %}
+											</strong>:
+											{{article.user.username}}<br/>
 											{% if  article.isIsPublished() %}
-											<strong>Status: </strong>: <span style="color:#1bd111">Publier</span><br/>
+												<strong>Status:
+												</strong>:
+												<span style="color:#1bd111">{% trans %}Publier{% endtrans %}</span><br/>
 											{% else %}
-											<strong>Status: </strong>: <span style="color:#ff2e2e">Dépublier</span><br/>
-											
+												<strong>{% trans %}Status:{% endtrans %}
+												</strong>:
+												<span style="color:#ff2e2e">{% trans %}Dépublier{% endtrans %}</span><br/>
+
 											{% endif %}
-											
+
 										</p>
 										<p></p>
 										<h4 class="m-b5">{{ article.titre }}</h4>

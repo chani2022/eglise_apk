@@ -15,10 +15,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ArticleType extends AbstractType
 {
-    public function __construct(private CategorieRepository $categorieRep)
+    public function __construct(private CategorieRepository $categorieRep, private TranslatorInterface $trans)
     {
     }
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -35,22 +36,23 @@ class ArticleType extends AbstractType
         }
         $builder
             ->add('titre', TextType::class, [
+                'label' => $this->trans->trans("Titre"),
                 'required' => true,
                 "attr" => [
                     "class" => "form-control"
                 ],
                 "constraints" => [
                     new NotBlank([
-                        "message" => "Titre doit être renseigner!"
+                        "message" => $this->trans->trans("Titre doit être renseigner!")
                     ]),
                     new Length([
                         "min" => 5,
-                        "minMessage" => "Titre doit contenir au moins {{ limit }} caractère!"
+                        "minMessage" => $this->trans->trans("Titre doit contenir au moins {{ limit }} caractère!")
                     ])
                 ]
             ])
             ->add('commentaire', TextareaType::class, [
-                "label" => "Description",
+                "label" => $this->trans->trans("Description"),
                 'required' => true,
                 "attr" => [
                     "class" => "form-control",
@@ -58,11 +60,11 @@ class ArticleType extends AbstractType
                 ],
                 "constraints" => [
                     new NotBlank([
-                        "message" => "Description doit être renseigner!"
+                        "message" => $this->trans->trans("Description doit être renseigner!")
                     ]),
                     new Length([
                         "min" => 50,
-                        "minMessage" => "Description doit contenir au moins {{ limit }} caractère!"
+                        "minMessage" => $this->trans->trans("Description doit contenir au moins {{ limit }} caractère!")
                     ])
                 ]
             ])
@@ -74,10 +76,10 @@ class ArticleType extends AbstractType
                 'class' => Categorie::class,
                 "choice_label" => 'type',
                 'required' => true,
-                'placeholder' => '-Selectionnez-',
+                'placeholder' => $this->trans->trans('-Selectionnez-'),
                 "constraints" => [
                     new NotBlank([
-                        "message" => "Catégorie doit être renseigner!"
+                        "message" => $this->trans->trans("Catégorie doit être renseigner!")
                     ])
                 ]
             ])
@@ -85,16 +87,16 @@ class ArticleType extends AbstractType
                 'class' => Langue::class,
                 'choice_label' => 'type',
                 'required' => true,
-                'placeholder' => '-Selectionnez-',
+                'placeholder' => $this->trans->trans('-Selectionnez-'),
                 "constraints" => [
                     new NotBlank([
-                        "message" => "Langue doit être renseigner!"
+                        "message" => $this->trans->trans("Langue doit être renseigner!")
                     ])
                 ]
             ])
             ->add('event_at', TextType::class, [
                 "mapped" => false,
-                'label' => 'Date d\'évènement',
+                'label' => $this->trans->trans('Date d\'évènement'),
                 'required' => false,
                 "attr" => [
                     "class" => "form-control " . $className_date_event,
@@ -103,7 +105,7 @@ class ArticleType extends AbstractType
             ]);
 
         $builder->add('galerie_pop', FileType::class, [
-            "label" => "Galerie d'image",
+            "label" => $this->trans->trans("Galerie d'image"),
             "mapped" => false,
             "multiple" => true,
             "required" => false,

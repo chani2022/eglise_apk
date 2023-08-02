@@ -19,9 +19,10 @@
 		<div class="container">
 			<ul class="list-inline">
 				<li>
-					<a href="#">Home</a>
+					<a href="#">{% trans %}Home{% endtrans %}
+					</a>
 				</li>
-				<li>{{ type }}</li>
+				<li>{{ type|trans }}</li>
 			</ul>
 		</div>
 	</div>
@@ -37,44 +38,7 @@
 					<div
 						class="row">
 						<!-- Left part start -->
-						<div
-							class="col-lg-12" id="container" data-type="{{ type }}">{# {% for cal in articles %}
-																<div class="blog-post blog-md clearfix item-article" id="{{ cal.id }}">
-																	<div class="ttr-post-media">
-																		<img src="{{ asset( 'article/' ~ cal.image ) }}"/>
-																	</div>
-																	<div class="ttr-post-info">
-																		{% if type == "Calendrier d'évènement" %}
-																			<ul class="media-post">
-																				<li>
-																					<a href="#">
-																						<i class="fa fa-calendar"></i>Date d'évènement:
-																						{{ cal.eventAt|date("d/m/Y") }}</a>
-																				</li>
-								
-																			</ul>
-																		{% endif %}
-																		<h5 class="post-title">{{cal.titre}}</h5>
-																		<p>
-																			{{cal.commentaire|markdown_to_html}}
-																		</p>
-								
-																		<div class="post-extra">
-																			<a href="#" class="btn-link">Publié le:
-																				<strong>{{ cal.createdAt|date("d/m/Y") }}</strong>
-																			</a>
-																			<a href="#" class="comments-bx">
-																				<i class="fa fa-user"></i>Par
-																				<strong>Cynthia</strong>
-																			</a>
-								
-																		</div>
-																	</div>
-																</div>
-															{% endfor %} #}
-
-
-						</div>
+						<div class="col-lg-12" id="container" data-type="{{ type }}"></div>
 						<div class="loading">
 							<img src="{{ asset ('assets/images/spinner/spinner.gif') }}" class="spinner" alt="spinner"/>
 						</div>

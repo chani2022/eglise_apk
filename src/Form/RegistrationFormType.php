@@ -13,13 +13,11 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Security;
-use Symfony\Component\Validator\Constraints\IsTrue;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationFormType extends AbstractType
 {
-    public function __construct(private Security $security)
+    public function __construct(private Security $security, private TranslatorInterface $trans)
     {
     }
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -44,11 +42,11 @@ class RegistrationFormType extends AbstractType
             $builder->add('plainPassword', RepeatedType::class, [
                 "mapped" => false,
                 'type' => PasswordType::class,
-                'invalid_message' => 'Les 2 mots de passe sont différentes!.',
+                'invalid_message' => $this->trans->trans('Les 2 mots de passe sont différentes!.'),
                 'options' => ['attr' => ['class' => 'form-control']],
                 'required' => true,
-                'first_options'  => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Répetez votre mot de passe'],
+                'first_options'  => ['label' => $this->trans->trans('Mot de passe')],
+                'second_options' => ['label' => $this->trans->trans('Répetez votre mot de passe')],
             ]);
         }
     }

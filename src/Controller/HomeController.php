@@ -2,20 +2,15 @@
 
 namespace App\Controller;
 
-use App\Entity\Categorie;
-use App\Entity\Galerie;
-use App\Repository\ArticleRepository;
 use App\Service\ArticleService;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
+    #[Route('/{_locale}', name: 'app_home', requirements: ['_locale' => 'fr|en|mg'], defaults: ['_locale' => 'fr'])]
     public function index(ArticleService $articleService): Response
     {
 
@@ -28,7 +23,7 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/article/{type}', name: 'app_article_by_categorie')]
+    #[Route('/{_locale}/article/{type}', name: 'app_article_by_categorie', requirements: ['_locale' => 'fr|en|mg'], defaults: ['_locale' => 'fr'])]
     public function getArticlesPublished(string $type, ArticleService $articleService): Response
     {
         return $this->render('articles/articles.html.twig', [

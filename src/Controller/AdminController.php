@@ -29,7 +29,7 @@ class AdminController extends AbstractController
     public function __construct(private CacheInterface $cache)
     {
     }
-    #[Route('/admin/dashboard', name: 'app_dashboard')]
+    #[Route('/{_locale}/admin/dashboard', name: 'app_dashboard', requirements: ['_locale' => 'en|fr|mg'], defaults: ['_locale' => 'fr'])]
     public function dashboard(Request $request, VisitorRepository $visitorRep, ArticleService $articleService): Response
     {
         $articlesWriteByUser = $articleService->getArticlesByUser();
