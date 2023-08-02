@@ -202,40 +202,35 @@ var Article = {
         if (article.date_event) {
             dateEvent = this.date(article.date_event, "slash")
         }
-        let template = '<div class="blog-post blog-md clearfix item-article" id="' + article.id_article + '">'
-            + '<div class="ttr-post-media">'
-            + '<img src="' + image + '"/>'
-            + '</div>'
-            + ' <div class="ttr-post-info">';
-        if (article.categorie_article == "Calendrier d'évènement") {
-            template += '<ul class="media-post">'
-                + '<li>'
-                + '<a href="#">'
-                + '<i class="fa fa-calendar"></i>Date d\'évènement:'
-                + dateEvent
-                + '</a>'
-                + '</li>'
-                + '</ul>'
-        }
-        template +=
-            '<h5 class="post-title">' + titre + '</h5>'
-            + '<p>' +
-            commentaire
-            + '</p>'
-
-            + '<div class="post-extra">'
-            + '<a href="#" class="btn-link">Publié le:'
-
-            + '<strong>' + date + '</strong>'
-            + '</a>'
-            + '<a href="#" class="comments-bx">'
-            + '<i class="fa fa-user"></i>Par'
-            + '<strong>Cynthia</strong>'
-            + '</a>'
-
-            + '</div>'
-            + '</div>'
-            + '</div>'
+        let template = '<div class="action-card col-xl-12 col-lg-12 col-md-12 col-sm-6 pending infinityScrollRecent" id="' + article.id_article + '">'
+        + '<div class="recent-news cours-bx">'
+        + '<div class="action-box">'
+        + '<img src="' + image + '" alt id="image-article-recent-' + article.id_article + '">'
+        + '<a href="#" class="btn lire-suite" id="' + article.id_article + '" data-toggle="modal" data-target="#exampleModalCenter">Lire la suite</a>'
+        + '</div>'
+        + '<div class="info-bx">'
+        + '<ul class="media-post">'
+        + '<li>'
+        + '<a href="#">' +
+        '<i class="fa fa-calendar" id="date-article-recent-' + article.id_article + '"> ' + date + '</i>'
+        + '</a>'
+        + '</li>'
+        + '<li>'
+        + '<a href="#">' +
+        '<i class="fa fa-user" id="auteur-article-recent-' + article.id_article + '"> Par ' + email + '</i>'
+        + '</a>'
+        + '</li>'
+        + '</ul>'
+        + '<div class="info-bx text-center">'
+        + '<h5  class="post-title" style="font-size:15px;font-weight:bold"  id="titre-article-recent-' + article.id_article + '">' + titre + '</h5>'
+        + '</div>'
+        + '<p id="commentaire-article-recent-' + article.id_article + '" data-commentaire="' + commentaire + '" style="overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;line-clamp: 2;-webkit-box-orient: vertical;">' + extrait_commentaire + '</p>'
+        + '<div class="post-extra">'
+        + '<a href="#" class="comments-bx"></a> 0 commentaire'
+        + '</div>'
+        + '</div>'
+        + '</div>'
+        + '</div>'
         let item = document.createElement('div');
         item.innerHTML = template.trim();
 
