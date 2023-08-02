@@ -8,6 +8,7 @@ use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use App\Repository\UserRepository;
 use App\Repository\VisitorRepository;
+use App\Service\ArticleService;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -29,8 +30,10 @@ class AdminController extends AbstractController
     {
     }
     #[Route('/admin/dashboard', name: 'app_dashboard')]
-    public function dashboard(Request $request, VisitorRepository $visitorRep): Response
+    public function dashboard(Request $request, VisitorRepository $visitorRep, ArticleService $articleService): Response
     {
+        $articlesWriteByUser = $articleService->getArticlesByUser();
+
         $dates = [
             (new \DateTime())->sub(new \DateInterval("P5D"))->format("Y-m-d"),
             (new \DateTime())->format("Y-m-d")
@@ -95,9 +98,11 @@ class AdminController extends AbstractController
                 }
             }
         }
+
         return $this->render('admin/dashboard.html.twig', [
             'visitors' => json_encode($data),
-            "form" => $form->createView()
+            "form" => $form->createView(),
+            "usersWithArticles" => $articlesWriteByUser
         ]);
     }
 

@@ -12,9 +12,9 @@ class ArticleService
     {
     }
 
-    public function getArticles(string $type): array
+    public function getArticles(string $categorie): array
     {
-        $articles = $this->articleRep->getArticlePublished($type);
+        $articles = $this->articleRep->getArticlePublished($categorie);
         $array_populaires = [];
         $populaire_recent = null;
 
@@ -55,5 +55,30 @@ class ArticleService
             "populaire_recent" => $populaire_recent,
             'array_populaire_js' => $array_populaires
         ];
+    }
+
+    public function getArticlesByUser(): array
+    {
+        $articles = $this->articleRep->getArticlePublished();
+        $array_users = [];
+        foreach ($articles as $article) {
+            if (!array_key_exists($article->getUser()->getId(), $array_users)) {
+                $array_users[$article->getUser()->getId()] = [
+                    "nom" => $article->getUser()->getNom(),
+                    "prenom" => $article->getUser()->getPrenom(),
+                    "photo" => $article->getUser()->getPhoto(),
+                    "email" => $article->getUser()->getEmail(),
+                    "articles" => [
+                        $article->getId() => $article
+                    ]
+                ];
+            } else {
+                if (!array_key_exists($article->getId(), $array_users[$article->getUser()->getId()]['articles'])) {
+                    $array_users[$article->getUser()->getId()]['articles'][] = $article;
+                }
+            }
+        }
+
+        return $array_users;
     }
 }
