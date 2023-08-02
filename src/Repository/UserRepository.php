@@ -70,16 +70,24 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
     public function loadUserByIdentifier(string $usernameOrEmail): ?User
     {
-        $entityManager = $this->getEntityManager();
-
-        return $entityManager->createQuery(
-            'SELECT u
-                FROM App\Entity\User u
-                WHERE u.username = :query
-                OR u.email = :query'
-        )
-            ->setParameter('query', $usernameOrEmail)
+        return $this->createQueryBuilder("u")
+            ->where('u.username = :userOrEmail')
+            ->orWhere('u.email = :userOrEmail')
+            ->andWhere('u.isActif = :actif')
+            ->setParameter('userOrEmail', $usernameOrEmail)
+            ->setParameter('actif', true)
+            ->getQuery()
             ->getOneOrNullResult();
+        // $entityManager = $this->getEntityManager();
+
+        // return $entityManager->createQuery(
+        //     'SELECT u
+        //         FROM App\Entity\User u
+        //         WHERE u.username = :query
+        //         OR u.email = :query
+        //         AND u.isActif = :actif'
+        // )
+
     }
 
     public function getAllWithoutMy(string $email): array
