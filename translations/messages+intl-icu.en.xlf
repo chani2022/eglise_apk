@@ -15,7 +15,7 @@
       </trans-unit>
       <trans-unit id="Cufcid1" resname="Titre doit contenir au moins {{ limit }} caractère!">
         <source>Titre doit contenir au moins {{ limit }} caractère!</source>
-        <target>Title must contain at least {{ limit }} character!</target>
+        <target>Title must contain at least  limit  character!</target>
       </trans-unit>
       <trans-unit id="Um4Ah8w" resname="Description">
         <source>Description</source>
@@ -27,7 +27,7 @@
       </trans-unit>
       <trans-unit id="AIpjPy." resname="Description doit contenir au moins {{ limit }} caractère!">
         <source>Description doit contenir au moins {{ limit }} caractère!</source>
-        <target>Description must contain at least {{ limit }} character!</target>
+        <target>Description must contain at least limit character!</target>
       </trans-unit>
       <trans-unit id="GH_yobF" resname="-Selectionnez-">
         <source>-Selectionnez-</source>

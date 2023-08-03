@@ -106,7 +106,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/article/{article_get}', name: 'app_article')]
+    #[Route('/{_locale}/admin/article/{article_get}', name: 'app_article', requirements: ['_locale' => 'en|fr|mg'], defaults: ['_locale' => 'fr'])]
     public function article(
         ?Article $article_get = null,
         Request $request,

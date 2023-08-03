@@ -47,7 +47,7 @@ class ArticleType extends AbstractType
                     ]),
                     new Length([
                         "min" => 5,
-                        "minMessage" => $this->trans->trans("Titre doit contenir au moins {{ limit }} caractère!")
+                        "minMessage" => $this->trans->trans("Titre doit contenir au moins {{ limit|trans }} caractère!")
                     ])
                 ]
             ])
@@ -69,10 +69,12 @@ class ArticleType extends AbstractType
                 ]
             ])
             ->add('image_article', FileType::class, [
+                "label" => $this->trans->trans("Photo de l'Article"),
                 "mapped" => false,
                 'required' => false
             ])
             ->add('categorie', EntityType::class, [
+                'label' => $this->trans->trans("categorie"),
                 'class' => Categorie::class,
                 "choice_label" => 'type',
                 'required' => true,
@@ -84,6 +86,7 @@ class ArticleType extends AbstractType
                 ]
             ])
             ->add('langue', EntityType::class, [
+                'label' => $this->trans->trans('Langue'),
                 'class' => Langue::class,
                 'choice_label' => 'type',
                 'required' => true,
