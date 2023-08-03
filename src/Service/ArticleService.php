@@ -64,6 +64,7 @@ class ArticleService
         foreach ($articles as $article) {
             if (!array_key_exists($article->getUser()->getId(), $array_users)) {
                 $array_users[$article->getUser()->getId()] = [
+                    "id_user" => $article->getUser()->getId(),
                     "nom" => $article->getUser()->getNom(),
                     "prenom" => $article->getUser()->getPrenom(),
                     "photo" => $article->getUser()->getPhoto(),

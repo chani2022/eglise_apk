@@ -7,6 +7,7 @@ parameters:
     app_dir_article: '%kernel.project_dir%/public/article'
     app_dir_galerie: '%kernel.project_dir%/public/galerie'
     app_dir_photo_user: '%kernel.project_dir%/public/photo'
+    google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
 
 services:
     # default configuration for services in *this* file
