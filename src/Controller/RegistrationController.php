@@ -4,26 +4,25 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
-use App\Repository\UserRepository;
-use App\Security\AppAuthenticator;
+use App\Service\RecaptchaService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationController extends AbstractController
 {
     #[Route('/{_locale}/inscription', name: 'app_register', requirements: ['_locale' => 'en|fr|mg'], defaults: ['_locale' => 'fr'])]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthenticator $authenticator, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
+    public function register(RecaptchaService $recaptcha, Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, TranslatorInterface $trans): Response
     {
         /**
          * authentifié mais pas admin
          */
         if ($this->getUser()) {
-            $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Vous ne pouvez pas consulter cette page!');
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', null, $trans->trans('Vous ne pouvez pas consulter cette page!'));
         }
 
         $user = new User();
@@ -32,6 +31,12 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $value_response_recaptcha = $request->request->get('g-recaptcha-response');
+
+            if (!$recaptcha->verify($request, $value_response_recaptcha)) {
+                $this->addFlash("error", $trans->trans("Veuillez valider le recaptcha"));
+                return $this->redirectToRoute("app_register");
+            }
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(

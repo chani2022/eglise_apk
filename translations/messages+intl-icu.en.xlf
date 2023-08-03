@@ -7,87 +7,87 @@
     <body>
       <trans-unit id="eOeSABC" resname="Titre">
         <source>Titre</source>
-        <target>__Titre</target>
+        <target>Title</target>
       </trans-unit>
       <trans-unit id="_V8sZpt" resname="Titre doit être renseigner!">
         <source>Titre doit être renseigner!</source>
-        <target>__Titre doit être renseigner!</target>
+        <target>Title must be filled in!</target>
       </trans-unit>
       <trans-unit id="Cufcid1" resname="Titre doit contenir au moins {{ limit }} caractère!">
         <source>Titre doit contenir au moins {{ limit }} caractère!</source>
-        <target>__Titre doit contenir au moins {{ limit }} caractère!</target>
+        <target>Title must contain at least {{ limit }} character!</target>
       </trans-unit>
       <trans-unit id="Um4Ah8w" resname="Description">
         <source>Description</source>
-        <target>__Description</target>
+        <target>Description</target>
       </trans-unit>
       <trans-unit id="c7_lxRh" resname="Description doit être renseigner!">
         <source>Description doit être renseigner!</source>
-        <target>__Description doit être renseigner!</target>
+        <target>Description must be completed!</target>
       </trans-unit>
       <trans-unit id="AIpjPy." resname="Description doit contenir au moins {{ limit }} caractère!">
         <source>Description doit contenir au moins {{ limit }} caractère!</source>
-        <target>__Description doit contenir au moins {{ limit }} caractère!</target>
+        <target>Description must contain at least {{ limit }} character!</target>
       </trans-unit>
       <trans-unit id="GH_yobF" resname="-Selectionnez-">
         <source>-Selectionnez-</source>
-        <target>__-Selectionnez-</target>
+        <target>-Select-</target>
       </trans-unit>
       <trans-unit id="FeeFrJO" resname="Catégorie doit être renseigner!">
         <source>Catégorie doit être renseigner!</source>
-        <target>__Catégorie doit être renseigner!</target>
+        <target>Category must be filled in!</target>
       </trans-unit>
       <trans-unit id="V4oC.ul" resname="Langue doit être renseigner!">
         <source>Langue doit être renseigner!</source>
-        <target>__Langue doit être renseigner!</target>
+        <target>Language must be filled in</target>
       </trans-unit>
       <trans-unit id="jN4faW1" resname="Date d'évènement">
         <source>Date d'évènement</source>
-        <target>__Date d'évènement</target>
+        <target>Event date</target>
       </trans-unit>
       <trans-unit id="06GPx_R" resname="Galerie d'image">
         <source>Galerie d'image</source>
-        <target>__Galerie d'image</target>
+        <target>Image Gallery</target>
       </trans-unit>
       <trans-unit id="Ufnavbn" resname="Email obligatoire">
         <source>Email obligatoire</source>
-        <target>__Email obligatoire</target>
+        <target>Mandatory email</target>
       </trans-unit>
       <trans-unit id="G7BOy89" resname="Mot de passe actuel invalide!">
         <source>Mot de passe actuel invalide!</source>
-        <target>__Mot de passe actuel invalide!</target>
+        <target>Invalid current password!</target>
       </trans-unit>
       <trans-unit id="iqxxcjO" resname="Mot de passe actuel obligatoire">
         <source>Mot de passe actuel obligatoire</source>
-        <target>__Mot de passe actuel obligatoire</target>
+        <target>Current password required</target>
       </trans-unit>
       <trans-unit id="xpXZKsv" resname="Les 2 mots de passe sont differents.">
         <source>Les 2 mots de passe sont differents.</source>
-        <target>__Les 2 mots de passe sont differents.</target>
+        <target>The 2 passwords are different.</target>
       </trans-unit>
       <trans-unit id="o9ZcpWl" resname="Nouveau mot de passe">
         <source>Nouveau mot de passe</source>
-        <target>__Nouveau mot de passe</target>
+        <target>New Password</target>
       </trans-unit>
       <trans-unit id="d77OiMk" resname="Répetez votre mot de passe">
         <source>Répetez votre mot de passe</source>
-        <target>__Répetez votre mot de passe</target>
+        <target>Repeat your password</target>
       </trans-unit>
       <trans-unit id="haEIuZB" resname="Nom obligatoire">
         <source>Nom obligatoire</source>
-        <target>__Nom obligatoire</target>
+        <target>Compulsory name</target>
       </trans-unit>
       <trans-unit id="Ydt037C" resname="Prénom obligatoire">
         <source>Prénom obligatoire</source>
-        <target>__Prénom obligatoire</target>
+        <target>Mandatory first name</target>
       </trans-unit>
       <trans-unit id="5VgTxw_" resname="Les 2 mots de passe sont différentes!.">
         <source>Les 2 mots de passe sont différentes!.</source>
-        <target>__Les 2 mots de passe sont différentes!.</target>
+        <target>_The 2 passwords are different!.</target>
       </trans-unit>
       <trans-unit id=".5yLjAZ" resname="Mot de passe">
         <source>Mot de passe</source>
-        <target>__Mot de passe</target>
+        <target>Password</target>
       </trans-unit>
       <trans-unit id="OnhpU4i" resname="Home">
         <source>Home</source>
@@ -95,47 +95,47 @@
       </trans-unit>
       <trans-unit id="sUrHikb" resname="Articles">
         <source>Articles</source>
-        <target>__Articles</target>
+        <target>Items</target>
       </trans-unit>
       <trans-unit id="TvBzUlU" resname="Tous les articles">
         <source>Tous les articles</source>
-        <target>__Tous les articles</target>
+        <target>All items</target>
       </trans-unit>
       <trans-unit id="92hkAji" resname="Article publié">
         <source>Article publié</source>
-        <target>__Article publié</target>
+        <target>Article published</target>
       </trans-unit>
       <trans-unit id="tPA7Nxb" resname="Corbeille">
         <source>Corbeille</source>
-        <target>__Corbeille</target>
+        <target>Trash</target>
       </trans-unit>
       <trans-unit id="cdx0hz4" resname="Enregistrer">
         <source>Enregistrer</source>
-        <target>__Enregistrer</target>
+        <target>Save</target>
       </trans-unit>
       <trans-unit id="SxWowuh" resname="Catégorie:">
         <source>Catégorie:</source>
-        <target>__Catégorie:</target>
+        <target>Category:</target>
       </trans-unit>
       <trans-unit id="cblI3gP" resname="Langue:">
         <source>Langue:</source>
-        <target>__Langue:</target>
+        <target>Language:</target>
       </trans-unit>
       <trans-unit id="G3o48Tn" resname="Publié par:">
         <source>Publié par:</source>
-        <target>__Publié par:</target>
+        <target>Published by</target>
       </trans-unit>
       <trans-unit id="0eVCbdw" resname="Publier">
         <source>Publier</source>
-        <target>__Publier</target>
+        <target>Publish</target>
       </trans-unit>
       <trans-unit id="dVyLKp_" resname="Status:">
         <source>Status:</source>
-        <target>__Status:</target>
+        <target>Status:</target>
       </trans-unit>
       <trans-unit id="cc6Qhrr" resname="Dépublier">
         <source>Dépublier</source>
-        <target>__Dépublier</target>
+        <target>To publish</target>
       </trans-unit>
       <trans-unit id="Kl_Pmkq" resname="Etude du livre de l'apokalypsy">
         <source>Etude du livre de l'apokalypsy</source>

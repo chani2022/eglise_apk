@@ -29,5 +29,9 @@ services:
     App\EventListener\HashPasswordListener:
         tags: [{ name: nelmio_alice.faker.provider }]
 
+    App\Service\RecaptchaService:
+        arguments:
+            $google_recaptcha: '%env(GOOGLE_RECAPTCHA_SECRET)%'
+
 
 

@@ -4,61 +4,69 @@
 {% endblock %}
 
 {% block body %}
-<section class="container forms">
-            <div class="form login" style="box-shadow: 2px 6px 16px 1px rgba(0, 0, 0, 0.2);">
-                <div class="form-content">
-					<a href="{{ path ('app_home') }}">
-						<center><img width="150" height="150" src="assets/images/logo.png" alt=""></center>
-					</a>
-					{% if error %}
-						<div class="alert alert-danger col-12 text-center">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-					{% endif %}
-					{% if app.user %}
-								<div class="mb-3">
-									You are logged in as
-									{{ app.user.userIdentifier }},
-									<a href="{{ path('app_logout') }}">Logout</a>
-								</div>
-							{% endif %}
-                    <form method="post" class="contact-bx" id="form_signIn">
-                        <div class="field input-field">
-                            <input type="text" placeholder="Email ou nom d'utilisateur" class="input" value="{{ last_username }}" name="email" id="inputEmail"  autocomplete="email" required>
-                        </div>
-                        <div class="field input-field">
-                            <input  placeholder="Mot de passe" class="password" type="password" name="password" id="inputPassword" autocomplete="current-password" required>
-                            <i class='bx bx-hide eye-icon'></i>
-                        </div>
-						<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                        <div class="form-link">
-                            <a href="#" class="forgot-pass">Mot de passe oublié?</a>
-                        </div>
-                        <div class="field button-field">
-                            <button><i class="fa fa-sign-in"></i>&nbsp;Se connecter</button>
-                        </div>
-                    </form>
-                    <div class="form-link">
-                        <span>Pas encore inscrit ?  <a href="{{ path('app_register') }}" class="link signup-link">Créer un compte</a></span>
-                    </div>
-                </div>
-               <!-- <div class="line"></div>
-                <div class="media-options">
-                    <a href="#" class="field facebook">
-                        <i class='bx bxl-facebook facebook-icon'></i>
-                        <span>Login with Facebook</span>
-                    </a>
-                </div>
-                <div class="media-options">
-                    <a href="#" class="field google">
-                        <img src="#" alt="" class="google-img">
-                        <span>Login with Google</span>
-                    </a>
-                </div>
-            </div>-->
-         
-           
-        </section>
+	<section class="container forms">
+		<div class="form login" style="box-shadow: 2px 6px 16px 1px rgba(0, 0, 0, 0.2);">
+			<div class="form-content">
+				<a href="{{ path ('app_home') }}">
+					<center><img width="150" height="150" src="assets/images/logo.png" alt=""></center>
+				</a>
+				{% if error %}
+					<div class="alert alert-danger col-12 text-center">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+				{% endif %}
+				{% if app.user %}
+					<div class="mb-3">
+						You are logged in as
+						{{ app.user.userIdentifier }},
+						<a href="{{ path('app_logout') }}">Logout</a>
+					</div>
+				{% endif %}
+				<form method="post" class="contact-bx" id="form_signIn">
+					<div class="field input-field">
+						<input type="text" placeholder="Email ou nom d'utilisateur" class="input" value="{{ last_username }}" name="email" id="inputEmail" autocomplete="email" required>
+					</div>
+					<div class="field input-field">
+						<input placeholder="Mot de passe" class="password" type="password" name="password" id="inputPassword" autocomplete="current-password" required>
+						<i class='bx bx-hide eye-icon'></i>
+					</div>
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+					<div class="form-link">
+						<a href="#" class="forgot-pass">Mot de passe oublié?</a>
+					</div>
+					<!-- google recaptcha -->
+					<div class="g-recaptcha form-field" data-sitekey="{{ google_recaptcha_site_key }}"></div>
+					<!-- google recaptcha -->
+					<div class="field button-field">
+						<button>
+							<i class="fa fa-sign-in"></i>&nbsp;Se connecter</button>
+					</div>
+				</form>
+				<div class="form-link">
+					<span>Pas encore inscrit ?
+						<a href="{{ path('app_register') }}" class="link signup-link">Créer un compte</a>
+					</span>
+				</div>
+			</div>
+			<!-- <div class="line"></div>
+															                <div class="media-options">
+															                    <a href="#" class="field facebook">
+															                        <i class='bx bxl-facebook facebook-icon'></i>
+															                        <span>Login with Facebook</span>
+															                    </a>
+															                </div>
+															                <div class="media-options">
+															                    <a href="#" class="field google">
+															                        <img src="#" alt="" class="google-img">
+															                        <span>Login with Google</span>
+															                    </a>
+															                </div>
+															            </div>-->
 
 
+		</section>
 
-	
-{% endblock %}
+
+	{% endblock %}
+	{% block javascripts %}
+		{{parent()}}
+		<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl={{ app.request.locale }}"></script>
+	{% endblock %}
