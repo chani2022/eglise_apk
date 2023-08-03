@@ -40,7 +40,9 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     public function authenticate(Request $request): Passport
     {
         $email = $request->request->get('email', '');
-
+        /**
+         * verification recaptcha
+         */
         $value_response_recaptcha = $request->request->get('g-recaptcha-response');
 
         if (!$this->recaptcha->verify($request, $value_response_recaptcha)) {
