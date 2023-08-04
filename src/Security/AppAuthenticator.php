@@ -3,15 +3,11 @@
 namespace App\Security;
 
 use App\Service\RecaptchaService;
-use Exception;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBag;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
@@ -39,7 +35,6 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
     }
     public function authenticate(Request $request): Passport
     {
-        $email = $request->request->get('email', '');
         /**
          * verification recaptcha
          */
@@ -49,7 +44,9 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
             throw new CustomUserMessageAuthenticationException($this->trans->trans('Veuillez valider le recaptcha!'));
         }
 
+        $email = $request->request->get('email', '');
         $request->getSession()->set(Security::LAST_USERNAME, $email);
+
         return new Passport(
             new UserBadge($email),
             new PasswordCredentials($request->request->get('password', '')),
