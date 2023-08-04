@@ -13,10 +13,6 @@
         <source>Titre doit être renseigner!</source>
         <target>Title must be filled in!</target>
       </trans-unit>
-      <trans-unit id="Cufcid1" resname="Titre doit contenir au moins {{ limit }} caractère!">
-        <source>Titre doit contenir au moins {{ limit }} caractère!</source>
-        <target>Title must contain at least  limit  character!</target>
-      </trans-unit>
       <trans-unit id="Um4Ah8w" resname="Description">
         <source>Description</source>
         <target>Description</target>
@@ -24,10 +20,6 @@
       <trans-unit id="c7_lxRh" resname="Description doit être renseigner!">
         <source>Description doit être renseigner!</source>
         <target>Description must be completed!</target>
-      </trans-unit>
-      <trans-unit id="AIpjPy." resname="Description doit contenir au moins {{ limit }} caractère!">
-        <source>Description doit contenir au moins {{ limit }} caractère!</source>
-        <target>Description must contain at least limit character!</target>
       </trans-unit>
       <trans-unit id="GH_yobF" resname="-Selectionnez-">
         <source>-Selectionnez-</source>
@@ -39,7 +31,7 @@
       </trans-unit>
       <trans-unit id="V4oC.ul" resname="Langue doit être renseigner!">
         <source>Langue doit être renseigner!</source>
-        <target>Language must be filled in</target>
+        <target>Language must be filled in!</target>
       </trans-unit>
       <trans-unit id="jN4faW1" resname="Date d'évènement">
         <source>Date d'évènement</source>
@@ -140,6 +132,38 @@
       <trans-unit id="Kl_Pmkq" resname="Etude du livre de l'apokalypsy">
         <source>Etude du livre de l'apokalypsy</source>
         <target>Study of the book of the apokalypsy</target>
+      </trans-unit>
+      <trans-unit id="tjls5CR" resname="Vous ne pouvez pas consulter cette page!">
+        <source>Vous ne pouvez pas consulter cette page!</source>
+        <target>You cannot view this page!</target>
+      </trans-unit>
+      <trans-unit id="dDyQ82Q" resname="Veuillez valider le recaptcha">
+        <source>Veuillez valider le recaptcha</source>
+        <target>Please validate the recaptcha</target>
+      </trans-unit>
+      <trans-unit id="NTM4StL" resname="Titre doit contenir au moins 5 caractère!">
+        <source>Titre doit contenir au moins 5 caractère!</source>
+        <target>Title must contain at least 5 characters!</target>
+      </trans-unit>
+      <trans-unit id="XyZ4W1C" resname="Description doit contenir au moins 50 caractère!">
+        <source>Description doit contenir au moins 50 caractère!</source>
+        <target>Description must contain at least 50 characters!</target>
+      </trans-unit>
+      <trans-unit id="iNNACJz" resname="Photo de l'Article">
+        <source>Photo de l'Article</source>
+        <target>Item Picture</target>
+      </trans-unit>
+      <trans-unit id="DkEsd1L" resname="categorie">
+        <source>categorie</source>
+        <target>category</target>
+      </trans-unit>
+      <trans-unit id="X2uqtNv" resname="Langue">
+        <source>Langue</source>
+        <target>Language</target>
+      </trans-unit>
+      <trans-unit id="E1SpzFl" resname="Veuillez valider le recaptcha!">
+        <source>Veuillez valider le recaptcha!</source>
+        <target>Please validate the recaptcha!</target>
       </trans-unit>
     </body>
   </file>

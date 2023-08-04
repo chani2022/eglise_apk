@@ -19,6 +19,7 @@ class RecaptchaService
         $isResponseOk = false;
         $remote_addr = $request->server->get('REMOTE_ADDR');
         $server_name = $request->server->get('SERVER_NAME');
+        // dump($request);
         /**
          * pour le test en local
          */
@@ -30,6 +31,7 @@ class RecaptchaService
         if ($resp->isSuccess()) {
             $isResponseOk = true;
         }
+        // dd($resp);
         return $isResponseOk;
     }
 }

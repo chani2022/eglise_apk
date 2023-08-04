@@ -47,7 +47,7 @@ class ArticleType extends AbstractType
                     ]),
                     new Length([
                         "min" => 5,
-                        "minMessage" => $this->trans->trans("Titre doit contenir au moins {{ limit|trans }} caractère!")
+                        "minMessage" => $this->trans->trans("Titre doit contenir au moins 5 caractère!")
                     ])
                 ]
             ])
@@ -64,7 +64,7 @@ class ArticleType extends AbstractType
                     ]),
                     new Length([
                         "min" => 50,
-                        "minMessage" => $this->trans->trans("Description doit contenir au moins {{ limit }} caractère!")
+                        "minMessage" => $this->trans->trans("Description doit contenir au moins 50 caractère!")
                     ])
                 ]
             ])
