@@ -62,7 +62,20 @@ class ArticleService
         $articles = $this->articleRep->getArticlePublished();
         $array_users = [];
         foreach ($articles as $article) {
+            if ($article->getCategorie()->getType() == "Populaire") {
+                $galeries = $this->em->createQueryBuilder()
+                    ->select("gal")
+                    ->from(Galerie::class, "gal")
+                    ->where("gal.article = :article")
+                    ->setParameter("article", $article)
+                    ->getQuery()
+                    ->getResult();
+                foreach ($galeries as $galerie) {
+                    $article->addGalerie($galerie);
+                }
+            }
             if (!array_key_exists($article->getUser()->getId(), $array_users)) {
+
                 $array_users[$article->getUser()->getId()] = [
                     "id_user" => $article->getUser()->getId(),
                     "nom" => $article->getUser()->getNom(),
