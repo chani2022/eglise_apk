@@ -82,14 +82,12 @@ class ArticleService
                     "prenom" => $article->getUser()->getPrenom(),
                     "photo" => $article->getUser()->getPhoto(),
                     "email" => $article->getUser()->getEmail(),
-                    "articles" => [
-                        $article->getId() => $article
-                    ]
+                    "articles" => [$article]
                 ];
             } else {
-                if (!array_key_exists($article->getId(), $array_users[$article->getUser()->getId()]['articles'])) {
-                    $array_users[$article->getUser()->getId()]['articles'][] = $article;
-                }
+                // if (!array_key_exists($article->getId(), $array_users[$article->getUser()->getId()]['articles'])) {
+                $array_users[$article->getUser()->getId()]['articles'][] = $article;
+                // }
             }
         }
 
