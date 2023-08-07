@@ -77,7 +77,6 @@ class ProfilType extends AbstractType
             ->add('file', FileType::class, [
                 "mapped" => false,
                 "required" => false
-
             ]);
     }
 
