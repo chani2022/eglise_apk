@@ -7,7 +7,6 @@
 {% endblock %}
 {% block body %}
 	<!--Main container start -->
-
 	<div class="container-fluid" id="container" data-categorie=" {{ categorie }}">
 		<div class="db-breadcrumb">
 			<h4 class="breadcrumb-title">Admin</h4>
@@ -20,9 +19,65 @@
 				<li>{% trans %}Articles{% endtrans %}</li>
 			</ul>
 		</div>
-		<div
-			class="row">
+		<div class="row">
 			<!-- Your Profile Views Chart -->
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Titre de l'article</th>
+						<th>Total des commentaires</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% set totalCommentsSum = 0 %}
+					{% for userId, user in usersWithArticles %}
+						{% for articleId, article in user.articles %}
+							<tr>
+								<td>{{ article.titre }}</td>
+								<td>{{ article.commentaire|split(' ')|length }}</td>
+							</tr>
+							{% set totalCommentsSum = totalCommentsSum + article.commentaire|split(' ')|length %}
+						{% endfor %}
+					{% endfor %}
+					<tr>
+						<td><strong>Somme totale des commentaires :</strong></td>
+						<td>{{ totalCommentsSum }}</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			
+			
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Nom</th>
+						<th>Prénom</th>
+						<th>Email</th>
+						<th>Nombre d'articles</th>
+						<th>Rôle</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for userId, user in usersWithArticles %}
+					
+						{% set roleDisplayed = false %}
+						{% for articleId, article in user.articles %}
+							<tr>
+								{% if not roleDisplayed %}
+									<td>{{ user.nom }}</td>
+									<td>{{ user.prenom }}</td>
+									<td>{{ user.email }}</td>
+									<td>{{ user.articles|length }}</td>
+									<td>{{ article.user.roles[0] }}</td>
+									{% set roleDisplayed = true %}
+									
+								{% endif %}
+							</tr>
+						{% endfor %}
+					{% endfor %}
+				</tbody>
+			</table>
 			<div class="col-lg-12 m-b30">
 				<div class="widget-box">
 					<div class="email-wrapper">
