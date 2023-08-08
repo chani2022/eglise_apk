@@ -73,6 +73,7 @@
 			<script src="{{ asset('admin/assets/vendors/summernote/summernote.js') }}" defer></script>
 			<script src="{{ asset('admin/assets/vendors/file-upload/imageuploadify.min.js') }}" defer></script>
 			<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+			<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 			{# {{ encore_entry_script_tags('app') }} #}
 		{% endblock %}
 	</head>
@@ -159,5 +160,69 @@ start: '2019-03-28'
 
 });
 			</script>
+
+<script>
+	// Récupérer les données de Twig
+	var data = {{ usersWithArticles|json_encode()|raw }};
+	
+	// Initialiser les tableaux pour les étiquettes et les données du graphique
+	var colorPalette = [
+        'rgba(255, 99, 132, 0.7)',
+        'rgba(54, 162, 235, 0.7)',
+        'rgba(255, 206, 86, 0.7)',
+        'rgba(75, 192, 192, 0.7)',
+        'rgba(153, 102, 255, 0.7)',
+        // Ajoutez plus de couleurs ici si nécessaire
+    ];
+
+    // Initialiser les tableaux pour les étiquettes et les données du graphique
+    var labels = [];
+    var datasetsData = [];
+    var backgroundColors = [];
+
+	// Parcourir les données d'utilisateur et d'articles
+	for (var userId in data) {
+            if (data.hasOwnProperty(userId)) {
+                var user = data[userId];
+                labels.push(user.nom + ' ' + user.prenom);
+
+                // Compter le nombre d'articles pour cet utilisateur
+                var numArticles = Object.keys(user.articles).length;
+                datasetsData.push(numArticles);
+
+				// Générer une couleur aléatoire à partir de la palette
+				var randomColor = colorPalette[Math.floor(Math.random() * colorPalette.length)];
+            backgroundColors.push(randomColor);
+            }
+        }
+console.log("Longuer",datasetsData)
+	// Configuration du graphique
+	var ctx = document.getElementById('chart2').getContext('2d');
+	ctx.canvas.width = 200; // Largeur du canvas en pixels
+    ctx.canvas.height = 200; // Hauteur du canvas en pixels
+	console.log(ctx)
+	var myChart = new Chart(ctx, {
+		type: 'pie',
+		data: {
+			labels: labels,
+			datasets: [{
+				label: 'Nombre d\'articles',
+				data: datasetsData,
+				backgroundColor: backgroundColors,
+				borderColor: 'rgba(75, 192, 192, 1)',
+				borderWidth: 1
+			}]
+		},
+		options: {
+			scales: {
+				y: {
+					beginAtZero: true
+				}
+			}
+		}
+	});
+</script>
+
+
 		</body>
 	</html>
