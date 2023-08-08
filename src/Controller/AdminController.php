@@ -253,13 +253,13 @@ class AdminController extends AbstractController
             $em->flush();
             return $this->redirectToRoute("app_article");
         }
-
         $user = null;
         if ($this->getUser()->getRoles()[0] == "ROLE_REDACTEUR") {
             $user = $this->getUser();
         }
         $articles = $articleRepository->findAllOrdered($user);
         $articlesWriteByUser = $articleService->getArticlesByUser($user);
+
         dump($articlesWriteByUser);
         return $this->render('admin/article.html.twig', [
             'form' => $form->createView(),
