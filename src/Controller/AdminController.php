@@ -29,6 +29,8 @@ class AdminController extends AbstractController
     public function __construct(private CacheInterface $cache)
     {
     }
+
+    #[IsGranted("ROLE_ADMIN")]
     #[Route('/{_locale}/admin/dashboard', name: 'app_dashboard', requirements: ['_locale' => 'en|fr|mg'], defaults: ['_locale' => 'fr'])]
     public function dashboard(Request $request, VisitorRepository $visitorRep, ArticleService $articleService): Response
     {
@@ -98,7 +100,7 @@ class AdminController extends AbstractController
                 }
             }
         }
-
+        dump($articlesWriteByUser);
         return $this->render('admin/dashboard.html.twig', [
             'visitors' => json_encode($data),
             "form" => $form->createView(),
@@ -113,7 +115,8 @@ class AdminController extends AbstractController
         EntityManagerInterface $em,
         ArticleRepository $articleRepository,
         UserRepository $userRepository,
-        SessionInterface $session
+        SessionInterface $session,
+        ArticleService $articleService
     ): Response {
         $articles = [];
         $article = new Article();
@@ -251,13 +254,19 @@ class AdminController extends AbstractController
             return $this->redirectToRoute("app_article");
         }
 
-        $articles = $articleRepository->findAllOrdered();
-
+        $user = null;
+        if ($this->getUser()->getRoles()[0] == "ROLE_REDACTEUR") {
+            $user = $this->getUser();
+        }
+        $articles = $articleRepository->findAllOrdered($user);
+        $articlesWriteByUser = $articleService->getArticlesByUser($user);
+        dump($articlesWriteByUser);
         return $this->render('admin/article.html.twig', [
             'form' => $form->createView(),
             'articles' => $articles,
             'update' => $update,
-            "categorie" => $categorie
+            "categorie" => $categorie,
+            "usersWithArticles" => $articlesWriteByUser
         ]);
     }
 }

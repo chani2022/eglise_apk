@@ -67,6 +67,8 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
 
         if ($token->getUser()->getRoles()[0] == "ROLE_USER") {
             $route_name = "app_home";
+        } else if ($token->getUser()->getRoles()[0] == "ROLE_REDACTEUR") {
+            $route_name = "app_article";
         }
         // For example:
         return new RedirectResponse($this->urlGenerator->generate($route_name));
