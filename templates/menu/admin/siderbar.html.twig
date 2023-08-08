@@ -22,14 +22,16 @@
 			<!-- sidebar menu start -->
 			<nav class="ttr-sidebar-navi">
 				<ul>
-					<li>
-						<a href=" {{ path ('app_dashboard') }} " class="ttr-material-button">
-							<span class="ttr-icon">
-								<i class="ti-home"></i>
-							</span>
-							<span class="ttr-label">Panneaux de configuration</span>
-						</a>
-					</li>
+					{% if app.user and 'ROLE_REDACTEUR' not in app.user.roles %}
+						<li>
+							<a href="{{ path ('app_dashboard') }}" class="ttr-material-button">
+								<span class="ttr-icon">
+									<i class="ti-home"></i>
+								</span>
+								<span class="ttr-label">Panneaux de configuration</span>
+							</a>
+						</li>
+					{% endif %}
 					<li>
 						<a href="{{ path ('app_article') }}" class="ttr-material-button">
 							<span class="ttr-icon">
@@ -71,11 +73,12 @@
 						</a>
 					</li>
 					
-					
 					<li class="ttr-seperate"></li>
 				</ul>
 				<!-- sidebar menu end -->
 			</nav>
+			
+
 			<!-- sidebar menu end -->
 		</div>
 	</div>
