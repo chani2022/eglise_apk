@@ -32,9 +32,25 @@ class AdminController extends AbstractController
 
     #[IsGranted("ROLE_ADMIN")]
     #[Route('/{_locale}/admin/dashboard', name: 'app_dashboard', requirements: ['_locale' => 'en|fr|mg'], defaults: ['_locale' => 'fr'])]
-    public function dashboard(Request $request, VisitorRepository $visitorRep, ArticleService $articleService): Response
+    public function dashboard(Request $request, VisitorRepository $visitorRep, ArticleService $articleService, UserRepository $userRepository): Response
     {
         $articlesWriteByUser = $articleService->getArticlesByUser();
+        $user_write_article = [];
+        foreach ($articlesWriteByUser as $id => $v) {
+            $user_write_article[] =  $id;
+        }
+        $list_user_not_write_articles = $userRepository->getUsersNotWriteArticle($user_write_article);
+        foreach ($list_user_not_write_articles as $user) {
+            $articlesWriteByUser[$user->getId()] = [
+                "id_user" => $user->getId(),
+                "nom" => $user->getNom(),
+                "prenom" => $user->getPrenom(),
+                "photo" => $user->getPhoto(),
+                "email" => $user->getEmail(),
+                "role" => $user->getRoles()[0],
+                "articles" => []
+            ];
+        }
 
         $dates = [
             (new \DateTime())->sub(new \DateInterval("P5D"))->format("Y-m-d"),

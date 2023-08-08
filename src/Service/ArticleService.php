@@ -61,6 +61,7 @@ class ArticleService
     public function getArticlesByUser(?UserInterface $user = null): array
     {
         $articles = $this->articleRep->getArticlePublished(null, $user);
+
         $array_users = [];
         foreach ($articles as $article) {
             if ($article->getCategorie()->getType() == "Populaire") {
@@ -83,6 +84,7 @@ class ArticleService
                     "prenom" => $article->getUser()->getPrenom(),
                     "photo" => $article->getUser()->getPhoto(),
                     "email" => $article->getUser()->getEmail(),
+                    "role" => $article->getUser()->getRoles()[0],
                     "articles" => [$article]
                 ];
             } else {
