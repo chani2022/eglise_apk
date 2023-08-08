@@ -21,7 +21,33 @@
 		</div>
 		<div class="row">
 			<!-- Your Profile Views Chart -->
-
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Titre de l'article</th>
+						<th>Total des commentaires</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% set totalCommentsSum = 0 %}
+					{% for userId, user in usersWithArticles %}
+						{% for articleId, article in user.articles %}
+							<tr>
+								<td>{{ article.titre }}</td>
+								<td>{{ article.commentaire|split(' ')|length }}</td>
+							</tr>
+							{% set totalCommentsSum = totalCommentsSum + article.commentaire|split(' ')|length %}
+						{% endfor %}
+					{% endfor %}
+					<tr>
+						<td><strong>Somme totale des commentaires :</strong></td>
+						<td>{{ totalCommentsSum }}</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			
+			
 			<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -34,6 +60,7 @@
 				</thead>
 				<tbody>
 					{% for userId, user in usersWithArticles %}
+					
 						{% set roleDisplayed = false %}
 						{% for articleId, article in user.articles %}
 							<tr>
