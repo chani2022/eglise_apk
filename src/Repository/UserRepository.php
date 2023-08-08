@@ -98,6 +98,15 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getQuery()
             ->getArrayResult();
     }
+
+    public function getUsersNotWriteArticle(array $user_write_article = null): array
+    {
+        $qb = $this->createQueryBuilder('u');
+        return $qb->where($qb->expr()->notIn("u.id", ":list_user"))
+            ->setParameter('list_user', $user_write_article)
+            ->getQuery()
+            ->getResult();
+    }
     //    /**
     //     * @return User[] Returns an array of User objects
     //     */
