@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Entity\Galerie;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class ArticleService
 {
@@ -57,9 +58,9 @@ class ArticleService
         ];
     }
 
-    public function getArticlesByUser(): array
+    public function getArticlesByUser(?UserInterface $user = null): array
     {
-        $articles = $this->articleRep->getArticlePublished();
+        $articles = $this->articleRep->getArticlePublished(null, $user);
         $array_users = [];
         foreach ($articles as $article) {
             if ($article->getCategorie()->getType() == "Populaire") {

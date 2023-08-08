@@ -5,9 +5,10 @@ namespace App\Repository;
 use App\Entity\Article;
 use App\Entity\Categorie;
 use App\Entity\Galerie;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @extends ServiceEntityRepository<Article>
@@ -58,15 +59,17 @@ class ArticleRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findAllOrdered(): array
+    public function findAllOrdered(UserInterface $user): array
     {
         return $this->createQueryBuilder('a')
+            ->where('a.user = :user')
+            ->setParameter('user', $user)
             ->orderBy("a.updated_at", "DESC")
             ->getQuery()
             ->getResult();
     }
 
-    public function getArticlePublished(string $categorie = null): array
+    public function getArticlePublished(string $categorie = null, UserInterface $user = null): array
     {
         $qb = $this->createQueryBuilder('a')
             ->addSelect(["cat", "u", "lang"])
@@ -80,8 +83,13 @@ class ArticleRepository extends ServiceEntityRepository
             $qb->andWhere('cat.type = :type')
                 ->setParameter('type', $categorie);
         }
+        if ($user) {
+            $qb->andWhere("a.user = :user")
+                ->setParameter("user", $user);
+        }
 
-        $qb->orderBy('a.updated_at', 'DESC');
+        $qb->orderBy('a.updated_at', 'DESC')
+            ->setMaxResults(10);
 
         if ($categorie == "Populaire") {
             $qb->setMaxResults(5);
