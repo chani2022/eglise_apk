@@ -117,6 +117,7 @@ class AdminController extends AbstractController
             }
         }
         dump($articlesWriteByUser);
+
         return $this->render('admin/dashboard.html.twig', [
             'visitors' => json_encode($data),
             "form" => $form->createView(),
