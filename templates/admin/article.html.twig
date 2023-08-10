@@ -6,6 +6,16 @@
 	{{parent()}}
 {% endblock %}
 {% block body %}
+<style>
+	.odd-row {
+    background-color: #f2f2f2; /* Couleur pour les lignes impaires */
+}
+
+.even-row {
+    background-color: #d3d3d3; /* Couleur pour les lignes paires */
+}
+
+</style>
 	<!--Main container start -->
 	<div class="container-fluid" id="container" data-categorie=" {{ categorie }}">
 		<div class="db-breadcrumb">
@@ -20,9 +30,64 @@
 			</ul>
 		</div>
 		<div class="row">
-			<!-- Your Profile Views Chart -->
+			{% set vary = 0 %}
+			{% for x in usersWithArticles %}
+			{% set vary=x.articles %}
+			{% endfor %}
+
+			{{dump(vary)}}
+			
+			<div class="container mt-4">
+				<div class="row">
+					<div class="col-md-6">
+						<h2>Nombre d'articles par jour</h2>
+						<canvas id="chart_redac_2" width="100" height="45"></canvas>
+					</div>
+					<div class="col-md-6">
+						<h2>Total des articles</h2>
+						<canvas id="chart_user" width="45" height="45"></canvas>
+					</div>
+				</div>
+			</div>
+			<canvas id="chart_redac" width="100" height="45"></canvas>
+			<script>
+				var data2 = [
+					{% for article in vary %}
+					{
+						id: {{ article.id }},
+						titre: {{ article.titre|json_encode|raw }},
+						commentaire: {{ article.commentaire|json_encode|raw }},
+						image: {{ article.image|json_encode|raw }},
+						created_at: "{{ article.getCreatedAt()|date('d/m/Y') }}",  // Format de date modifié ici, sans l'heure
+						updated_at: "{{ article.getUpdatedAt()|date('d/m/Y') }}",  // Format de date modifié ici, sans l'heure
+						categorie: {
+							id: {{ article.getCategorie().getId() }},
+							type: "{{ article.getCategorie().getType() }}",
+						},
+						langue: {
+							id: {{ article.getLangue().getId() }},
+							type: "{{ article.getLangue().getType() }}",
+						},
+						user: {
+							id: {{ article.getUser().getId() }},
+							email: "{{ article.getUser().getEmail() }}",
+							roles: {{ article.getUser().getRoles()|json_encode|raw }},
+							username: "{{ article.getUser().getUsername() }}",
+							nom: "{{ article.getUser().getNom() }}",
+							prenom: "{{ article.getUser().getPrenom() }}",
+							photo: "{{ article.getUser().getPhoto() }}",
+							isActif: {{ article.getUser().isActif|json_encode|raw }},
+						},
+						// ... Ajoutez d'autres champs ici si nécessaire
+					},
+					{% endfor %}
+				];
+			</script>
+				
+
+<!-- Your Profile Views Chart -->
 			<table class="table table-bordered">
-				<thead>
+				<thead class="thead-light">
 					<tr>
 						<th>Titre de l'article</th>
 						<th>Total des commentaires</th>
@@ -32,21 +97,30 @@
 					{% set totalCommentsSum = 0 %}
 					{% for userId, user in usersWithArticles %}
 						{% for articleId, article in user.articles %}
-							<tr>
+							<tr class="{{ loop.index is odd ? 'odd-row' : 'even-row' }}">
 								<td>{{ article.titre }}</td>
 								<td>{{ article.commentaire|split(' ')|length }}</td>
 							</tr>
 							{% set totalCommentsSum = totalCommentsSum + article.commentaire|split(' ')|length %}
 						{% endfor %}
 					{% endfor %}
-					<tr>
+					<tr class="table-secondary">
 						<td><strong>Somme totale des commentaires :</strong></td>
 						<td>{{ totalCommentsSum }}</td>
 					</tr>
 				</tbody>
 			</table>
 			
+
 			
+			
+			<div id="users-with-articles" data-users="{{ usersWithArticles|json_encode() }}"></div>
+
+			<div class="col-md-6">
+				<h4 class="my-4">Nombre de visite sous forme tableau :</h4>
+				
+				
+			</div>
 			
 			<table class="table table-bordered">
 				<thead>
@@ -151,6 +225,7 @@
 							{{ form_end(form) }}
 
 						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -165,6 +240,7 @@
 						<h4>Tous les articles</h4>
 					</div>
 					<div class="widget-inner">
+						
 						{% for article in articles %}
 							<div class="card-courses-list bookmarks-bx">
 								<div class="card-courses-media">
@@ -253,4 +329,6 @@
 	<script src="{{ asset ('js/notificationManager.js') }}" defer></script>
 	<script src="{{ asset ('js/articleSocket.js') }}" defer></script>
 	<script src="{{ asset ('js/admin/article/article.js')}}" defer></script>
+	
+		
 {% endblock %}
