@@ -6,6 +6,16 @@
 	{{parent()}}
 {% endblock %}
 {% block body %}
+<style>
+	.odd-row {
+    background-color: #f2f2f2; /* Couleur pour les lignes impaires */
+}
+
+.even-row {
+    background-color: #d3d3d3; /* Couleur pour les lignes paires */
+}
+
+</style>
 	<!--Main container start -->
 	<div class="container-fluid" id="container" data-categorie=" {{ categorie }}">
 		<div class="db-breadcrumb">
@@ -20,9 +30,141 @@
 			</ul>
 		</div>
 		<div class="row">
-			<!-- Your Profile Views Chart -->
+			{% set vary = 0 %}
+			{% for x in usersWithArticles %}
+			{% set vary=x.articles %}
+			{% endfor %}
+
+			{{dump(vary)}}
+			
+			<div class="container mt-4">
+				<div class="row">
+					<div class="col-md-6">
+						<h4>Nombre d'articles par jour</h4>
+						<canvas id="chart_redac_2" width="100" height="45"></canvas>
+					</div>
+					<div class="col-md-6">
+						<h4>Total des articles</h4>
+						<canvas id="chart_user" width="45" height="45"></canvas>
+					</div>
+				</div>
+			</div>
+			<canvas id="chart_redac" width="100" height="45"></canvas>
+			<canvas id="articleChart" width="400" height="200"></canvas>
+			<script>
+				var data2 = [
+					{% for article in vary %}
+					{
+						id: {{ article.id }},
+						titre: {{ article.titre|json_encode|raw }},
+						commentaire: {{ article.commentaire|json_encode|raw }},
+						image: {{ article.image|json_encode|raw }},
+						created_at: "{{ article.getCreatedAt()|date('d/m/Y') }}",  // Format de date modifié ici, sans l'heure
+						updated_at: "{{ article.getUpdatedAt()|date('d/m/Y') }}",  // Format de date modifié ici, sans l'heure
+						categorie: {
+							id: {{ article.getCategorie().getId() }},
+							type: "{{ article.getCategorie().getType() }}",
+						},
+						langue: {
+							id: {{ article.getLangue().getId() }},
+							type: "{{ article.getLangue().getType() }}",
+						},
+						user: {
+							id: {{ article.getUser().getId() }},
+							email: "{{ article.getUser().getEmail() }}",
+							roles: {{ article.getUser().getRoles()|json_encode|raw }},
+							username: "{{ article.getUser().getUsername() }}",
+							nom: "{{ article.getUser().getNom() }}",
+							prenom: "{{ article.getUser().getPrenom() }}",
+							photo: "{{ article.getUser().getPhoto() }}",
+							isActif: {{ article.getUser().isActif|json_encode|raw }},
+						},
+						// ... Ajoutez d'autres champs ici si nécessaire
+					},
+					{% endfor %}
+				];
+
+				var categories = {};
+    data2.forEach(function(article) {
+        var categoryName = article.categorie.type;
+        if (!categories[categoryName]) {
+            categories[categoryName] = 1;
+        } else {
+            categories[categoryName]++;
+        }
+    });
+
+    // Définir un tableau de couleurs pour les barres du graphique
+    var colors = [
+        'rgba(255, 99, 132, 0.2)',  // Rouge
+        'rgba(54, 162, 235, 0.2)',  // Bleu
+        'rgba(255, 206, 86, 0.2)',  // Jaune
+        'rgba(75, 192, 192, 0.2)',  // Vert
+        // Ajoutez d'autres couleurs ici si nécessaire
+    ];
+
+    var chartData = {
+        labels: Object.keys(categories),
+        datasets: [{
+            label: 'Nombre d\'articles par categories',
+            data: Object.values(categories),
+            backgroundColor: colors.slice(0, Object.keys(categories).length), // Utilisez les couleurs pour chaque catégorie
+            borderColor: colors.slice(0, Object.keys(categories).length),
+            borderWidth: 1
+        }]
+    };
+
+    // Créer le graphique avec Chart.js
+    var ctx = document.getElementById('articleChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: chartData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+			</script>
+				<div class="container mt-4">
+					<h4>Tableau d'Articles</h4>
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Titre</th>
+									<th>Créé le</th>
+									<th>Mis à jour le</th>
+									<th>Catégorie</th>
+									<th>Langue</th>
+									<th>Utilisateur</th>
+								</tr>
+							</thead>
+							<tbody>
+								<script>
+									data2.forEach(function(article) {
+										document.write("<tr>");
+										document.write("<td>" + article.titre + "</td>");
+										document.write("<td>" + article.created_at + "</td>");
+										document.write("<td>" + article.updated_at + "</td>");
+										document.write("<td>" + article.categorie.type + "</td>");
+										document.write("<td>" + article.langue.type + "</td>");
+										document.write("<td>" + article.user.nom + " " + article.user.prenom + "</td>");
+										document.write("</tr>");
+									});
+								</script>
+							</tbody>
+						</table>
+						
+					</div>
+				</div>
+				
+
+<!-- Your Profile Views Chart -->
 			<table class="table table-bordered">
-				<thead>
+				<thead class="thead-light">
 					<tr>
 						<th>Titre de l'article</th>
 						<th>Total des commentaires</th>
@@ -32,21 +174,30 @@
 					{% set totalCommentsSum = 0 %}
 					{% for userId, user in usersWithArticles %}
 						{% for articleId, article in user.articles %}
-							<tr>
+							<tr class="{{ loop.index is odd ? 'odd-row' : 'even-row' }}">
 								<td>{{ article.titre }}</td>
 								<td>{{ article.commentaire|split(' ')|length }}</td>
 							</tr>
 							{% set totalCommentsSum = totalCommentsSum + article.commentaire|split(' ')|length %}
 						{% endfor %}
 					{% endfor %}
-					<tr>
+					<tr class="table-secondary">
 						<td><strong>Somme totale des commentaires :</strong></td>
 						<td>{{ totalCommentsSum }}</td>
 					</tr>
 				</tbody>
 			</table>
 			
+
 			
+			
+			<div id="users-with-articles" data-users="{{ usersWithArticles|json_encode() }}"></div>
+
+			<div class="col-md-6">
+				<h4 class="my-4">Nombre de visite sous forme tableau :</h4>
+				
+				
+			</div>
 			
 			<table class="table table-bordered">
 				<thead>
@@ -151,6 +302,7 @@
 							{{ form_end(form) }}
 
 						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -165,6 +317,7 @@
 						<h4>Tous les articles</h4>
 					</div>
 					<div class="widget-inner">
+						
 						{% for article in articles %}
 							<div class="card-courses-list bookmarks-bx">
 								<div class="card-courses-media">
@@ -253,4 +406,6 @@
 	<script src="{{ asset ('js/notificationManager.js') }}" defer></script>
 	<script src="{{ asset ('js/articleSocket.js') }}" defer></script>
 	<script src="{{ asset ('js/admin/article/article.js')}}" defer></script>
+	
+		
 {% endblock %}
