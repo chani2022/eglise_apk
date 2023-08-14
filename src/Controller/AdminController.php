@@ -35,22 +35,7 @@ class AdminController extends AbstractController
     public function dashboard(Request $request, VisitorRepository $visitorRep, ArticleService $articleService, UserRepository $userRepository): Response
     {
         $articlesWriteByUser = $articleService->getArticlesByUser();
-        $user_write_article = [];
-        foreach ($articlesWriteByUser as $id => $v) {
-            $user_write_article[] =  $id;
-        }
-        $list_user_not_write_articles = $userRepository->getUsersNotWriteArticle($user_write_article);
-        foreach ($list_user_not_write_articles as $user) {
-            $articlesWriteByUser[$user->getId()] = [
-                "id_user" => $user->getId(),
-                "nom" => $user->getNom(),
-                "prenom" => $user->getPrenom(),
-                "photo" => $user->getPhoto(),
-                "email" => $user->getEmail(),
-                "role" => $user->getRoles()[0],
-                "articles" => []
-            ];
-        }
+        $users = $userRepository->findAllOrdered();
 
         $dates = [
             (new \DateTime())->sub(new \DateInterval("P5D"))->format("Y-m-d"),
@@ -117,11 +102,12 @@ class AdminController extends AbstractController
             }
         }
         dump($articlesWriteByUser);
-
+        dump($users);
         return $this->render('admin/dashboard.html.twig', [
             'visitors' => json_encode($data),
             "form" => $form->createView(),
-            "usersWithArticles" => $articlesWriteByUser
+            "usersWithArticles" => $articlesWriteByUser,
+            "users" => $users
         ]);
     }
 

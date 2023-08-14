@@ -64,6 +64,9 @@ class ArticleService
 
         $array_users = [];
         foreach ($articles as $article) {
+            $gals = [];
+            $author = $article->getUser()->getNom() ? $article->getUser()->getNom() . " " . $article->getUser()->getPrenom() : $article->getUser()->getUsername();
+
             if ($article->getCategorie()->getType() == "Populaire") {
                 $galeries = $this->em->createQueryBuilder()
                     ->select("gal")
@@ -73,7 +76,8 @@ class ArticleService
                     ->getQuery()
                     ->getResult();
                 foreach ($galeries as $galerie) {
-                    $article->addGalerie($galerie);
+                    // $article->addGalerie($galerie);
+                    $gals[] = $galerie->getNomImage();
                 }
             }
             if (!array_key_exists($article->getUser()->getId(), $array_users)) {
@@ -85,12 +89,39 @@ class ArticleService
                     "photo" => $article->getUser()->getPhoto(),
                     "email" => $article->getUser()->getEmail(),
                     "role" => $article->getUser()->getRoles()[0],
-                    "articles" => [$article]
+                    "articles" => [
+                        [
+                            "id_article" => $article->getId(),
+                            "titre" => $article->getTitre(),
+                            "commentaire" => $article->getCommentaire(),
+                            "image" => $article->getImage(),
+                            "cree" => $article->getCreatedAt(),
+                            "update" => $article->getUpdatedAt(),
+                            "categorie" => $article->getCategorie()->getType(),
+                            "langue" => $article->getLangue()->getType(),
+                            "author" => $author,
+                            "is_published" => $article->isIsPublished(),
+                            "event_at" => $article->getEventAt(),
+                            "galerie" => $gals
+
+                        ]
+                    ]
                 ];
             } else {
-                // if (!array_key_exists($article->getId(), $array_users[$article->getUser()->getId()]['articles'])) {
-                $array_users[$article->getUser()->getId()]['articles'][] = $article;
-                // }
+                $array_users[$article->getUser()->getId()]['articles'][] = [
+                    "id_article" => $article->getId(),
+                    "titre" => $article->getTitre(),
+                    "commentaire" => $article->getCommentaire(),
+                    "image" => $article->getImage(),
+                    "cree" => $article->getCreatedAt(),
+                    "update" => $article->getUpdatedAt(),
+                    "categorie" => $article->getCategorie()->getType(),
+                    "langue" => $article->getLangue()->getType(),
+                    "author" => $author,
+                    "is_published" => $article->isIsPublished(),
+                    "event_at" => $article->getEventAt(),
+                    "galerie" => $gals
+                ];
             }
         }
 
