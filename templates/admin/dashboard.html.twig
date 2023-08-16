@@ -114,34 +114,7 @@
 									</ul>
 									<canvas id="chart2" width="100" height="45"></canvas>
 								</div>
-								<div class="table-responsive">
-									<table class="table ">
-										<thead>
-											<tr>
-												<th>Nom</th>
-												<th>Prénom</th>
-												<th>Email</th>
-												<th>Nombre d'articles</th>
-												<th>Date de création</th>
-												<th>Dernière mise à jour</th>
-											</tr>
-										</thead>
-										<tbody>
-											{% for user in usersWithArticles %}
-												{% for articleId, article in user.articles %}
-													<tr>
-														<td>{{ user.nom }}</td>
-														<td>{{ user.prenom }}</td>
-														<td>{{ user.email }}</td>
-														<td>{{ user.articles|length }}</td>
-														<td>{{ article.getCreatedAt()|date("Y-m-d H:i:s") }}</td>
-														<td>{{ article.getUpdatedAt()|date("Y-m-d H:i:s") }}</td>
-													</tr>
-												{% endfor %}
-											{% endfor %}
-										</tbody>
-									</table>
-								</div>
+								
 								
 							</div>
 							</div>
@@ -191,11 +164,11 @@
 											<div class="col-md-4">
 												<img src="{{ asset('photo/' ~ user.photo) }}" class="img-fluid" alt="Photo" />
 											</div>
+											
 											<div class="col-md-8">
 												<p><strong>Nom :</strong> {{ user.nom }}</p>
 												<p><strong>Prénom :</strong> {{ user.prenom }}</p>
 												<p><strong>Email :</strong> {{ user.email }}</p>
-												<p><strong>Rôle :</strong> {{ user.articles|first.user.roles|first }}</p>
 												<p><strong>Total des articles :</strong> {{ user.articles|length }}</p>
 											</div>
 											</div>

@@ -232,63 +232,114 @@ start: '2019-03-28'
 	// Récupérer les données de Twig
 	
 	var data = {{ usersWithArticles|json_encode()|raw }};
-	console.log("data redac",data)
-	// Initialiser les tableaux pour les étiquettes et les données du graphique
-	var colorPalette = [
-        'rgba(255, 99, 132, 0.7)',
-        'rgba(54, 162, 235, 0.7)',
-        'rgba(255, 206, 86, 0.7)',
-        'rgba(75, 192, 192, 0.7)',
-        'rgba(153, 102, 255, 0.7)',
-        // Ajoutez plus de couleurs ici si nécessaire
-    ];
+console.log("data redac", data);
 
-    // Initialiser les tableaux pour les étiquettes et les données du graphique
-    var labels = [];
-    var datasetsData = [];
-    var backgroundColors = [];
+// Initialiser les tableaux pour les étiquettes et les données du graphique
+var colorPalette = [
+    'rgba(0, 255, 0, 0.7)',   // Fond vert
+    'rgba(255, 0, 0, 0.7)',   // Bordures rouges
+    'rgba(0, 0, 255, 0.7)',
+    'rgba(255, 255, 0, 0.7)',
+    'rgba(0, 255, 255, 0.7)',
+    // Ajoutez plus de couleurs ici si nécessaire
+];
 
-	// Parcourir les données d'utilisateur et d'articles
-	for (var userId in data) {
-            if (data.hasOwnProperty(userId)) {
-                var user = data[userId];
-                labels.push(user.prenom);
+// Initialiser les tableaux pour les étiquettes et les données du graphique
+var labels = [];
+var datasetsData = [];
+var backgroundColors = [];
 
-                // Compter le nombre d'articles pour cet utilisateur
-                var numArticles = Object.keys(user.articles).length;
-                datasetsData.push(numArticles);
+// Parcourir les données d'utilisateur et d'articles
+for (var userId in data) {
+    if (data.hasOwnProperty(userId)) {
+        var user = data[userId];
+        labels.push(user.prenom);
 
-				// Générer une couleur aléatoire à partir de la palette
-				var randomColor = colorPalette[Math.floor(Math.random() * colorPalette.length)];
-            backgroundColors.push(randomColor);
+        // Compter le nombre d'articles pour cet utilisateur
+        var numArticles = Object.keys(user.articles).length;
+        datasetsData.push(numArticles);
+
+        // Utiliser la deuxième couleur de la palette (bordures rouges)
+        backgroundColors.push(colorPalette[1]);
+    }
+}
+
+// Configuration du graphique
+var ctx = document.getElementById('chart_user').getContext('2d');
+ctx.canvas.width = 200; // Largeur du canvas en pixels
+ctx.canvas.height = 200; // Hauteur du canvas en pixels
+console.log(ctx);
+
+var myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Nombre d\'articles',
+            data: datasetsData,
+			borderColor: 'rgba(0, 255, 0, 1)', // Couleur de la ligne en vert
+            borderWidth: 2, // Épaisseur de la ligne
+            fill: true, // Remplir l'aire sous la courbe
+            tension: 0.4, // Ajustez la tension pour obtenir une forme sinusoidale
+            backgroundColor: 'rgba(0, 255, 0, 0.1)', // Couleur de remplissage de l'aire sous la courbe en vert
+            pointBackgroundColor: 'rgba(255, 0, 0, 1)', // Couleur des points en rouge
+            pointBorderColor: 'rgba(255, 0, 0, 1)', // Couleur des bordures des points en rouge
+            pointBorderWidth: 1, // Épaisseur des bordures des points
+            pointRadius: 4, // Taille des points
+        }]
+    },
+    options: {
+        scales: {
+            x: {
+                beginAtZero: true, // Si vous voulez que l'axe X commence à zéro
+                title: {
+                    display: true,
+                    text: 'Présentation par graphe',
+                    font: {
+                        size: 14,
+                        family: "'Courier New', monospace",
+                        color: '#0f0',
+                    },
+                },
+                ticks: {
+                    font: {
+                        family: "'Courier New', monospace",
+                        color: '#0f0',
+                    }
+                },
+            },
+            y: {
+                beginAtZero: true, // Si vous voulez que l'axe Y commence à zéro
+                title: {
+                    display: true,
+                    text: 'Nombre d\'articles',
+                    font: {
+                        size: 14,
+                        family: "'Courier New', monospace",
+                        color: '#0f0',
+                    },
+                },
+                ticks: {
+                    font: {
+                        family: "'Courier New', monospace",
+                        color: '#0f0',
+                    }
+                },
             }
-        }
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    font: {
+                        family: "'Courier New', monospace",
+                        color: '#0f0',
+                    },
+                },
+            }
+        },
+    }
+});
 
-	// Configuration du graphique
-	var ctx = document.getElementById('chart_user').getContext('2d');
-	ctx.canvas.width = 200; // Largeur du canvas en pixels
-    ctx.canvas.height = 200; // Hauteur du canvas en pixels
-	console.log(ctx)
-	var myChart = new Chart(ctx, {
-		type: 'doughnut',
-		data: {
-			labels: labels,
-			datasets: [{
-				label: 'Nombre d\'articles',
-				data: datasetsData,
-				backgroundColor: backgroundColors,
-				borderColor: 'rgba(75, 192, 192, 1)',
-				borderWidth: 1
-			}]
-		},
-		options: {
-			scales: {
-				y: {
-					beginAtZero: true
-				}
-			}
-		}
-	});
 </script>
 <script>
 	console.log("Eto tsika zao",data2);
@@ -339,17 +390,21 @@ ctx.canvas.width = 800; // Largeur du canvas en pixels
 ctx.canvas.height = 400; // Hauteur du canvas en pixels
 
 var myChart = new Chart(ctx, {
-    type: 'bar', // Utilisation d'un graphique en ligne pour afficher la courbe
+    type: 'line', // Utilisation d'un graphique en ligne pour afficher la courbe
     data: {
         labels: labels,
         datasets: [{
             label: 'Nombre d\'articles par jour',
             data: datasetsData, // Utilisation du tableau datasetsData pour les données
-            borderColor: 'rgba(75, 192, 192, 1)', // Couleur de la ligne
+            borderColor: 'rgba(0, 255, 0, 1)', // Couleur de la ligne en vert
             borderWidth: 2, // Épaisseur de la ligne
             fill: true, // Remplir l'aire sous la courbe
             tension: 0.4, // Ajustez la tension pour obtenir une forme sinusoidale
-            backgroundColor: 'rgba(75, 192, 192, 0.2)' // Couleur de remplissage de l'aire sous la courbe
+            backgroundColor: 'rgba(0, 255, 0, 0.1)', // Couleur de remplissage de l'aire sous la courbe en vert
+            pointBackgroundColor: 'rgba(255, 0, 0, 1)', // Couleur des points en rouge
+            pointBorderColor: 'rgba(255, 0, 0, 1)', // Couleur des bordures des points en rouge
+            pointBorderWidth: 1, // Épaisseur des bordures des points
+            pointRadius: 4, // Taille des points
         }]
     },
     options: {
@@ -358,19 +413,54 @@ var myChart = new Chart(ctx, {
                 beginAtZero: true, // Si vous voulez que l'axe X commence à zéro
                 title: {
                     display: true,
-                    text: 'Date de création'
-                }
+                    text: 'Date de création',
+                    font: {
+                        size: 14,
+                        family: "'Courier New', monospace",
+                        color: '#0f0',
+                    },
+                },
+                ticks: {
+                    font: {
+                        family: "'Courier New', monospace",
+                        color: '#0f0',
+                    }
+                },
             },
             y: {
                 beginAtZero: true, // Si vous voulez que l'axe Y commence à zéro
                 title: {
                     display: true,
-                    text: 'Nombre d\'articles'
-                }
+                    text: 'Nombre d\'articles',
+                    font: {
+                        size: 14,
+                        family: "'Courier New', monospace",
+                        color: '#0f0',
+                    },
+                },
+                ticks: {
+                    font: {
+                        family: "'Courier New', monospace",
+                        color: '#0f0',
+                    }
+                },
             }
-        }
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    font: {
+                        family: "'Courier New', monospace",
+                        color: '#0f0',
+                    },
+                },
+            }
+        },
     }
 });
+
+
+
 
 
 
