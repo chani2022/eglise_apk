@@ -165,6 +165,14 @@
         <source>Description doit contenir au moins 50 caractère!</source>
         <target>Description doit contenir au moins 50 caractère!</target>
       </trans-unit>
+      <trans-unit id="30vQ6YR" resname=" a été désactivé">
+        <source> a été désactivé</source>
+        <target> a été désactivé</target>
+      </trans-unit>
+      <trans-unit id="UI3DYQO" resname=" a été supprimé">
+        <source> a été supprimé</source>
+        <target> a été supprimé</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

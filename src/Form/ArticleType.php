@@ -83,7 +83,8 @@ class ArticleType extends AbstractType
                     new NotBlank([
                         "message" => $this->trans->trans("Catégorie doit être renseigner!")
                     ])
-                ]
+                ],
+                "choice_translation_domain" => true
             ])
             ->add('langue', EntityType::class, [
                 'label' => $this->trans->trans('Langue'),

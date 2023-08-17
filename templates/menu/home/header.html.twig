@@ -11,12 +11,40 @@
 				<div class="topbar-right">
 					<ul>
 						<li>
-							<select class="header-lang-bx">
-								<option data-icon="flag flag-fr">Fr</option>
-								<option data-icon="flag flag-us">En</option>
-								<option data-icon="flag flag-mg">Mg</option>
-							</select>
+							<div class="dropdown">
+								<button
+									class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									{# Dropdown button #}
+									{% set flag_current = app.request.locale %}
+									{% set flags_info = [{"fr": "flag flag-fr"}, {"en": "flag flag-us"}, {"mg": "flag flag-mg"}] %}
+									{% set icon_flag = "" %}
+									{# {{dump(flags_info)}} #}
+									{% for flag in flags_info %}
+										{% for key,fl in flag %}
+											{% if key == flag_current %}
+												{% set icon_flag = fl %}
+											{% endif %}
+										{% endfor %}
+									{% endfor %}
+
+									<i data-icon="{{ icon_flag }}">
+										{{ flag_current }}
+									</i>
+								</button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									<a class="dropdown-item" href="{{ path ('app_langue', {_locale: 'fr'}) }}" data-icon="flag flag-fr">Fr</a>
+									<a class="dropdown-item" href="{{ path ('app_langue', {_locale: 'en'}) }}" data-icon="flag flag-us">En</a>
+									<a class="dropdown-item" href="{{ path ('app_langue', {_locale: 'mg'}) }}" data-icon="flag flag-mg">Mg</a>
+								</div>
+							</div>
 						</li>
+						{# <li>
+																																																																																																																																					<select class="header-lang-bx">
+																																																																																																																																						<option data-icon="flag flag-fr">Fr</option>
+																																																																																																																																						<option data-icon="flag flag-us">En</option>
+																																																																																																																																						<option data-icon="flag flag-mg">Mg</option>
+																																																																																																																																					</select>
+																																																																																																																																				</li> #}
 						{# <li> #}
 						{# <a href="{{ path ('app_langue', {_locale: 'fr'}) }}">fr</a> #}
 						{# </li> #}
@@ -227,16 +255,16 @@
 			</a>
 		</li>
 		{# <li class="nav-dashboard">
-																        <a href="javascript:;">
-																            <i class="fa fa-book"></i>&nbsp;Pages
-																            <i class="fa fa-chevron-down"></i>
-																        </a>
-																        <ul class="sub-menu">
-																            <li>
-																            <a href="#">Panneau de configuration</a>
-																            </li>
-																        </ul>
-																        </li> #}
+																																																										        <a href="javascript:;">
+																																																										            <i class="fa fa-book"></i>&nbsp;Pages
+																																																										            <i class="fa fa-chevron-down"></i>
+																																																										        </a>
+																																																										        <ul class="sub-menu">
+																																																										            <li>
+																																																										            <a href="#">Panneau de configuration</a>
+																																																										            </li>
+																																																										        </ul>
+																																																										        </li> #}
 	</ul>
 	<div class="nav-social-link">
 		<a href="javascript:;">
