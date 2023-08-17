@@ -131,22 +131,38 @@
 					<div class="wc-title">
 						<h4>Nouveaux utilisateurs</h4>
 					</div>
-				
+
+					
+
 					<div class="widget-inner">
 						<div class="new-user-list">
 							<ul>
 								{% for user in usersWithArticles %}
+								{% set _isactif = "user.isActif" %}
+								{% set id_ = "id" %}
+								{% set actif_user="user['isActif']" %}
 								<li>
 									<span class="new-users-pic">
+									
+									{% if user.photo!=null %}
 									<img src="{{ asset('photo/' ~ user.photo) }}" alt=""/>
+									{% else %}
+									<img src="{{ asset('assets/images/profil.jpg' ) }}" alt=""/>
+									{% endif %}
 									</span>
 									<span class="new-users-text">
 									<a href="#" class="new-users-name">{{ user.nom }} {{ user.prenom }}</a>
 									<span class="new-users-info">{{ user.email }}</span>
 									</span>
 									<span class="new-users-btn">
-									<a href="#" class="btn button-sm outline">Désactiver</a>
-									<a href="#" class="btn button-sm outline">Supprimer</a>
+									
+										{# templates/active_user.html.twig #}
+
+										<p>Status: {% if app.request.get('option') == 'desactiver' %}Désactivé{% else %}Activé{% endif %}</p>
+										
+									<a href="{{ path('app_user_active', {'_locale': 'fr', 'id': user['id_user'], 'option': 'desactiver'}) }}" class="btn button-sm outline">Désactiver</a>
+									<a href="{{ path('app_user_delete', {'_locale': 'fr', 'id': user['id_user']}) }}" class="btn button-sm outline">Supprimer</a>
+
 									<a href="#" data-toggle="modal" data-target="#myModal{{ user.id_user }}" class="btn button-sm outline">Details</a>
 									</span>
 
@@ -162,7 +178,11 @@
 										<div class="modal-body">
 											<div class="row">
 											<div class="col-md-4">
-												<img src="{{ asset('photo/' ~ user.photo) }}" class="img-fluid" alt="Photo" />
+												{% if user.photo!=null %}
+												<img src="{{ asset('photo/' ~ user.photo) }}" alt=""/>
+												{% else %}
+												<img src="{{ asset('assets/images/profil.jpg' ) }}" alt=""/>
+												{% endif %}
 											</div>
 											
 											<div class="col-md-8">

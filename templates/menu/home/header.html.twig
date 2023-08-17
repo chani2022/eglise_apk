@@ -37,8 +37,30 @@
 								<i title="Page youtube officielle" class="fa fa-youtube"></i>
 							</a>
 						</li>
-
+						
+							{% if app.user %}
+							{% if app.user.roles[0] == 'ROLE_ADMIN' %}
+							<li>
+								<a href="{{ path('app_dashboard') }}" class="btn-link" title="Retour au panneau">
+									<i class="fa fa-cog"></i> 
+								</a>
+							</li>
+							{% endif %}
+							{% endif %}
+						
+						
+							{% if app.user %}
+							{% if app.user.roles[0] == 'ROLE_REDACTEUR' %}
+							<li>
+								<a href="{{ path('app_article') }}" class="btn-link" title="Retour à la création de l'article">
+									<i class="fa fa-commenting-o"></i> 
+								</a>
+							</li>
+							{% endif %}
+							{% endif %}
+						
 						<li>
+							
 							{# {{dump(app.user)}} #}
 							{% set href= path('app_login')  %}
 							{% set label = "Se connecter" %}
