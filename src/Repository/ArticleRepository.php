@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Article;
 use App\Entity\Categorie;
 use App\Entity\Galerie;
+use App\Entity\Langue;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -71,7 +72,7 @@ class ArticleRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function getArticlePublished(string $categorie = null, UserInterface $user = null): array
+    public function getArticlePublished(string $categorie = null, UserInterface $user = null, Langue $langue = null): array
     {
         $qb = $this->createQueryBuilder('a')
             ->addSelect(["cat", "u", "lang"])
@@ -89,6 +90,10 @@ class ArticleRepository extends ServiceEntityRepository
             $qb->andWhere("a.user = :user")
                 ->setParameter("user", $user);
         }
+        if ($langue) {
+            $qb->andWhere('a.langue = :langue')
+                ->setParameter("langue", $langue);
+        }
 
         $qb->orderBy('a.updated_at', 'DESC')
             ->setMaxResults(10);
@@ -102,7 +107,7 @@ class ArticleRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findByCategorieArticleWithLimit(Categorie $categorie, int $firstResult): array
+    public function findByCategorieArticleWithLimit(Categorie $categorie, int $firstResult, Langue $langue): array
     {
         return $this->createQueryBuilder('a')
             ->addSelect(["u", "cat", "lang"])
@@ -111,8 +116,10 @@ class ArticleRepository extends ServiceEntityRepository
             ->join("a.langue", "lang")
             ->where('a.categorie = :categorie')
             ->andWhere('a.is_published = :is_published')
+            ->andWhere('a.langue = :langue')
             ->setParameter("categorie", $categorie)
             ->setParameter('is_published', true)
+            ->setParameter("langue", $langue)
             ->orderBy("a.updated_at", "DESC")
             ->setFirstResult($firstResult)
             ->setMaxResults(10)

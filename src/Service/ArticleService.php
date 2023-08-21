@@ -4,18 +4,24 @@ namespace App\Service;
 
 use App\Entity\Galerie;
 use App\Repository\ArticleRepository;
+use App\Repository\LangueRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class ArticleService
 {
-    public function __construct(private EntityManagerInterface $em, private ArticleRepository $articleRep)
+    public function __construct(private RequestStack $requestStack, private EntityManagerInterface $em, private ArticleRepository $articleRep, private LangueRepository $langueRep)
     {
     }
 
     public function getArticles(string $categorie): array
     {
-        $articles = $this->articleRep->getArticlePublished($categorie);
+        $locale = $this->requestStack->getCurrentRequest()->getLocale();
+
+        $langue = $this->langueRep->findOneBy(["type" => $locale]);
+
+        $articles = $this->articleRep->getArticlePublished($categorie, null, $langue);
         $array_populaires = [];
         $populaire_recent = null;
 

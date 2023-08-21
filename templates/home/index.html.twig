@@ -31,10 +31,11 @@
 								</span>
 							</div>
 							<h4>
-								<a href="{{ path ('app_static_apocalypse_et_la_prophetie') }}">L'apocalypse et la prophétie du jour</a>
+								<a href="{{ path ('app_static_apocalypse_et_la_prophetie') }}">{% trans %}L'apocalypse et la prophétie du jour{% endtrans %}</a>
 							</h4>
 							<a href="{{ path ('app_static_apocalypse_et_la_prophetie') }}" class="btn radius-xl">
-								<i class="fa fa-eye"></i>&nbsp;Lire</a>
+								<i class="fa fa-eye"></i>
+								{% trans %}Lire{% endtrans %}</a>
 						</div>
 					</div>
 				</div>
@@ -48,10 +49,11 @@
 								<i class="fa fa-bank text-primary"></i>
 							</div>
 							<h4>
-								<a href="{{ path ('app_static_a_propos') }}">A propos de l'Eglise Apokalypsy</a>
+								<a href="{{ path ('app_static_a_propos') }}">{% trans %}A propos de l'Eglise Apokalypsy{% endtrans %}</a>
 							</h4>
 							<a href="{{ path ('app_static_a_propos') }}" class="btn radius-xl">
-								<i class="fa fa-eye"></i>&nbsp;Lire</a>
+								<i class="fa fa-eye"></i>
+								{% trans %}Lire{% endtrans %}</a>
 						</div>
 					</div>
 				</div>
@@ -69,7 +71,8 @@
 								</a>
 							</h4>
 							<a href="{{ path ('app_static_livre-apokalypsy') }}" class="btn radius-xl">
-								<i class="fa fa-eye"></i>&nbsp;Lire</a>
+								<i class="fa fa-eye"></i>
+								{% trans %}Lire{% endtrans %}</a>
 						</div>
 					</div>
 				</div>
@@ -89,7 +92,8 @@
 								<a href="{{ path ('app_static_radio') }}">RFA Radio fanambarana</a>
 							</h4>
 							<a class="btn radius-xl" href="{{ path ('app_static_radio') }}">
-								<i class="fa fa-eye"></i>&nbsp;Lire</a>
+								<i class="fa fa-eye"></i>
+								{% trans %}Lire{% endtrans %}</a>
 						</div>
 					</div>
 				</div>
@@ -106,10 +110,10 @@
 				<div class="row">
 					<div class="row">
 						<div id="crolltou" class="col-md-12 heading-bx left">
-							<h2 class="title-head">Actualités
+							<h2 class="title-head">{% trans %}Actualités{% endtrans %}
 							</h2>
-							<p>Retrouvez toute l'actualité en direct, en photos et en vidéo ici</p>
-							<strong class="title-head">Actualité le plus populaire</strong>
+							<p>{% trans %}Retrouvez toute l'actualité en direct, en photos et en vidéo ici{% endtrans %}</p>
+							<strong class="title-head">{% trans %}Actualité le plus populaire{% endtrans %}</strong>
 						</div>
 					</div>
 					<!-- Left part start -->
@@ -133,7 +137,8 @@
 									</li>
 								</ul>
 								<div class="widget widget_gallery gallery-grid-4">
-									<h6 class="widget-title">Galery</h6>
+									<h6 class="widget-title">{% trans %}Galery{% endtrans %}
+									</h6>
 									<ul class="magnific-image galerie-post">
 										{% for gal in populaire_recent.galerie %}
 											<li>
@@ -144,13 +149,13 @@
 								</div>
 
 								<h5 class="post-title" id="titre_article_populaire">
-									<a href="#">Loading...</a>
+									<a href="#">Loading ...</a>
 								</h5>
 								<div id="comment_article_populaire"></div>
 								{# <p style="text-align: justify" id="comment_article_populaire">Le mois d’août dernier, le pasteur Mailhol, Président et fondateur de l’église Apocalypse internationale ou FAM, est parti visiter la France puis l’Israël avec sa famille pour voir la ville de Jérusalem. Ils ont commencé ce voyage en France par une conférence qui consistait à expliquer :<br/>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									- la Bible mathématiquement, physiquement et spirituellement ;<br/>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									- L’importance des dîmes et des offrandes.
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								</p> #}
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									- la Bible mathématiquement, physiquement et spirituellement ;<br/>
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									- L’importance des dîmes et des offrandes.
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								</p> #}
 
 
 							</div>
@@ -162,7 +167,7 @@
 					<div class="col-lg-4 col-xl-4">
 						<aside class="side-bar sticky-top" id="scroll-container-populaire">
 							<div class="widget recent-posts-entry" id="populaire-post-container">
-								<h6 class="widget-title">Recent Posts</h6>
+								<h6 class="widget-title">{% trans %}Recent Posts{% endtrans %}</h6>
 
 
 								{% for populaire in populaires %}
@@ -217,10 +222,10 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center heading-bx">
-					<h2 class="title-head m-b0">Calendrier
-						<span>d'évènements</span>
+					<h2 class="title-head m-b0">{% trans %}Calendrier{% endtrans %}
+						<span>{% trans %}d'évènements{% endtrans %}</span>
 					</h2>
-					<p class="m-b0">Maintenant et après.
+					<p class="m-b0">{% trans %}Maintenant et après.{% endtrans %}
 					</p>
 				</div>
 			</div>
@@ -289,15 +294,15 @@
 	<div class="container">
 		<div class="row align-items-center d-flex">
 			<div class="col-lg-5 col-md-12 heading-bx">
-				<h2 class="m-b10">La plus grande Église d’Afrique
+				<h2 class="m-b10">{% trans %}La plus grande Église d’Afrique{% endtrans %}
 				</h2>
 				<h5 class="fw4">
-					La construction est en route malgré les obstacles
+					{% trans %}La construction est en route malgré les obstacles{% endtrans %}
 				</h5>
 				<p style="margin-bottom: 10px;font-size: 14px;color: #242424;text-align: justify;">
-					L’année 2016 est une année charnière dans l’histoire de FAM (Fiangonana Apokalypsy eto Madagasikara). C’est celle où la construction de l’Église centrale à Ambohimarina a été lancée. Avec ses 137 m de longueur et ses 75 m de largeur, ce temple sera sans doute la plus grande d’Afrique selon le Pasteur Mailhol, le fondateur international de l’Église Apocalypse. D’un côté, l’édifice se dresse sur trois étages divisés en plusieurs secteurs. Il constitue l’église centrale qui peut accueillir jusqu’à 300 000 fidèles tous les sabbats. De l’autre côté, de grands bâtiments abritent le centre administratif de l’église. Ils comprennent notamment les bureaux du Conseil d’Administration, ainsi que les projets d’expansion de l’église, la GTV (Gasy TV), le site web Apokalypsy, etc.
+					{% trans %}L’année 2016 est une année charnière dans l’histoire de FAM (Fiangonana Apokalypsy eto Madagasikara). C’est celle où la construction de l’Église centrale à Ambohimarina a été lancée. Avec ses 137 m de longueur et ses 75 m de largeur, ce temple sera sans doute la plus grande d’Afrique selon le Pasteur Mailhol, le fondateur international de l’Église Apocalypse. D’un côté, l’édifice se dresse sur trois étages divisés en plusieurs secteurs. Il constitue l’église centrale qui peut accueillir jusqu’à 300 000 fidèles tous les sabbats. De l’autre côté, de grands bâtiments abritent le centre administratif de l’église. Ils comprennent notamment les bureaux du Conseil d’Administration, ainsi que les projets d’expansion de l’église, la GTV (Gasy TV), le site web Apokalypsy, etc.{% endtrans %}
 				</p>
-				<a href="#" class="btn">Lire la suite</a>
+				<a href="#" class="btn">{% trans %}Lire la suite{% endtrans %}</a>
 			</div>
 			<div class="col-lg-7 col-md-12 heading-bx p-lr">
 				<div class="video-bx">
@@ -313,8 +318,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 heading-bx left">
-				<strong class="title-head">Actualité le plus récent</strong>
-				<p>Retrouvez toute l'actualité en direct, en photos et en vidéo ici</p>
+				<strong class="title-head">{% trans %}Actualité le plus récent{% endtrans %}</strong>
+				<p>{% trans %}Retrouvez toute l'actualité en direct, en photos et en vidéo ici{% endtrans %}</p>
 			</div>
 		</div>
 		<div class="page-content bg-white">
@@ -331,9 +336,9 @@
 										<img src="assets/images/logo.png" alt=""/>
 									</div>
 									<div class="profile-info">
-										<h4>Contact</h4>
+										<h4>{% trans %}Contact{% endtrans %}</h4>
 										<p>
-											<strong>Adresse:</strong>
+											<strong>{% trans %}Adresse:{% endtrans %}</strong>
 											IVO 69 b Bis Antohomadinika Atsimo
 										</p><br/>
 										<p>Antananarivo 101 – BP 7562
@@ -391,7 +396,7 @@
 										</div>
 										<div class="tab-pane" id="quiz-results">
 											<div class="profile-head">
-												<h3>Quiz Results</h3>
+												<h3>{% trans %}Quiz Results{% endtrans %}</h3>
 											</div>
 											<div class="courses-filter">
 												<div class="row">
@@ -399,38 +404,39 @@
 														<ul class="course-features">
 															<li>
 																<i class="ti-book"></i>
-																<span class="label">Lectures</span>
+																<span class="label">{% trans %}Lectures{% endtrans %}</span>
 																<span class="value">8</span>
 															</li>
 															<li>
 																<i class="ti-help-alt"></i>
-																<span class="label">Quizzes</span>
+																<span class="label">{% trans %}Quizzes{% endtrans %}</span>
 																<span class="value">1</span>
 															</li>
 															<li>
 																<i class="ti-time"></i>
-																<span class="label">Duration</span>
-																<span class="value">60 hours</span>
+																<span class="label">{% trans %}Duration{% endtrans %}</span>
+																<span class="value">{% trans %}60 hours{% endtrans %}</span>
 															</li>
 															<li>
 																<i class="ti-stats-up"></i>
-																<span class="label">Skill level</span>
-																<span class="value">Beginner</span>
+																<span class="label">{% trans %}Skill level{% endtrans %}</span>
+																<span class="value">{% trans %}Beginner{% endtrans %}</span>
 															</li>
 															<li>
 																<i class="ti-smallcap"></i>
-																<span class="label">Language</span>
-																<span class="value">English</span>
+																<span class="label">{% trans %}Language{% endtrans %}
+																</span>
+																<span class="value">{% trans %}English{% endtrans %}</span>
 															</li>
 															<li>
 																<i class="ti-user"></i>
-																<span class="label">Students</span>
+																<span class="label">{% trans %}Students{% endtrans %}</span>
 																<span class="value">32</span>
 															</li>
 															<li>
 																<i class="ti-check-box"></i>
-																<span class="label">Assessments</span>
-																<span class="value">Yes</span>
+																<span class="label">{% trans %}Assessments{% endtrans %}</span>
+																<span class="value">{% trans %}Yes{% endtrans %}</span>
 															</li>
 														</ul>
 													</div>
@@ -438,38 +444,39 @@
 														<ul class="course-features">
 															<li>
 																<i class="ti-book"></i>
-																<span class="label">Lectures</span>
+																<span class="label">{% trans %}Lectures{% endtrans %}</span>
 																<span class="value">8</span>
 															</li>
 															<li>
 																<i class="ti-help-alt"></i>
-																<span class="label">Quizzes</span>
+																<span class="label">{% trans %}Quizzes{% endtrans %}</span>
 																<span class="value">1</span>
 															</li>
 															<li>
 																<i class="ti-time"></i>
-																<span class="label">Duration</span>
-																<span class="value">60 hours</span>
+																<span class="label">{% trans %}Duration{% endtrans %}</span>
+																<span class="value">{% trans %}60 hours{% endtrans %}</span>
 															</li>
 															<li>
 																<i class="ti-stats-up"></i>
-																<span class="label">Skill level</span>
-																<span class="value">Beginner</span>
+																<span class="label">{% trans %}Skill level{% endtrans %}</span>
+																<span class="value">{% trans %}Beginner{% endtrans %}</span>
 															</li>
 															<li>
 																<i class="ti-smallcap"></i>
-																<span class="label">Language</span>
-																<span class="value">English</span>
+																<span class="label">{% trans %}Language{% endtrans %}
+																</span>
+																<span class="value">{% trans %}English{% endtrans %}</span>
 															</li>
 															<li>
 																<i class="ti-user"></i>
-																<span class="label">Students</span>
+																<span class="label">{% trans %}Students{% endtrans %}</span>
 																<span class="value">32</span>
 															</li>
 															<li>
 																<i class="ti-check-box"></i>
-																<span class="label">Assessments</span>
-																<span class="value">Yes</span>
+																<span class="label">{% trans %}Assessments{% endtrans %}</span>
+																<span class="value">{% trans %}Yes{% endtrans %}</span>
 															</li>
 														</ul>
 													</div>

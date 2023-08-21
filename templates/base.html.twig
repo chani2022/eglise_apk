@@ -42,7 +42,7 @@
 		{# javascript file #}
 		<script src="{{ asset ('assets/js/jquery.min.js') }}"></script>
 		<script src="{{ asset ('assets/vendors/bootstrap/js/bootstrap.min.js') }}"></script>
-		<script src="{{ asset ('assets/vendors/bootstrap/js/popper.min.js') }}"></script>
+		{# // <script src="{{ asset ('assets/vendors/bootstrap/js/popper.min.js') }}"></script> #}
 		<script src="{{ asset ('assets/vendors/bootstrap-select/bootstrap-select.min.js') }}"></script>
 		<script src="{{ asset ('assets/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js') }}"></script>
 		<script src="{{ asset ('assets/vendors/magnific-popup/magnific-popup.js') }}"></script>
@@ -76,7 +76,7 @@
 		<script src="{{ asset ('js/admin.js') }}" defer></script>
 
 
-		{#  <script src="https://unpkg.com/@popperjs/core@2" defer></script> #}
+		<script src="https://unpkg.com/@popperjs/core@2" defer></script>
 
 		{# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 		{% block stylesheets %}
@@ -86,7 +86,7 @@
 		{% block javascripts %}{% endblock %}
 	</head>
 	<body>
-		<div class="info-socket" data-user-id="{{ app.user ? app.user.getId(): null }}" data-path-image="{{ asset('article/') }}" data-path-galerie="{{ asset('galerie/') }}" data-id-remove="{{ app.session.get('idArticleToRemoveInArticleRecent') ? null }}"></div>
+		<div class="info-socket" data-user-id="{{ app.user ? app.user.getId(): null }}" data-path-image="{{ asset('article/') }}" data-path-galerie="{{ asset('galerie/') }}" data-id-remove="{{ app.session.get('idArticleToRemoveInArticleRecent') ? null }}" data-locale="{{ app.request.locale}}"></div>
 		<div class="page-wraper">
 			<div id="loading-icon-bx"></div>
 			<!-- Header Top xx==== -->
@@ -99,8 +99,8 @@
 				</div>
 			</div>
 			{# <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" id="launch-modal">
-																																																																																																													Launch demo modal
-																																																																																																												</button> #}
+																																																																																																																						Launch demo modal
+																																																																																																																					</button> #}
 		</div>
 		<!-- Content END-->
 		<!-- Footer ==== -->

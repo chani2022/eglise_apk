@@ -4,11 +4,10 @@
 </button> #}
 
 <!-- Modal -->
-	<div class="modal fade" style="z-index: 1000000000;" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"> 
-		<div class="modal-dialog modal-dialog-centered" style="max-width:630px;box-shadow: 1px 3px 36px 4px rgba(20,20,20,0.4);" role="document">
+	<div class="modal fade" style="z-index: 1000000000;" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"> <div class="modal-dialog modal-dialog-centered" style="max-width:630px;box-shadow: 1px 3px 36px 4px rgba(20,20,20,0.4);" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="modal-titre">Loading...</h5>
+				<h5 class="modal-title" id="modal-titre">{% trans %}Chargement ...{% endtrans %}</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -17,7 +16,7 @@
 				...
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans %}Fermer{% endtrans %}</button>
 			</div>
 		</div>
 	</div>

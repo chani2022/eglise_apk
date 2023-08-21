@@ -173,6 +173,114 @@
         <source> a été supprimé</source>
         <target> has been deleted</target>
       </trans-unit>
+      <trans-unit id="DUfi7eF" resname="Eglise Apokalypsy Universelle">
+        <source>Eglise Apokalypsy Universelle</source>
+        <target>Universal Apokalypsy Church</target>
+      </trans-unit>
+      <trans-unit id="nJFesiA" resname="Sache que je te confie aujourd'hui une mission envers les nations et les royaumes :">
+        <source>Sache que je te confie aujourd'hui une mission envers les nations et les royaumes :</source>
+        <target>Know that I entrust to you today a mission towards nations and kingdoms:</target>
+      </trans-unit>
+      <trans-unit id="Wka9OTB" resname="celle d'arracher et de renverser, de ruiner et de détruire, de construire et de planter. Jérémie:1.10">
+        <source>celle d'arracher et de renverser, de ruiner et de détruire, de construire et de planter. Jérémie:1.10</source>
+        <target>that of uprooting and overthrowing, ruining and destroying, building and planting. Jeremy:1.10</target>
+      </trans-unit>
+      <trans-unit id="KJr.ErB" resname="Question">
+        <source>Question</source>
+        <target>Question</target>
+      </trans-unit>
+      <trans-unit id="CsPSyzA" resname="Se connecter">
+        <source>Se connecter</source>
+        <target>Login</target>
+      </trans-unit>
+      <trans-unit id="PCX0_17" resname="S'inscrire">
+        <source>S'inscrire</source>
+        <target>Register</target>
+      </trans-unit>
+      <trans-unit id="_1_eksG" resname="Déconnexion">
+        <source>Déconnexion</source>
+        <target>Logout</target>
+      </trans-unit>
+      <trans-unit id="BvLXkyc" resname="Aucune notification">
+        <source>Aucune notification</source>
+        <target>No notification</target>
+      </trans-unit>
+      <trans-unit id="4FsI3IJ" resname="Prophétie du jour">
+        <source>Prophétie du jour</source>
+        <target>Prophecy of the day</target>
+      </trans-unit>
+      <trans-unit id="9oej4j0" resname="Pasteur mailhol a annoncé hier un nouveau prophétie.">
+        <source>Pasteur mailhol a annoncé hier un nouveau prophétie.</source>
+        <target>Pastor mailhol announced a new prophecy yesterday.</target>
+      </trans-unit>
+      <trans-unit id="UzFhc1Y" resname="Accueil">
+        <source>Accueil</source>
+        <target>Home</target>
+      </trans-unit>
+      <trans-unit id="clRQDTj" resname="A savoir">
+        <source>A savoir</source>
+        <target>To know</target>
+      </trans-unit>
+      <trans-unit id="FxQmM7v" resname="Personnel">
+        <source>Personnel</source>
+        <target>Staff</target>
+      </trans-unit>
+      <trans-unit id="99DntbU" resname="Président fondateur">
+        <source>Président fondateur</source>
+        <target>Founding President</target>
+      </trans-unit>
+      <trans-unit id="NNoaUM7" resname="Secrétaire Générale">
+        <source>Secrétaire Générale</source>
+        <target>General secretary</target>
+      </trans-unit>
+      <trans-unit id="cndWj2A" resname="Trésorier">
+        <source>Trésorier</source>
+        <target>Treasurer</target>
+      </trans-unit>
+      <trans-unit id="NQvjZDz" resname="Organisation">
+        <source>Organisation</source>
+        <target>Organization</target>
+      </trans-unit>
+      <trans-unit id="zf66GAc" resname="Archives apokalypsy">
+        <source>Archives apokalypsy</source>
+        <target>Archives apokalypsy</target>
+      </trans-unit>
+      <trans-unit id="O1_BfEc" resname="Spiritualité">
+        <source>Spiritualité</source>
+        <target>Spirituality</target>
+      </trans-unit>
+      <trans-unit id="HqFSjMB" resname="Chargement ...">
+        <source>Chargement ...</source>
+        <target>Loading ...</target>
+      </trans-unit>
+      <trans-unit id="cR5fLhm" resname="Fermer">
+        <source>Fermer</source>
+        <target>Close</target>
+      </trans-unit>
+      <trans-unit id="5yRNYw4" resname="Profil utilisateur">
+        <source>Profil utilisateur</source>
+        <target>User profile</target>
+      </trans-unit>
+      <trans-unit id="Z7aWRoY" resname="Dashboard">
+        <source>Dashboard</source>
+        <target>Dashboard</target>
+      </trans-unit>
+      <trans-unit id="oehMN.Z" resname="profil">
+        <source>profil</source>
+        <target>profile</target>
+      </trans-unit>
+      <trans-unit id="vhA5_3Y" resname="&quot;Recherche rapide&quot;">
+        <source>"Recherche rapide"</source>
+        <target>"Fast search"</target>
+      </trans-unit>
+      <trans-unit id="MzIqXXu" resname="&quot;Page facebook officielle&quot;">
+        <source>"Page facebook officielle"</source>
+        <target>"Official facebook page"</target>
+      </trans-unit>
+      <trans-unit id="Pg7tvj." resname="&quot;Page youtube officielle&quot;">
+        <source>"Page youtube officielle"</source>
+        <target>"Official youtube page"</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

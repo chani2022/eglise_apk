@@ -22,10 +22,10 @@ function runInfinityScroll(
     // }
 
     function nextHandler(pageIndex) {
-        // if (pageIndex == 1) {
-        //     firstResult = -1
-        // }
-        return fetch('/api?type=' + data_server.categorie + '&firstResult=' + (pageIndex + firstResult))
+        /**
+         * locale is globale variable
+         */
+        return fetch('/api?type=' + data_server.categorie + '&firstResult=' + (pageIndex + firstResult) + '&locale=' + locale)
             .then(response => response.json())
             .then((data) => {
 

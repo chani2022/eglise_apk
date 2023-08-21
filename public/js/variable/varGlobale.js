@@ -5,6 +5,7 @@ var id_connected = elmnt.dataset.userId;
 let basePathArticle = elmnt.dataset.pathImage
 let basePathGalerie = elmnt.dataset.pathGalerie
 let socketIsLaunch = elmnt.dataset.socketActive
+let locale = elmnt.dataset.locale
 
 
 let idToRemove = elmnt.dataset.idRemove
