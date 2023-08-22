@@ -60,12 +60,16 @@ class ArticleRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findAllOrdered(?UserInterface $user = null): array
+    public function findAllOrdered(?UserInterface $user = null, Langue $langue = null): array
     {
         $qb = $this->createQueryBuilder('a');
         if ($user) {
             $qb->where('a.user = :user')
                 ->setParameter('user', $user);
+        }
+        if ($langue) {
+            $qb->andWhere("a.langue = :langue")
+                ->setParameter("langue", $langue);
         }
         return $qb->orderBy("a.updated_at", "DESC")
             ->getQuery()
