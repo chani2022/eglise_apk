@@ -88,25 +88,36 @@
         }
     });
 
-    // Définir un tableau de couleurs pour les barres du graphique
-    var colors = [
-        'rgba(0, 255, 0, 1)',  // Rouge
-        'rgba(255, 0, 0, 1)',  // Bleu
-        'rgba(255, 206, 86, 0.2)',  // Jaune
-        'rgba(75, 192, 192, 0.2)',  // Vert
-        // Ajoutez d'autres couleurs ici si nécessaire
-    ];
+    var predefinedColors = [
+    'rgba(255, 99, 132, 0.7)',
+    'rgba(54, 162, 235, 0.7)',
+    'rgba(255, 206, 86, 0.7)',
+    'rgba(75, 192, 192, 0.7)',
+    'rgba(153, 102, 255, 0.7)'
+];
 
-    var chartData = {
-        labels: Object.keys(categories),
-        datasets: [{
-            label: 'Nombre d\'articles par categories',
-            data: Object.values(categories),
-            backgroundColor: colors.slice(0, Object.keys(categories).length), // Utilisez les couleurs pour chaque catégorie
-            borderColor: colors.slice(0, Object.keys(categories).length),
-            borderWidth: 1
-        }]
-    };
+function getRandomBrightColor() {
+    var r = Math.floor(Math.random() * 155) + 100; // Valeurs de rouge plus élevées
+    var g = Math.floor(Math.random() * 155) + 100; // Valeurs de vert plus élevées
+    var b = Math.floor(Math.random() * 155) + 100; // Valeurs de bleu plus élevées
+    return 'rgba(' + r + ', ' + g + ', ' + b + ', 0.8)';
+}
+
+var combinedColors = predefinedColors.concat(
+    Array.from({ length: Object.keys(categories).length - predefinedColors.length }, function () {
+        return getRandomBrightColor();
+    })
+);
+
+var chartData = {
+    labels: Object.keys(categories),
+    datasets: [{
+        label: 'Nombre d\'articles par catégories',
+        data: Object.values(categories),
+        backgroundColor: combinedColors
+    }]
+};
+
 
     // Créer le graphique avec Chart.js
     var ctx = document.getElementById('articleChart').getContext('2d');

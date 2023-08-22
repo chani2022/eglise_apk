@@ -236,11 +236,11 @@ console.log("data redac", data);
 
 // Initialiser les tableaux pour les étiquettes et les données du graphique
 var colorPalette = [
-    'rgba(0, 255, 0, 0.7)',   // Fond vert
-    'rgba(255, 0, 0, 0.7)',   // Bordures rouges
-    'rgba(0, 0, 255, 0.7)',
-    'rgba(255, 255, 0, 0.7)',
-    'rgba(0, 255, 255, 0.7)',
+        'rgba(255, 99, 132, 0.7)',
+        'rgba(54, 162, 235, 0.7)',
+        'rgba(255, 206, 86, 0.7)',
+        'rgba(75, 192, 192, 0.7)',
+        'rgba(153, 102, 255, 0.7)',
     // Ajoutez plus de couleurs ici si nécessaire
 ];
 
@@ -253,7 +253,11 @@ var backgroundColors = [];
 for (var userId in data) {
     if (data.hasOwnProperty(userId)) {
         var user = data[userId];
-        labels.push(user.prenom);
+        
+        // Vérifier si le prénom est nul
+        var prenom = user.prenom ? user.prenom : "Anonyme";
+        
+        labels.push(prenom);
 
         // Compter le nombre d'articles pour cet utilisateur
         var numArticles = Object.keys(user.articles).length;
@@ -264,11 +268,33 @@ for (var userId in data) {
     }
 }
 
+
 // Configuration du graphique
 var ctx = document.getElementById('chart_user').getContext('2d');
 ctx.canvas.width = 200; // Largeur du canvas en pixels
 ctx.canvas.height = 200; // Hauteur du canvas en pixels
 console.log(ctx);
+
+var predefinedColors = [
+    'rgba(255, 99, 132, 0.7)',
+    'rgba(54, 162, 235, 0.7)',
+    'rgba(255, 206, 86, 0.7)',
+    'rgba(75, 192, 192, 0.7)',
+    'rgba(153, 102, 255, 0.7)'
+];
+
+function getRandomBrightColor() {
+    var r = Math.floor(Math.random() * 155) + 100; // Valeurs de rouge plus élevées
+    var g = Math.floor(Math.random() * 155) + 100; // Valeurs de vert plus élevées
+    var b = Math.floor(Math.random() * 155) + 100; // Valeurs de bleu plus élevées
+    return 'rgba(' + r + ', ' + g + ', ' + b + ', 0.8)';
+}
+
+var combinedColors = predefinedColors.concat(
+    Array.from({ length: labels.length - predefinedColors.length }, function () {
+        return getRandomBrightColor();
+    })
+);
 
 var myChart = new Chart(ctx, {
     type: 'doughnut',
@@ -277,21 +303,13 @@ var myChart = new Chart(ctx, {
         datasets: [{
             label: 'Nombre d\'articles',
             data: datasetsData,
-			borderColor: 'rgba(0, 255, 0, 1)', // Couleur de la ligne en vert
-            borderWidth: 2, // Épaisseur de la ligne
-            fill: true, // Remplir l'aire sous la courbe
-            tension: 0.4, // Ajustez la tension pour obtenir une forme sinusoidale
-            backgroundColor: 'rgba(0, 255, 0, 0.1)', // Couleur de remplissage de l'aire sous la courbe en vert
-            pointBackgroundColor: 'rgba(255, 0, 0, 1)', // Couleur des points en rouge
-            pointBorderColor: 'rgba(255, 0, 0, 1)', // Couleur des bordures des points en rouge
-            pointBorderWidth: 1, // Épaisseur des bordures des points
-            pointRadius: 4, // Taille des points
+            backgroundColor: combinedColors
         }]
     },
     options: {
         scales: {
             x: {
-                beginAtZero: true, // Si vous voulez que l'axe X commence à zéro
+                beginAtZero: true,
                 title: {
                     display: true,
                     text: 'Présentation par graphe',
@@ -309,7 +327,7 @@ var myChart = new Chart(ctx, {
                 },
             },
             y: {
-                beginAtZero: true, // Si vous voulez que l'axe Y commence à zéro
+                beginAtZero: true,
                 title: {
                     display: true,
                     text: 'Nombre d\'articles',
@@ -339,6 +357,7 @@ var myChart = new Chart(ctx, {
         },
     }
 });
+
 
 </script>
 <script>

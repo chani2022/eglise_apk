@@ -18,6 +18,7 @@
 	<div class="section-area content-inner service-info-bx">
 		<div class="container">
 			<div class="row">
+				
 				<div class="col-lg-3 col-md-3 col-sm-6">
 					<div class="service-bx">
 						<div class="action-box">
@@ -118,7 +119,7 @@
 						<!-- blog start -->
 						<div class="recent-news blog-lg">
 							<div class="action-box blog-lg" id="image_article_populaire">
-								<img src="" alt="">
+								<img src="{{ asset('article/'~ populaire_recent.image) }}" alt="{{ asset('article/'~ populaire_recent.image) }}">
 							</div>
 							<div class="info-bx">
 								<ul class="media-post">
@@ -142,17 +143,13 @@
 										{% endfor %}
 									</ul>
 								</div>
-
 								<h5 class="post-title" id="titre_article_populaire">
-									<a href="#">Loading...</a>
+									<a href="#">{{populaire_recent.titre}}</a>
 								</h5>
 								<div id="comment_article_populaire"></div>
-								{# <p style="text-align: justify" id="comment_article_populaire">Le mois d’août dernier, le pasteur Mailhol, Président et fondateur de l’église Apocalypse internationale ou FAM, est parti visiter la France puis l’Israël avec sa famille pour voir la ville de Jérusalem. Ils ont commencé ce voyage en France par une conférence qui consistait à expliquer :<br/>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									- la Bible mathématiquement, physiquement et spirituellement ;<br/>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									- L’importance des dîmes et des offrandes.
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								</p> #}
-
-
+								 <p style="text-align: justify" id="comment_article_populaire">
+									{{ populaire_recent.commentaire|striptags|raw }}
+								</p>
 							</div>
 						</div>
 						<!-- blog END -->
@@ -163,14 +160,10 @@
 						<aside class="side-bar sticky-top" id="scroll-container-populaire">
 							<div class="widget recent-posts-entry" id="populaire-post-container">
 								<h6 class="widget-title">Recent Posts</h6>
-
-
 								{% for populaire in populaires %}
 									{% set image = 'article/'~ populaire.image %}
 									{% set date = populaire.updatedAt|date('d M Y') %}
 									{% set titre = populaire.titre %}
-
-
 									<div class="widget-post clearfix item-post-populaire" id="{{ populaire.id }}">
 										<div class="ttr-post-media">
 											<img src="{{ asset(image) }}" width="200" height="143" alt="Loading...">
@@ -194,7 +187,6 @@
 											</ul>
 										</div>
 									</div>
-
 								{% endfor %}
 							</div>
 						</aside>
