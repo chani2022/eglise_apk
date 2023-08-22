@@ -12,15 +12,6 @@ function runInfinityScroll(
     }
     let isArticleRecent = false
 
-    // if (categorie === "Récent") {
-    //     limit = 10
-    //     isArticleRecent = true
-    // } else if (categorie === "Calendrier d'évènement") {
-    //     limit = 10
-    // } else if (categorie === "Populaire") {
-    //     limit = 10
-    // }
-
     function nextHandler(pageIndex) {
         /**
          * locale is globale variable
@@ -28,7 +19,6 @@ function runInfinityScroll(
         return fetch('/api?type=' + data_server.categorie + '&firstResult=' + (pageIndex + firstResult) + '&locale=' + locale)
             .then(response => response.json())
             .then((data) => {
-
                 let frag = document.createDocumentFragment();
                 for (let i = 0; i < data.length; i++) {
                     let articleExist = false
@@ -50,25 +40,7 @@ function runInfinityScroll(
 
                     }
                     frag.childNodes.forEach((child) => {
-                        let obj = $(child)
-
-                        // if (selectorItemContainer === ".item-post-populaire") {
-
-                        //     Article.clickToshowArticlePopulaire($(child))
-                        // } else if (selectorItemContainer === ".infinityScrollRecent") {
                         Article.clickToShowAllCommentsArticleRecent($(child))
-                        // }
-                        // else if (obj.find('.item-post-populaire')) {
-                        //     console.log(obj.find('.item-post-populaire'))
-                        //     Article.clickToshowArticlePopulaire('.article_populaire')
-                        // }
-                        /**
-                        if (data[i].categorie_article == "Récent") {
-                            Article.clickToShowAllCommentsArticleRecent($(child))
-                        } else if (data[i].categorie_article == "Populaire") {
-                            Article.clickToshowArticlePopulaire()
-                        }
-                        **/
                     })
                 }
 
@@ -81,7 +53,8 @@ function runInfinityScroll(
                 return this.append(Array.from(frag.childNodes))
                     // indicate that there is a next page to load
                     .then(() => hasNextPage);
-            });
+
+            })
     }
 
     window.ias = new InfiniteAjaxScroll(selectorContainer, {

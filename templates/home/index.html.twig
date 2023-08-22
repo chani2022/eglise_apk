@@ -105,117 +105,120 @@
 	<br/><br/>
 	<!-- Breadcrumb row END -->
 	<div class="content-block">
-		<div class="section-area section-sp1">
-			<div class="container">
-				<div class="row">
+		{% if populaire_recent %}
+
+			<div class="section-area section-sp1">
+				<div class="container">
 					<div class="row">
-						<div id="crolltou" class="col-md-12 heading-bx left">
-							<h2 class="title-head">{% trans %}Actualités{% endtrans %}
-							</h2>
-							<p>{% trans %}Retrouvez toute l'actualité en direct, en photos et en vidéo ici{% endtrans %}</p>
-							<strong class="title-head">{% trans %}Actualité le plus populaire{% endtrans %}</strong>
-						</div>
-					</div>
-					<!-- Left part start -->
-					<div
-						class="col-lg-8 col-xl-8">
-						<!-- blog start -->
-						<div class="recent-news blog-lg">
-							<div class="action-box blog-lg" id="image_article_populaire">
-								<img src="" alt="">
+						<div class="row">
+							<div id="crolltou" class="col-md-12 heading-bx left">
+								<h2 class="title-head">{% trans %}Actualités{% endtrans %}
+								</h2>
+								<p>{% trans %}Retrouvez toute l'actualité en direct, en photos et en vidéo ici{% endtrans %}</p>
+								<strong class="title-head">{% trans %}Actualité le plus populaire{% endtrans %}</strong>
 							</div>
-							<div class="info-bx">
-								<ul class="media-post">
-									<li>
-										<a href="#" id="date_populaire_post">
-											<i class="fa fa-calendar"></i>
-											{{ populaire_recent.updatedAt|date("M-d-Y") }}</a>
-									</li>
-									<li>
-										<a href="#" id="comment_populaire_post">
-											<i class="fa fa-comments-o"></i>10 Comment</a>
-									</li>
-								</ul>
-								<div class="widget widget_gallery gallery-grid-4">
-									<h6 class="widget-title">{% trans %}Galery{% endtrans %}
-									</h6>
-									<ul class="magnific-image galerie-post">
-										{% for gal in populaire_recent.galerie %}
-											<li>
-												<a href="{{ asset('galerie/'~ gal.nomImage) }}" class="magnific-anchor"><img src={{ asset('galerie/'~ gal.nomImage) }} alt=""></a>
-											</li>
-										{% endfor %}
-									</ul>
+						</div>
+						<!-- Left part start -->
+						<div
+							class="col-lg-8 col-xl-8">
+							<!-- blog start -->
+							<div class="recent-news blog-lg">
+								<div class="action-box blog-lg" id="image_article_populaire">
+									<img src="" alt="">
 								</div>
-
-								<h5 class="post-title" id="titre_article_populaire">
-									<a href="#">Loading ...</a>
-								</h5>
-								<div id="comment_article_populaire"></div>
-								{# <p style="text-align: justify" id="comment_article_populaire">Le mois d’août dernier, le pasteur Mailhol, Président et fondateur de l’église Apocalypse internationale ou FAM, est parti visiter la France puis l’Israël avec sa famille pour voir la ville de Jérusalem. Ils ont commencé ce voyage en France par une conférence qui consistait à expliquer :<br/>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									- la Bible mathématiquement, physiquement et spirituellement ;<br/>
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									- L’importance des dîmes et des offrandes.
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								</p> #}
-
-
-							</div>
-						</div>
-						<!-- blog END -->
-					</div>
-					<!-- Left part END -->
-					<!-- Side bar start -->
-					<div class="col-lg-4 col-xl-4">
-						<aside class="side-bar sticky-top" id="scroll-container-populaire">
-							<div class="widget recent-posts-entry" id="populaire-post-container">
-								<h6 class="widget-title">{% trans %}Recent Posts{% endtrans %}</h6>
-
-
-								{% for populaire in populaires %}
-									{% set image = 'article/'~ populaire.image %}
-									{% set date = populaire.updatedAt|date('d M Y') %}
-									{% set titre = populaire.titre %}
-
-
-									<div class="widget-post clearfix item-post-populaire" id="{{ populaire.id }}">
-										<div class="ttr-post-media">
-											<img src="{{ asset(image) }}" width="200" height="143" alt="Loading...">
-										</div>
-										<div class="ttr-post-info">
-											<div class="ttr-post-header">
-												<h6 class="post-title" id="{{ populaire.id }}">
-													<a href="" class="article-populaire" id="{{ populaire.id }}">{{ titre }}</a>
-												</h6>
-											</div>
-											<ul class="media-post">
+								<div class="info-bx">
+									<ul class="media-post">
+										<li>
+											<a href="#" id="date_populaire_post">
+												<i class="fa fa-calendar"></i>
+												{{ populaire_recent.updatedAt|date("M-d-Y") }}</a>
+										</li>
+										<li>
+											<a href="#" id="comment_populaire_post">
+												<i class="fa fa-comments-o"></i>10 Comment</a>
+										</li>
+									</ul>
+									<div class="widget widget_gallery gallery-grid-4">
+										<h6 class="widget-title">{% trans %}Galery{% endtrans %}
+										</h6>
+										<ul class="magnific-image galerie-post">
+											{% for gal in populaire_recent.galerie %}
 												<li>
-													<a href="#">
-														<i class="fa fa-calendar"></i>
-														{{ date }}</a>
+													<a href="{{ asset('galerie/'~ gal.nomImage) }}" class="magnific-anchor"><img src={{ asset('galerie/'~ gal.nomImage) }} alt=""></a>
 												</li>
-												<li>
-													<a href="#">
-														<i class="fa fa-comments-o"></i>15 Commentaire</a>
-												</li>
-											</ul>
-										</div>
+											{% endfor %}
+										</ul>
 									</div>
 
-								{% endfor %}
+									<h5 class="post-title" id="titre_article_populaire">
+										<a href="#">Loading ...</a>
+									</h5>
+									<div id="comment_article_populaire"></div>
+								</div>
 							</div>
-						</aside>
+							<!-- blog END -->
+						</div>
+						<!-- Left part END -->
+						<!-- Side bar start -->
+						<div class="col-lg-4 col-xl-4">
+							<aside class="side-bar sticky-top" id="scroll-container-populaire">
+								<div class="widget recent-posts-entry" id="populaire-post-container">
+									<h6 class="widget-title">{% trans %}Recent Posts{% endtrans %}</h6>
+
+
+									{% for populaire in populaires %}
+										{% set image = 'article/'~ populaire.image %}
+										{% set date = populaire.updatedAt|date('d M Y') %}
+										{% set titre = populaire.titre %}
+
+
+										<div class="widget-post clearfix item-post-populaire" id="{{ populaire.id }}">
+											<div class="ttr-post-media">
+												<img src="{{ asset(image) }}" width="200" height="143" alt="Loading...">
+											</div>
+											<div class="ttr-post-info">
+												<div class="ttr-post-header">
+													<h6 class="post-title" id="{{ populaire.id }}">
+														<a href="" class="article-populaire" id="{{ populaire.id }}">{{ titre }}</a>
+													</h6>
+												</div>
+												<ul class="media-post">
+													<li>
+														<a href="#">
+															<i class="fa fa-calendar"></i>
+															{{ date }}</a>
+													</li>
+													<li>
+														<a href="#">
+															<i class="fa fa-comments-o"></i>15 Commentaire</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+
+									{% endfor %}
+								</div>
+							</aside>
+						</div>
+
+
+						<!-- Side bar END -->
 					</div>
-
-
-					<!-- Side bar END -->
 				</div>
+				<div class="text-center">
+					<a href="{{ path ("app_article_by_categorie", {'type': 'Populaire'}) }}" class="btn view-all-event">Voir tous les Actualité populaire</a>
+				</div>
+				<!-- Our Services END -->
 			</div>
-		</div>
+		{% else %}
+			<div class="text-center">
+				<p class="text-danger">
+					<i class="fa fa-info-circle"></i>
+					{% trans %}
+					Aucune article populaire pour le moment{% endtrans %}</p>
+			</div>
+		{% endif %}
 	</div>
-	<div class="text-center">
-		<a href="{{ path ("app_article_by_categorie", {'type': 'Populaire'}) }}" class="btn view-all-event">Voir tous les Actualité populaire</a>
-
-	</div>
-	<!-- Our Services END -->
 
 
 	<div class="section-area section-sp2">
