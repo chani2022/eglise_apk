@@ -166,6 +166,7 @@ start: '2019-03-28'
 </script>
 
 <script>
+    //DEUXIEME GRAPHE DU DASHBOARD
 	// Récupérer les données de Twig
 	var data = {{ usersWithArticles|json_encode()|raw }};
 	console.log("Mon data admin",data)
@@ -178,26 +179,37 @@ start: '2019-03-28'
         'rgba(153, 102, 255, 0.7)',
         // Ajoutez plus de couleurs ici si nécessaire
     ];
+    
 
     // Initialiser les tableaux pour les étiquettes et les données du graphique
     var labels = [];
     var datasetsData = [];
     var backgroundColors = [];
 
-	// Parcourir les données d'utilisateur et d'articles
-	for (var userId in data) {
-            if (data.hasOwnProperty(userId)) {
+            // Parcourir les données d'utilisateur et d'articles
+            for (var userId in data) {
+                if (data.hasOwnProperty(userId)) {
                 var user = data[userId];
-                labels.push(user.nom + ' ' + user.prenom);
+                
+                // Vérifier si le prénom est nul et afficher "Anonyme" si c'est le cas
+                var prenom = user.prenom ? user.prenom : "Anonyme";
+                
+                // Vérifier si le nom est nul et utiliser seulement le prénom s'il n'est pas nul
+                var nomPrenom = user.nom ? user.nom + ' ' + prenom : prenom;
+                
+                // Ajouter le nom et prénom (ou seulement le prénom) aux libellés
+                labels.push(nomPrenom);
 
                 // Compter le nombre d'articles pour cet utilisateur
                 var numArticles = Object.keys(user.articles).length;
                 datasetsData.push(numArticles);
 
-				// Générer une couleur aléatoire à partir de la palette
-				var randomColor = colorPalette[Math.floor(Math.random() * colorPalette.length)];
-            backgroundColors.push(randomColor);
+                // Générer une couleur aléatoire à partir de la palette
+                var randomColor = colorPalette[Math.floor(Math.random() * colorPalette.length)];
+                backgroundColors.push(randomColor);
             }
+
+
         }
 
 	// Configuration du graphique
@@ -275,23 +287,17 @@ ctx.canvas.width = 200; // Largeur du canvas en pixels
 ctx.canvas.height = 200; // Hauteur du canvas en pixels
 console.log(ctx);
 
-var predefinedColors = [
-    'rgba(255, 99, 132, 0.7)',
-    'rgba(54, 162, 235, 0.7)',
-    'rgba(255, 206, 86, 0.7)',
-    'rgba(75, 192, 192, 0.7)',
-    'rgba(153, 102, 255, 0.7)'
+var ingredientColors = [
+    'rgba(255, 51, 51, 0.7)',  // Rouge
+    'rgba(255, 153, 0, 0.7)',  // Orange
+    'rgba(255, 255, 51, 0.7)', // Jaune
+    'rgba(102, 204, 0, 0.7)',  // Vert
+    'rgba(51, 153, 255, 0.7)', // Bleu
+    'rgba(153, 102, 255, 0.7)' // Violet
 ];
 
-function getRandomBrightColor() {
-    var r = Math.floor(Math.random() * 155) + 100; // Valeurs de rouge plus élevées
-    var g = Math.floor(Math.random() * 155) + 100; // Valeurs de vert plus élevées
-    var b = Math.floor(Math.random() * 155) + 100; // Valeurs de bleu plus élevées
-    return 'rgba(' + r + ', ' + g + ', ' + b + ', 0.8)';
-}
-
-var combinedColors = predefinedColors.concat(
-    Array.from({ length: labels.length - predefinedColors.length }, function () {
+var combinedColors = ingredientColors.concat(
+    Array.from({ length: labels.length - ingredientColors.length }, function () {
         return getRandomBrightColor();
     })
 );
@@ -359,14 +365,17 @@ var myChart = new Chart(ctx, {
 });
 
 
+
+
 </script>
 <script>
 	var colorPalette = [
-        'rgba(255, 99, 132, 0.7)',
-        'rgba(54, 162, 235, 0.7)',
-        'rgba(255, 206, 86, 0.7)',
-        'rgba(75, 192, 192, 0.7)',
-        'rgba(153, 102, 255, 0.7)',
+    'rgba(255, 51, 51, 0.7)',  // Rouge
+    'rgba(255, 153, 0, 0.7)',  // Orange
+    'rgba(255, 255, 51, 0.7)', // Jaune
+    'rgba(102, 204, 0, 0.7)',  // Vert
+    'rgba(51, 153, 255, 0.7)', // Bleu
+    'rgba(153, 102, 255, 0.7)' // Violet
         // Ajoutez plus de couleurs ici si nécessaire
     ];
 
