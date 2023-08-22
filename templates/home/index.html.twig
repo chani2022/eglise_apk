@@ -125,7 +125,7 @@
 							<!-- blog start -->
 							<div class="recent-news blog-lg">
 								<div class="action-box blog-lg" id="image_article_populaire">
-									<img src="" alt="">
+									<img src="{{ asset('article/'~ populaire_recent.image) }}" alt="{{ asset('article/'~ populaire_recent.image) }}">
 								</div>
 								<div class="info-bx">
 									<ul class="media-post">
@@ -152,9 +152,11 @@
 									</div>
 
 									<h5 class="post-title" id="titre_article_populaire">
-										<a href="#">Loading ...</a>
+										<a href="#">{{populaire_recent.titre}}</a>
 									</h5>
-									<div id="comment_article_populaire"></div>
+									<div id="comment_article_populaire">
+										{{ populaire_recent.commentaire|striptags|raw }}
+									</div>
 								</div>
 							</div>
 							<!-- blog END -->
@@ -318,7 +320,10 @@
 			</div>
 		</div>
 	</div>
-</div><!-- Our Story END ==== --><!-- Recent News --><div class="section-area section-sp2">
+</div>
+<!-- Our Story END ==== -->
+<!-- Recent News -->
+<div class="section-area section-sp2">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 heading-bx left">
