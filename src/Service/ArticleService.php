@@ -66,7 +66,11 @@ class ArticleService
 
     public function getArticlesByUser(?UserInterface $user = null): array
     {
-        $articles = $this->articleRep->getArticlePublished(null, $user);
+        $locale = $this->requestStack->getCurrentRequest()->getLocale();
+        $langue = $this->langueRep->findOneBy([
+            "type" => $locale
+        ]);
+        $articles = $this->articleRep->getArticlePublished(null, $user, $langue);
 
         $array_users = [];
         foreach ($articles as $article) {
