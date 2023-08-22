@@ -430,9 +430,16 @@ var chartData = {
 											<a href="{{ path ('app_article', {'article_get': article.getId(), 'option':'update' })}}" title="Modifier" class="btn radius-xl">
 												<i class="fa fa-edit"></i>
 											</a>
-											<a href="#" title="Supprimer" class="btn radius-xl" onclick="return confirmDelete('{{ path('app_article', {'article_get': article.getId(), 'option': 'delete'}) }}');">
-												<i class="fa fa-trash-o"></i>
+											{% if articles|length >= 6 %}
+												<a href="#" title="Supprimer" class="btn radius-xl" onclick="return confirmDelete('{{ path('app_article', {'article_get': article.getId(), 'option': 'delete'}) }}');">
+													<i class="fa fa-trash-o"></i>
+												</a>
+											{% else %}
+											<a href="#" title="Le nombre d'articles doit être supérieur ou égal à 6 pour activer la suppression." class="btn btn-danger radius-xl" >
+												<i class="fa fa-question-circle"></i>
 											</a>
+												
+											{% endif %}
 											{% set class = "fa fa-check" %}
 											{% set option = "publish" %}
 											{% set style = "" %}
