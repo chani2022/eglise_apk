@@ -386,11 +386,11 @@ var chartData = {
 											{% if  article.isIsPublished() %}
 												<strong>Status:
 												</strong>:
-												<span style="color:#1bd111">{% trans %}Publier{% endtrans %}</span><br/>
+												<span style="color:#1bd111">{% trans %}Publié{% endtrans %}</span><br/>
 											{% else %}
 												<strong>{% trans %}Status:{% endtrans %}
 												</strong>:
-												<span style="color:#ff2e2e">{% trans %}Dépublier{% endtrans %}</span><br/>
+												<span style="color:#ff2e2e">{% trans %}Dépublié{% endtrans %}</span><br/>
 
 											{% endif %}
 
@@ -430,7 +430,7 @@ var chartData = {
 											<a href="{{ path ('app_article', {'article_get': article.getId(), 'option':'update' })}}" title="Modifier" class="btn radius-xl">
 												<i class="fa fa-edit"></i>
 											</a>
-											<a href="{{ path('app_article', {'article_get': article.getId(), 'option': 'delete'})}}" title="Supprimer" class="btn radius-xl">
+											<a href="#" title="Supprimer" class="btn radius-xl" onclick="return confirmDelete('{{ path('app_article', {'article_get': article.getId(), 'option': 'delete'}) }}');">
 												<i class="fa fa-trash-o"></i>
 											</a>
 											{% set class = "fa fa-check" %}
@@ -463,6 +463,15 @@ var chartData = {
 {% endblock %}
 {% block javascripts %}
 	{{parent()}}
+	<script>
+		function confirmDelete(deleteUrl) {
+    if (confirm("Êtes-vous sûr de vouloir supprimer cet article ?")) {
+        window.location.href = deleteUrl;
+        return true;
+    }
+    return false;
+}
+	</script>
 	<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin" defer></script>
 	<script src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-jquery@1/dist/tinymce-jquery.min.js" defer></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js" defer></script>
