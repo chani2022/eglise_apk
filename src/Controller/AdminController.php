@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Entity\Galerie;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Repository\LangueRepository;
 use App\Repository\UserRepository;
 use App\Repository\VisitorRepository;
 use App\Service\ArticleService;
@@ -26,7 +27,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[IsGranted("ROLE_REDACTEUR")]
 class AdminController extends AbstractController
 {
-    public function __construct(private CacheInterface $cache, private TranslatorInterface $trans)
+    public function __construct(private CacheInterface $cache, private TranslatorInterface $trans, private LangueRepository $langueRep)
     {
     }
 
@@ -112,6 +113,7 @@ class AdminController extends AbstractController
 
     #[Route('/{_locale}/admin/article/{article_get}', name: 'app_article', requirements: ['_locale' => 'en|fr|mg'], defaults: ['_locale' => 'fr'])]
     public function article(
+        string $_locale,
         ?Article $article_get = null,
         Request $request,
         EntityManagerInterface $em,
@@ -259,7 +261,10 @@ class AdminController extends AbstractController
         if ($this->getUser()->getRoles()[0] == "ROLE_REDACTEUR") {
             $user = $this->getUser();
         }
-        $articles = $articleRepository->findAllOrdered($user);
+        $langue = $this->langueRep->findOneBy([
+            "type" => $_locale
+        ]);
+        $articles = $articleRepository->findAllOrdered($user, $langue);
         $articlesWriteByUser = $articleService->getArticlesByUser($user);
 
         dump($articlesWriteByUser);
