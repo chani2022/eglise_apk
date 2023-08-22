@@ -54,6 +54,27 @@
 							</a>
 						</li>
 
+						{% if app.user %}
+							{% if app.user.roles[0] == 'ROLE_ADMIN' %}
+								<li>
+									<a href="{{ path('app_dashboard') }}" class="btn-link" title="Retour au panneau">
+										<i class="fa fa-cog"></i>
+									</a>
+								</li>
+							{% endif %}
+						{% endif %}
+
+
+						{% if app.user %}
+							{% if app.user.roles[0] == 'ROLE_REDACTEUR' %}
+								<li>
+									<a href="{{ path('app_article') }}" class="btn-link" title="Retour à la création de l'article">
+										<i class="fa fa-commenting-o"></i>
+									</a>
+								</li>
+							{% endif %}
+						{% endif %}
+
 						<li>
 							{% set href= path('app_login')  %}
 							{% set label = "Se connecter"|trans %}
@@ -246,16 +267,16 @@
 			</a>
 		</li>
 		{# <li class="nav-dashboard">
-																																																																																																																						        <a href="javascript:;">
-																																																																																																																						            <i class="fa fa-book"></i>&nbsp;Pages
-																																																																																																																						            <i class="fa fa-chevron-down"></i>
-																																																																																																																						        </a>
-																																																																																																																						        <ul class="sub-menu">
-																																																																																																																						            <li>
-																																																																																																																						            <a href="#">Panneau de configuration</a>
-																																																																																																																						            </li>
-																																																																																																																						        </ul>
-																																																																																																																						        </li> #}
+																																																																																																																								        <a href="javascript:;">
+																																																																																																																								            <i class="fa fa-book"></i>&nbsp;Pages
+																																																																																																																								            <i class="fa fa-chevron-down"></i>
+																																																																																																																								        </a>
+																																																																																																																								        <ul class="sub-menu">
+																																																																																																																								            <li>
+																																																																																																																								            <a href="#">Panneau de configuration</a>
+																																																																																																																								            </li>
+																																																																																																																								        </ul>
+																																																																																																																								        </li> #}
 	</ul>
 	<div class="nav-social-link">
 		<a href="javascript:;">

@@ -13,7 +13,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class UserController extends AbstractController
 {
     #[IsGranted("ROLE_ADMIN")]
-    #[Route('/{_locale}/active/{id}/{option}', name: 'app_user', requirements: ['_locale' => 'en|fr|mg'], defaults: ['_locale' => 'fr'])]
+    #[Route('/{_locale}/active/{id}/{option}', name: 'app_user_active', requirements: ['_locale' => 'en|fr|mg'], defaults: ['_locale' => 'fr'])]
     public function active(string $_locale, User $user, string $option, EntityManagerInterface $em, TranslatorInterface $trans): Response
     {
         $user->setIsActif(true);
@@ -26,7 +26,7 @@ class UserController extends AbstractController
     }
 
     #[IsGranted("ROLE_ADMIN")]
-    #[Route('/{_locale}/delete/{id}', name: 'app_user', requirements: ['_locale' => 'en|fr|mg'], defaults: ['_locale' => 'fr'])]
+    #[Route('/{_locale}/delete/{id}', name: 'app_user_delete', requirements: ['_locale' => 'en|fr|mg'], defaults: ['_locale' => 'fr'])]
     public function delete(string $_locale, User $user, EntityManagerInterface $em, TranslatorInterface $trans): Response
     {
         $em->remove($user);

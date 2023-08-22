@@ -114,34 +114,7 @@
 									</ul>
 									<canvas id="chart2" width="100" height="45"></canvas>
 								</div>
-								<div class="table-responsive">
-									<table class="table ">
-										<thead>
-											<tr>
-												<th>Nom</th>
-												<th>Prénom</th>
-												<th>Email</th>
-												<th>Nombre d'articles</th>
-												<th>Date de création</th>
-												<th>Dernière mise à jour</th>
-											</tr>
-										</thead>
-										<tbody>
-											{% for user in usersWithArticles %}
-												{% for articleId, article in user.articles %}
-													<tr>
-														<td>{{ user.nom }}</td>
-														<td>{{ user.prenom }}</td>
-														<td>{{ user.email }}</td>
-														<td>{{ user.articles|length }}</td>
-														<td>{{ article.getCreatedAt()|date("Y-m-d H:i:s") }}</td>
-														<td>{{ article.getUpdatedAt()|date("Y-m-d H:i:s") }}</td>
-													</tr>
-												{% endfor %}
-											{% endfor %}
-										</tbody>
-									</table>
-								</div>
+								
 								
 							</div>
 							</div>
@@ -158,22 +131,38 @@
 					<div class="wc-title">
 						<h4>Nouveaux utilisateurs</h4>
 					</div>
-				
+
+					
+
 					<div class="widget-inner">
 						<div class="new-user-list">
 							<ul>
 								{% for user in usersWithArticles %}
+								{% set _isactif = "user.isActif" %}
+								{% set id_ = "id" %}
+								{% set actif_user="user['isActif']" %}
 								<li>
 									<span class="new-users-pic">
+									
+									{% if user.photo!=null %}
 									<img src="{{ asset('photo/' ~ user.photo) }}" alt=""/>
+									{% else %}
+									<img src="{{ asset('assets/images/profil.jpg' ) }}" alt=""/>
+									{% endif %}
 									</span>
 									<span class="new-users-text">
 									<a href="#" class="new-users-name">{{ user.nom }} {{ user.prenom }}</a>
 									<span class="new-users-info">{{ user.email }}</span>
 									</span>
 									<span class="new-users-btn">
-									<a href="#" class="btn button-sm outline">Désactiver</a>
-									<a href="#" class="btn button-sm outline">Supprimer</a>
+									
+										{# templates/active_user.html.twig #}
+
+										<p>Status: {% if app.request.get('option') == 'desactiver' %}Désactivé{% else %}Activé{% endif %}</p>
+										
+									<a href="{{ path('app_user_active', {'_locale': 'fr', 'id': user['id_user'], 'option': 'desactiver'}) }}" class="btn button-sm outline">Désactiver</a>
+									<a href="{{ path('app_user_delete', {'_locale': 'fr', 'id': user['id_user']}) }}" class="btn button-sm outline">Supprimer</a>
+
 									<a href="#" data-toggle="modal" data-target="#myModal{{ user.id_user }}" class="btn button-sm outline">Details</a>
 									</span>
 
@@ -189,13 +178,17 @@
 										<div class="modal-body">
 											<div class="row">
 											<div class="col-md-4">
-												<img src="{{ asset('photo/' ~ user.photo) }}" class="img-fluid" alt="Photo" />
+												{% if user.photo!=null %}
+												<img src="{{ asset('photo/' ~ user.photo) }}" alt=""/>
+												{% else %}
+												<img src="{{ asset('assets/images/profil.jpg' ) }}" alt=""/>
+												{% endif %}
 											</div>
+											
 											<div class="col-md-8">
 												<p><strong>Nom :</strong> {{ user.nom }}</p>
 												<p><strong>Prénom :</strong> {{ user.prenom }}</p>
 												<p><strong>Email :</strong> {{ user.email }}</p>
-												<p><strong>Rôle :</strong> {{ user.articles|first.user.roles|first }}</p>
 												<p><strong>Total des articles :</strong> {{ user.articles|length }}</p>
 											</div>
 											</div>
