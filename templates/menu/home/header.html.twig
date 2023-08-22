@@ -4,66 +4,80 @@
 			<div class="ttr-header-wrapper">
 				<div class="topbar-left">
 					<ul>
-						<li><a href="#"><i class="fa fa-question-circle"></i>Question</a></li>
+						<li><a href="#"><i class="fa fa-question-circle"></i>{% trans %}Question{% endtrans %}</a></li>
 						<li><a href="javascript:;"><i class="fa fa-envelope-o"></i>designer.eline@gmail.com</a></li>
 					</ul>
 				</div>
 				<div class="topbar-right">
 					<ul>
 						<li>
-							<select class="header-lang-bx">
-								<option data-icon="flag flag-fr">Fr</option>
-								<option data-icon="flag flag-us">En</option>
-								<option data-icon="flag flag-mg">Mg</option>
-							</select>
+							<div class="dropdown">
+								<div class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									{% set flag_current = app.request.locale %}
+									{% set flags_info = [{"fr": "flags/flags/shiny/ico/France.ico"}, {"en": "flags/flags/shiny/ico/United-Kingdom.ico"}, {"mg": "flags/flags/shiny/ico/Madagascar.ico"}] %}
+									{% set icon_flag = "" %}
+									{% for flag in flags_info %}
+										{% for key,fl in flag %}
+											{% if key == flag_current %}
+												{% set icon_flag = fl %}
+											{% endif %}
+										{% endfor %}
+									{% endfor %}
+									<i>
+										<img src="{{ asset (icon_flag) }}" width="20" height="20" alt="photo">
+										{{ flag_current }}
+									</i>
+								</div>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									<a class="dropdown-item" href="{{ path ('app_langue', {_locale: 'fr'}) }}"><img src="{{ asset ('flags/flags/shiny/ico/France.ico') }}" width="20" height="20" alt="photo">
+										Fr</a>
+									<a class="dropdown-item" href="{{ path ('app_langue', {_locale: 'en'}) }}"><img src="{{ asset ('flags/flags/shiny/ico/United-Kingdom.ico') }}" width="20" height="20" alt="photo">
+										En</a>
+									<a class="dropdown-item" href="{{ path ('app_langue', {_locale: 'mg'}) }}"><img src="{{ asset ('flags/flags/shiny/ico/Madagascar.ico') }}" width="20" height="20" alt="photo">
+										Mg</a>
+								</div>
+							</div>
 						</li>
-						{# <li> #}
-						{# <a href="{{ path ('app_langue', {_locale: 'fr'}) }}">fr</a> #}
-						{# </li> #}
-						{# <li> #}
-						{# <a href="{{ path ('app_langue', {_locale: 'en'}) }}">en</a> #}
-						{# </li> #}
-							<li>
-								<a href="#" class="ttr-material-button ttr-search-toggle"> <i title="Recherche rapide" class="fa fa-search"></i>
+						<li>
+							<a href="#" class="ttr-material-button ttr-search-toggle">
+								<i title={% trans %} "Recherche rapide" {% endtrans %} class="fa fa-search"></i>
 							</a>
 						</li>
 						<li>
 							<a href="javascript:;" class="btn-link">
-								<i title="Page facebook officielle" class="fa fa-facebook"></i>
+								<i title={% trans %} "Page facebook officielle" {% endtrans %} class="fa fa-facebook"></i>
 							</a>
 						</li>
 						<li>
 							<a href="javascript:;" class="btn-link">
-								<i title="Page youtube officielle" class="fa fa-youtube"></i>
+								<i title={% trans %} "Page youtube officielle" {% endtrans %} class="fa fa-youtube"></i>
 							</a>
 						</li>
-						
-							{% if app.user %}
+
+						{% if app.user %}
 							{% if app.user.roles[0] == 'ROLE_ADMIN' %}
-							<li>
-								<a href="{{ path('app_dashboard') }}" class="btn-link" title="Retour au panneau">
-									<i class="fa fa-cog"></i> 
-								</a>
-							</li>
+								<li>
+									<a href="{{ path('app_dashboard') }}" class="btn-link" title="Retour au panneau">
+										<i class="fa fa-cog"></i>
+									</a>
+								</li>
 							{% endif %}
-							{% endif %}
-						
-						
-							{% if app.user %}
+						{% endif %}
+
+
+						{% if app.user %}
 							{% if app.user.roles[0] == 'ROLE_REDACTEUR' %}
-							<li>
-								<a href="{{ path('app_article') }}" class="btn-link" title="Retour à la création de l'article">
-									<i class="fa fa-commenting-o"></i> 
-								</a>
-							</li>
+								<li>
+									<a href="{{ path('app_article') }}" class="btn-link" title="Retour à la création de l'article">
+										<i class="fa fa-commenting-o"></i>
+									</a>
+								</li>
 							{% endif %}
-							{% endif %}
-						
+						{% endif %}
+
 						<li>
-							
-							{# {{dump(app.user)}} #}
 							{% set href= path('app_login')  %}
-							{% set label = "Se connecter" %}
+							{% set label = "Se connecter"|trans %}
 							{% if app.user %}
 								{% set href = "" %}
 								{% set label = app.user.nom ? app.user.prenom ~' '~ app.user.nom : app.user.getEmail() %}
@@ -74,9 +88,9 @@
 						</li>
 						<li>
 							{% if app.user is null %}
-								<a href="{{ path('app_register') }}">S'inscrire</a>
+								<a href="{{ path('app_register') }}">{% trans %}S'inscrire{% endtrans %}</a>
 							{% else %}
-								<a href="{{ path('app_logout') }}">Déconnexion</a>
+								<a href="{{ path('app_logout') }}">{% trans %}Déconnexion{% endtrans %}</a>
 							{% endif %}
 						</li>
 
@@ -128,7 +142,7 @@
 										<div class="ttr-notify-header">
 											<center>
 												<span style="color:#292a2e85 ;font-size: 15px;background:none" class="translate-middle badge rounded-pill badge-danger" id="nb_notification">
-													Aucune notification
+													{% trans %}Aucune notification{% endtrans %}
 												</span>
 											</center>
 										</div>
@@ -141,8 +155,8 @@
 													&nbsp;
 													<div class="row">
 														<div>
-															<h2 style="font-size:15px" class="title-head m-b0">Prophétie du jour</h2>
-															<p class="m-b0">Pasteur mailhol a annoncé hier un nouveau prophétie.
+															<h2 style="font-size:15px" class="title-head m-b0">{% trans %}Prophétie du jour{% endtrans %}</h2>
+															<p class="m-b0">{% trans %}Pasteur mailhol a annoncé hier un nouveau prophétie.{% endtrans %}
 															</p>
 														</div>
 													</div>
@@ -159,8 +173,8 @@
 													&nbsp;
 													<div class="row">
 														<div>
-															<h2 style="font-size:15px" class="title-head m-b0">Prophétie du jour</h2>
-															<p class="m-b0">Pasteur mailhol a annoncé hier un nouveau prophétie.
+															<h2 style="font-size:15px" class="title-head m-b0">{% trans %}Prophétie du jour{% endtrans %}</h2>
+															<p class="m-b0">{% trans %}Pasteur mailhol a annoncé hier un nouveau prophétie.{% endtrans %}
 															</p>
 														</div>
 													</div>
@@ -177,8 +191,9 @@
 													&nbsp;
 													<div class="row">
 														<div>
-															<h2 style="font-size:15px" class="title-head m-b0">Prophétie du jour</h2>
-															<p class="m-b0">Pasteur mailhol a annoncé hier un nouveau prophétie.
+															<h2 style="font-size:15px" class="title-head m-b0">{% trans %}Prophétie du jour{% endtrans %}</h2>
+															<p class="m-b0">{% trans %}Pasteur mailhol a annoncé hier un nouveau prophétie.
+																{% endtrans %}
 															</p>
 														</div>
 													</div>
@@ -217,24 +232,26 @@
 					<ul class="nav navbar-nav">
 						<li class="active">
 							<a href="{{ path ('app_home') }}" class="test">
-								<i class="fa fa-home"></i>&nbsp;Accueil</i>
+								<i class="fa fa-home"></i>
+								{% trans %}Accueil{% endtrans %}</i>
 						</li>
 					</a>
 				</li>
 				<li>
 					<a href="javascript:;">
-						<i class="fa fa-question-circle"></i>&nbsp;A savoir
+						<i class="fa fa-question-circle"></i>
+						{% trans %}A savoir{% endtrans %}
 						<i class="fa fa-chevron-down"></i>
 					</a>
 					<ul class="sub-menu add-menu">
 						<li class="add-menu-left">
-							<h5 class="menu-adv-title">Personnel</h5>
+							<h5 class="menu-adv-title">{% trans %}Personnel{% endtrans %}</h5>
 							<ul>
-								<li><a href="#">Président fondateur</a></li>
-								<li><a href="#">Secrétaire Générale</a></li>
-								<li><a href="#">Trésorier</a></li>
-								<li><a href="#">Organisation</a></li>
-								<li><a href="#">Archives apokalypsy</a></li>
+								<li><a href="#">{% trans %}Président fondateur{% endtrans %}</a></li>
+								<li><a href="#">{% trans %}Secrétaire Générale{% endtrans %}</a></li>
+								<li><a href="#">{% trans %}Trésorier{% endtrans %}</a></li>
+								<li><a href="#">{% trans %}Organisation{% endtrans %}</a></li>
+								<li><a href="#">{% trans %}Archives apokalypsy{% endtrans %}</a></li>
 							</ul>
 						</li>
 						<li class="add-menu-right">
@@ -244,21 +261,22 @@
 				</li>
 				<li>
 					<a href="javascript:;">
-						<i class="fa fa-fire"></i>&nbsp;Spiritualité</i>
+						<i class="fa fa-fire"></i>
+						{% trans %}Spiritualité{% endtrans %}</i>
 				</li>
 			</a>
 		</li>
 		{# <li class="nav-dashboard">
-																        <a href="javascript:;">
-																            <i class="fa fa-book"></i>&nbsp;Pages
-																            <i class="fa fa-chevron-down"></i>
-																        </a>
-																        <ul class="sub-menu">
-																            <li>
-																            <a href="#">Panneau de configuration</a>
-																            </li>
-																        </ul>
-																        </li> #}
+																																																																																																																								        <a href="javascript:;">
+																																																																																																																								            <i class="fa fa-book"></i>&nbsp;Pages
+																																																																																																																								            <i class="fa fa-chevron-down"></i>
+																																																																																																																								        </a>
+																																																																																																																								        <ul class="sub-menu">
+																																																																																																																								            <li>
+																																																																																																																								            <a href="#">Panneau de configuration</a>
+																																																																																																																								            </li>
+																																																																																																																								        </ul>
+																																																																																																																								        </li> #}
 	</ul>
 	<div class="nav-social-link">
 		<a href="javascript:;">

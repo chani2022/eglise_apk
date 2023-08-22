@@ -21,12 +21,12 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
-
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[IsGranted("ROLE_REDACTEUR")]
 class AdminController extends AbstractController
 {
-    public function __construct(private CacheInterface $cache)
+    public function __construct(private CacheInterface $cache, private TranslatorInterface $trans)
     {
     }
 
@@ -235,7 +235,7 @@ class AdminController extends AbstractController
                         }
                     }
                 } else {
-                    $this->addFlash('error', "Vous ne pouvez qu'uploader " . $max_galerie_image . " images au maximum");
+                    $this->addFlash('error', $this->trans->trans("Vous ne pouvez qu'uploader " . $max_galerie_image . " images au maximum"));
                     return $this->redirectToRoute('app_article');
                 }
             }

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="eOeSABC" resname="Titre">
+        <source>Titre</source>
+        <target>Titre</target>
+      </trans-unit>
+      <trans-unit id="_V8sZpt" resname="Titre doit être renseigner!">
+        <source>Titre doit être renseigner!</source>
+        <target>Titre doit être renseigner!</target>
+      </trans-unit>
+      <trans-unit id="Um4Ah8w" resname="Description">
+        <source>Description</source>
+        <target>Description</target>
+      </trans-unit>
+      <trans-unit id="c7_lxRh" resname="Description doit être renseigner!">
+        <source>Description doit être renseigner!</source>
+        <target>Description doit être renseigner!</target>
+      </trans-unit>
+      <trans-unit id="GH_yobF" resname="-Selectionnez-">
+        <source>-Selectionnez-</source>
+        <target>-Selectionnez-</target>
+      </trans-unit>
+      <trans-unit id="FeeFrJO" resname="Catégorie doit être renseigner!">
+        <source>Catégorie doit être renseigner!</source>
+        <target>Catégorie doit être renseigner!</target>
+      </trans-unit>
+      <trans-unit id="V4oC.ul" resname="Langue doit être renseigner!">
+        <source>Langue doit être renseigner!</source>
+        <target>Langue doit être renseigner!</target>
+      </trans-unit>
+      <trans-unit id="jN4faW1" resname="Date d'évènement">
+        <source>Date d'évènement</source>
+        <target>Date d'évènement</target>
+      </trans-unit>
+      <trans-unit id="06GPx_R" resname="Galerie d'image">
+        <source>Galerie d'image</source>
+        <target>Galerie d'image</target>
+      </trans-unit>
+      <trans-unit id="Ufnavbn" resname="Email obligatoire">
+        <source>Email obligatoire</source>
+        <target>Email obligatoire</target>
+      </trans-unit>
+      <trans-unit id="G7BOy89" resname="Mot de passe actuel invalide!">
+        <source>Mot de passe actuel invalide!</source>
+        <target>Mot de passe actuel invalide!</target>
+      </trans-unit>
+      <trans-unit id="iqxxcjO" resname="Mot de passe actuel obligatoire">
+        <source>Mot de passe actuel obligatoire</source>
+        <target>Mot de passe actuel obligatoire</target>
+      </trans-unit>
+      <trans-unit id="xpXZKsv" resname="Les 2 mots de passe sont differents.">
+        <source>Les 2 mots de passe sont differents.</source>
+        <target>Les 2 mots de passe sont differents.</target>
+      </trans-unit>
+      <trans-unit id="o9ZcpWl" resname="Nouveau mot de passe">
+        <source>Nouveau mot de passe</source>
+        <target>Nouveau mot de passe</target>
+      </trans-unit>
+      <trans-unit id="d77OiMk" resname="Répetez votre mot de passe">
+        <source>Répetez votre mot de passe</source>
+        <target>Répetez votre mot de passe</target>
+      </trans-unit>
+      <trans-unit id="haEIuZB" resname="Nom obligatoire">
+        <source>Nom obligatoire</source>
+        <target>Nom obligatoire</target>
+      </trans-unit>
+      <trans-unit id="Ydt037C" resname="Prénom obligatoire">
+        <source>Prénom obligatoire</source>
+        <target>Prénom obligatoire</target>
+      </trans-unit>
+      <trans-unit id="5VgTxw_" resname="Les 2 mots de passe sont différentes!.">
+        <source>Les 2 mots de passe sont différentes!.</source>
+        <target>Les 2 mots de passe sont différentes!.</target>
+      </trans-unit>
+      <trans-unit id=".5yLjAZ" resname="Mot de passe">
+        <source>Mot de passe</source>
+        <target>Mot de passe</target>
+      </trans-unit>
+      <trans-unit id="OnhpU4i" resname="Home">
+        <source>Home</source>
+        <target>Accueil</target>
+      </trans-unit>
+      <trans-unit id="sUrHikb" resname="Articles">
+        <source>Articles</source>
+        <target>Articles</target>
+      </trans-unit>
+      <trans-unit id="TvBzUlU" resname="Tous les articles">
+        <source>Tous les articles</source>
+        <target>Tous les articles</target>
+      </trans-unit>
+      <trans-unit id="92hkAji" resname="Article publié">
+        <source>Article publié</source>
+        <target>Article publié</target>
+      </trans-unit>
+      <trans-unit id="tPA7Nxb" resname="Corbeille">
+        <source>Corbeille</source>
+        <target>Corbeille</target>
+      </trans-unit>
+      <trans-unit id="cdx0hz4" resname="Enregistrer">
+        <source>Enregistrer</source>
+        <target>Enregistrer</target>
+      </trans-unit>
+      <trans-unit id="SxWowuh" resname="Catégorie:">
+        <source>Catégorie:</source>
+        <target>Catégorie:</target>
+      </trans-unit>
+      <trans-unit id="cblI3gP" resname="Langue:">
+        <source>Langue:</source>
+        <target>Langue:</target>
+      </trans-unit>
+      <trans-unit id="G3o48Tn" resname="Publié par:">
+        <source>Publié par:</source>
+        <target>Publié par:</target>
+      </trans-unit>
+      <trans-unit id="0eVCbdw" resname="Publier">
+        <source>Publier</source>
+        <target>Publier</target>
+      </trans-unit>
+      <trans-unit id="dVyLKp_" resname="Status:">
+        <source>Status:</source>
+        <target>Status:</target>
+      </trans-unit>
+      <trans-unit id="cc6Qhrr" resname="Dépublier">
+        <source>Dépublier</source>
+        <target>Dépublier</target>
+      </trans-unit>
+      <trans-unit id="Kl_Pmkq" resname="Etude du livre de l'apokalypsy">
+        <source>Etude du livre de l'apokalypsy</source>
+        <target>Etude du livre de l'apokalypsy</target>
+      </trans-unit>
+      <trans-unit id="tjls5CR" resname="Vous ne pouvez pas consulter cette page!">
+        <source>Vous ne pouvez pas consulter cette page!</source>
+        <target>Vous ne pouvez pas consulter cette page!</target>
+      </trans-unit>
+      <trans-unit id="dDyQ82Q" resname="Veuillez valider le recaptcha">
+        <source>Veuillez valider le recaptcha</source>
+        <target>Veuillez valider le recaptcha</target>
+      </trans-unit>
+      <trans-unit id="iNNACJz" resname="Photo de l'Article">
+        <source>Photo de l'Article</source>
+        <target>Photo de l'Article</target>
+      </trans-unit>
+      <trans-unit id="DkEsd1L" resname="categorie">
+        <source>categorie</source>
+        <target>categorie</target>
+      </trans-unit>
+      <trans-unit id="X2uqtNv" resname="Langue">
+        <source>Langue</source>
+        <target>Langue</target>
+      </trans-unit>
+      <trans-unit id="E1SpzFl" resname="Veuillez valider le recaptcha!">
+        <source>Veuillez valider le recaptcha!</source>
+        <target>Veuillez valider le recaptcha!</target>
+      </trans-unit>
+      <trans-unit id="NTM4StL" resname="Titre doit contenir au moins 5 caractère!">
+        <source>Titre doit contenir au moins 5 caractère!</source>
+        <target>Titre doit contenir au moins 5 caractère!</target>
+      </trans-unit>
+      <trans-unit id="XyZ4W1C" resname="Description doit contenir au moins 50 caractère!">
+        <source>Description doit contenir au moins 50 caractère!</source>
+        <target>Description doit contenir au moins 50 caractère!</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

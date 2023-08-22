@@ -31,7 +31,7 @@ class UserController extends AbstractController
     {
         $em->remove($user);
         $em->flush();
-        $this->addFlash("danger", $user->getPrenom() . " " . $user->getNom() . $trans->trans(" a supprimé"));
+        $this->addFlash("danger", $user->getPrenom() . " " . $user->getNom() . $trans->trans(" a été supprimé"));
         return $this->redirectToRoute("app_dashboard", ['_locale' => $_locale]);
     }
 }

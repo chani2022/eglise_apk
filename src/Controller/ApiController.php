@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Langue;
 use App\Repository\ArticleRepository;
 use App\Repository\CategorieRepository;
 use App\Repository\GalerieRepository;
+use App\Repository\LangueRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,13 +15,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class ApiController extends AbstractController
 {
     #[Route('/api', name: 'api_articles_get')]
-    public function index(Request $request, ArticleRepository $articleRep, CategorieRepository $categRep, GalerieRepository $galRep): JsonResponse
+    public function index(Request $request, ArticleRepository $articleRep, CategorieRepository $categRep, GalerieRepository $galRep, LangueRepository $langueRep): JsonResponse
     {
         $type = $request->query->get('type');
         $firstResult = $request->query->get('firstResult');
-
+        $locale = $request->query->get('locale');
         $categorie = $categRep->findOneBy(["type" => $type]);
-        $articles = $articleRep->findByCategorieArticleWithLimit($categorie, $firstResult);
+        $langue = $langueRep->findOneBy(["type" => $locale]);
+        $articles = $articleRep->findByCategorieArticleWithLimit($categorie, $firstResult, $langue);
 
         $data = [];
         foreach ($articles as $i => $articleP) {
