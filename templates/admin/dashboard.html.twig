@@ -134,7 +134,6 @@
 						<h4>Nouveaux utilisateurs</h4>
 					</div>
 
-					{{dump(usersWithArticles)}}
 					<div class="widget-inner">
 						<div class="new-user-list">
 							<ul>
@@ -149,8 +148,13 @@
 									{% endif %}
 									</span>
 									<span class="new-users-text">
-										<a href="#" class="new-users-name">{{ user.nom }} {{ user.prenom }}</a>
-										<a class="new-users-info">{{ user.email }}</a><br/>
+										<a href="#" class="new-users-name">
+											{% if user.nom is null and user.prenom is null %}
+												Anonyme
+											{% else %}
+												{{ user.nom }} {{ user.prenom }}
+											{% endif %}
+										</a>
 										<a class="new-users-info">{{ user.roles[0] }}</a>
 									</span>
 									<span class="new-users-btn">
