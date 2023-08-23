@@ -16,6 +16,18 @@
 }
 
 </style>
+<style>
+    .scrollable-container {
+        max-height: 300px;
+        overflow-y: scroll;
+    }
+
+    .sticky-header {
+        position: sticky;
+        top: 0;
+        background-color: #f8f9fa;
+    }
+</style>
 	<!--Main container start -->
 	<div class="container-fluid" id="container" data-categorie=" {{ categorie }}">
 		<div class="db-breadcrumb">
@@ -176,65 +188,71 @@ var chartData = {
     }
 });
 			</script>
-				<div class="container mt-4">
-					<h4>Tableau d'Articles</h4>
-					<div class="table-responsive">
-						<table class="table">
-							<thead>
-								<tr>
-									<th>Titre</th>
-									<th>Créé le</th>
-									<th>Mis à jour le</th>
-									<th>Catégorie</th>
-									<th>Langue</th>
-									<th>Utilisateur</th>
-								</tr>
-							</thead>
-							<tbody>
-								<script>
-									data2.forEach(function(article) {
-										document.write("<tr>");
-										document.write("<td>" + article.titre + "</td>");
-										document.write("<td>" + article.created_at + "</td>");
-										document.write("<td>" + article.updated_at + "</td>");
-										document.write("<td>" + article.categorie.type + "</td>");
-										document.write("<td>" + article.langue.type + "</td>");
-										document.write("<td>" + article.user.nom + " " + article.user.prenom + "</td>");
-										document.write("</tr>");
-									});
-								</script>
-							</tbody>
-						</table>
-						
-					</div>
-				</div>
+<div class="container mt-4">
+    <h4>Tableau d'Articles</h4>
+    <div class="scrollable-container">
+        <table class="table">
+            <thead class="sticky-header">
+                <tr>
+                    <th>Titre</th>
+                    <th>Créé le</th>
+                    <th>Mis à jour le</th>
+                    <th>Catégorie</th>
+                    <th>Langue</th>
+                    <th>Utilisateur</th>
+                </tr>
+            </thead>
+            <tbody>
+                <script>
+                    data2.forEach(function(article) {
+                        document.write("<tr>");
+                        document.write("<td>" + article.titre + "</td>");
+                        document.write("<td>" + article.created_at + "</td>");
+                        document.write("<td>" + article.updated_at + "</td>");
+                        document.write("<td>" + article.categorie.type + "</td>");
+                        document.write("<td>" + article.langue.type + "</td>");
+                        document.write("<td>" + article.user.nom + " " + article.user.prenom + "</td>");
+                        document.write("</tr>");
+                    });
+                </script>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
 				
 
 <!-- Your Profile Views Chart -->
-			<table class="table table-bordered">
-				<thead class="thead-light">
-					<tr>
-						<th>Titre de l'article</th>
-						<th>Total des commentaires</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% set totalCommentsSum = 0 %}
-					{% for userId, user in usersWithArticles %}
-						{% for articleId, article in user.articles %}
-							<tr class="{{ loop.index is odd ? 'odd-row' : 'even-row' }}">
-								<td>{{ article.titre }}</td>
-								<td>{{ article.commentaire|split(' ')|length }}</td>
-							</tr>
-							{% set totalCommentsSum = totalCommentsSum + article.commentaire|split(' ')|length %}
-						{% endfor %}
-					{% endfor %}
-					<tr class="table-secondary">
-						<td><strong>Somme totale des commentaires :</strong></td>
-						<td>{{ totalCommentsSum }}</td>
-					</tr>
-				</tbody>
-			</table>
+<div class="container mt-4">
+    <h4>Tableau d'Articles</h4>
+    <div class="scrollable-container">
+        <table class="table table-bordered">
+            <thead class="thead-light sticky-header">
+                <tr>
+                    <th>Titre de l'article</th>
+                    <th>Total des commentaires</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% set totalCommentsSum = 0 %}
+                {% for userId, user in usersWithArticles %}
+                    {% for articleId, article in user.articles %}
+                        <tr class="{{ loop.index is odd ? 'odd-row' : 'even-row' }}">
+                            <td>{{ article.titre }}</td>
+                            <td>{{ article.commentaire|split(' ')|length }}</td>
+                        </tr>
+                        {% set totalCommentsSum = totalCommentsSum + article.commentaire|split(' ')|length %}
+                    {% endfor %}
+                {% endfor %}
+                <tr class="table-secondary">
+                    <td><strong>Somme totale des commentaires :</strong></td>
+                    <td>{{ totalCommentsSum }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 			
 
 			
