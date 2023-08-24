@@ -134,82 +134,98 @@
 						<h4>Nouveaux utilisateurs</h4>
 					</div>
 
+
 					<div class="widget-inner">
 						<div class="new-user-list">
 							<ul>
 								{% for user in users %}
-								<li>
-									<span class="new-users-pic">
-									
-									{% if user.photo!=null %}
-									<img src="{{ asset('photo/' ~ user.photo) }}" alt=""/>
-									{% else %}
-									<img src="{{ asset('assets/images/profil.jpg' ) }}" alt=""/>
-									{% endif %}
-									</span>
-									<span class="new-users-text">
-										<a href="#" class="new-users-name">
-											{% if user.nom is null and user.prenom is null %}
-												Anonyme
+									<li>
+										<span class="new-users-pic">
+											{% if user.photo != null %}
+												<img src="{{ asset('photo/' ~ user.photo) }}" alt=""/>
 											{% else %}
-												{{ user.nom }} {{ user.prenom }}
+												<img src="{{ asset('assets/images/profil.jpg') }}" alt=""/>
 											{% endif %}
-										</a>
-										<a class="new-users-info">{{ user.roles[0] }}</a>
-									</span>
-									<span class="new-users-btn">
-									
-										{# templates/active_user.html.twig #}
-
-										<p>Status: {% if user.isActif=='true' %}<span style="color:#30e654"><strong>Activé</strong></span>{% else %}<span style="color:rgb(235, 46, 46)"><strong>Désactivé</strong></span>{% endif %}</p>
-										<a href="{{ path('app_user_active', {'_locale': 'fr', 'id': user.id, 'option': 'activer'}) }}" class="btn button-sm outline">Activer</a>
-										<a href="{{ path('app_user_active', {'_locale': 'fr', 'id': user.id, 'option': 'desactiver'}) }}" class="btn button-sm outline">Désactiver</a>
-										<a href="{{ path('app_user_delete', {'_locale': 'fr', 'id': user.id}) }}" class="btn button-sm outline">Supprimer</a>
-										<a href="#" data-toggle="modal" data-target="#myModal{{ user.id }}" class="btn button-sm outline">Details</a>
-										<div class="modal fade" id="myModal{{ user.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-											<div class="modal-dialog modal-dialog-centered" role="document">
-												<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title" id="exampleModalLabel">Détails sur l'utilisateur</h5>
-													<button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
-													<span aria-hidden="true">&times;</span>
-													</button>
-												</div>
-												<div class="modal-body">
-													<div class="row">
-													<div class="col-md-4">
-														{% if user.photo!=null %}
-														<img src="{{ asset('photo/' ~ user.photo) }}" alt=""/>
-														{% else %}
-														<img src="{{ asset('assets/images/profil.jpg' ) }}" alt=""/>
-														{% endif %}
+										</span>
+										<span class="new-users-text">
+											<a href="#" class="new-users-name">
+												{% if user.nom is null and user.prenom is null %}
+													Anonyme
+												{% else %}
+													{{ user.nom }} {{ user.prenom }}
+												{% endif %}
+											</a>
+											<a class="new-users-info">{{ user.roles[0] }}</a><br/>
+											<a class="new-users-info">{{ user.email }}</a>
+										</span>
+										<span class="new-users-btn">
+											<p>Status:
+												{% if user.isActif == 'true' %}
+													<span style="color:#30e654"><strong>Activé</strong></span>
+												{% else %}
+													<span style="color:rgb(235, 46, 46)"><strong>Désactivé</strong></span>
+												{% endif %}
+											</p>
+											
+											<!-- Bouton Activer (désactivé si user.isActif est vrai) -->
+											{% if user.roles[0] != 'ROLE_ADMIN' %}
+											{# Bouton Activer (désactivé si user.isActif est vrai) #}
+											<a href="{{ path('app_user_active', {'_locale': 'fr', 'id': user.id, 'option': 'activer'}) }}"
+											   class="btn button-sm outline {% if user.isActif == 'true' %}disabled{% endif %}">
+												Activer
+											</a>
+											
+											{# Bouton Désactiver (désactivé si user.isActif est faux) #}
+											<a href="{{ path('app_user_active', {'_locale': 'fr', 'id': user.id, 'option': 'desactiver'}) }}"
+											   class="btn button-sm outline {% if user.isActif != 'true' %}disabled{% endif %}">
+												Désactiver
+											</a>
+											<a href="{{ path('app_user_delete', {'_locale': 'fr', 'id': user.id}) }}" class="btn button-sm outline">Supprimer</a>
+											
+										{% endif %}
+											
+											<a href="#" data-toggle="modal" data-target="#myModal{{ user.id }}" class="btn button-sm outline">Details</a>
+											
+											<div class="modal fade" id="myModal{{ user.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+												<div class="modal-dialog modal-dialog-centered" role="document">
+													<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">Détails sur l'utilisateur</h5>
+														<button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+														<span aria-hidden="true">&times;</span>
+														</button>
 													</div>
-													
-													<div class="col-md-8">
-														<p><strong>Nom :</strong> {{ user.nom }}</p>
-														<p><strong>Prénom :</strong> {{ user.prenom }}</p>
-														<p><strong>Email :</strong> {{ user.email }}</p>
+													<div class="modal-body">
+														<div class="row">
+														<div class="col-md-4">
+															{% if user.photo!=null %}
+															<img src="{{ asset('photo/' ~ user.photo) }}" alt=""/>
+															{% else %}
+															<img src="{{ asset('assets/images/profil.jpg' ) }}" alt=""/>
+															{% endif %}
+														</div>
+														
+														<div class="col-md-8">
+															<p><strong>Nom :</strong> {{ user.nom }}</p>
+															<p><strong>Prénom :</strong> {{ user.prenom }}</p>
+															<p><strong>Email :</strong> {{ user.email }}</p>
+														</div>
+														</div>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
 													</div>
 													</div>
 												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
 												</div>
-												</div>
-											</div>
-											</div>
-										
-									</span>
-
-									
-								</li>
+										</span>
+									</li>
 								{% endfor %}
-							
 							</ul>
 						</div>
 					</div>
-				</div>
-			</div>
+					
+
 
 
 

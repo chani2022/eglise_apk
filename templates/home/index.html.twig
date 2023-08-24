@@ -235,7 +235,6 @@
 					</p>
 				</div>
 			</div>
-
 			<div class="row event-list">
 				<div class="upcoming-event-carousel owl-carousel owl-btn-center-lr owl-btn-1 col-12 p-lr0  m-b30 ">
 					{% for calendrier in calendriers %}
@@ -249,6 +248,7 @@
 						{% set dayEvent = calendrier.eventAt|date('d') %}
 						{% set monthEvent = calendrier.eventAt|date('F') %}
 						{% set hoursEvent = calendrier.eventAt|date('H:i') %}
+						
 						<div class="item">
 							<div class="event-bx">
 								<div class="action-box">
@@ -264,7 +264,7 @@
 
 									<div class="event-info">
 										<h4 class="event-title">
-											<a href="#">
+											<a href="#" style="font-size:16px;">
 												{{ titre }}
 											</a>
 										</h4>
@@ -281,7 +281,8 @@
 											</li>
 										</ul>
 										<p style="{{ classParag }}">
-											loading
+											{{ calendrier.commentaire|markdown_to_html|split(' ')|slice(0, 20)|join(' ') |striptags|raw }}...
+										
 										</p>
 									</div>
 								</div>

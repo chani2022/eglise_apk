@@ -171,46 +171,56 @@ start: '2019-03-28'
 	var data = {{ usersWithArticles|json_encode()|raw }};
 	console.log("Mon data admin",data)
 	// Initialiser les tableaux pour les étiquettes et les données du graphique
-	var colorPalette = [
-        'rgba(255, 99, 132, 0.7)',
-        'rgba(54, 162, 235, 0.7)',
-        'rgba(255, 206, 86, 0.7)',
-        'rgba(75, 192, 192, 0.7)',
-        'rgba(153, 102, 255, 0.7)',
-        // Ajoutez plus de couleurs ici si nécessaire
-    ];
-    
-
-    // Initialiser les tableaux pour les étiquettes et les données du graphique
-    var labels = [];
-    var datasetsData = [];
-    var backgroundColors = [];
-
-            // Parcourir les données d'utilisateur et d'articles
-            for (var userId in data) {
-                if (data.hasOwnProperty(userId)) {
-                var user = data[userId];
-                
-                // Vérifier si le prénom est nul et afficher "Anonyme" si c'est le cas
-                var prenom = user.prenom ? user.prenom : "Anonyme";
-                
-                // Vérifier si le nom est nul et utiliser seulement le prénom s'il n'est pas nul
-                var nomPrenom = user.nom ? user.nom + ' ' + prenom : prenom;
-                
-                // Ajouter le nom et prénom (ou seulement le prénom) aux libellés
-                labels.push(nomPrenom);
-
-                // Compter le nombre d'articles pour cet utilisateur
-                var numArticles = Object.keys(user.articles).length;
-                datasetsData.push(numArticles);
-
-                // Générer une couleur aléatoire à partir de la palette
-                var randomColor = colorPalette[Math.floor(Math.random() * colorPalette.length)];
-                backgroundColors.push(randomColor);
-            }
 
 
-        }
+    var colorPalette = [
+    'rgba(255, 99, 132, 0.7)',
+    'rgba(54, 162, 235, 0.7)',
+    'rgba(255, 206, 86, 0.7)',
+    'rgba(75, 192, 192, 0.7)',
+    'rgba(153, 102, 255, 0.7)',
+    // Ajoutez plus de couleurs ici si nécessaire
+];
+
+// Initialiser les tableaux pour les étiquettes et les données du graphique
+var labels = [];
+var datasetsData = [];
+var backgroundColors = [];
+
+var usedColors = {}; // Pour stocker les couleurs déjà utilisées
+
+// Parcourir les données d'utilisateur et d'articles
+for (var userId in data) {
+    if (data.hasOwnProperty(userId)) {
+        var user = data[userId];
+
+        // Vérifier si le prénom est nul et afficher "Anonyme" si c'est le cas
+        var prenom = user.prenom ? user.prenom : "Anonyme";
+
+        // Vérifier si le nom est nul et utiliser seulement le prénom s'il n'est pas nul
+        var nomPrenom = user.nom ? user.nom + ' ' + prenom : prenom;
+
+        // Ajouter le nom et prénom (ou seulement le prénom) aux libellés
+        labels.push(nomPrenom);
+
+        // Compter le nombre d'articles pour cet utilisateur
+        var numArticles = Object.keys(user.articles).length;
+        datasetsData.push(numArticles);
+
+        // Générer une couleur unique à partir de la palette
+        var randomColor;
+        do {
+            randomColor = colorPalette[Math.floor(Math.random() * colorPalette.length)];
+        } while (usedColors[randomColor]);
+
+        usedColors[randomColor] = true;
+        backgroundColors.push(randomColor);
+    }
+}
+
+// À ce stade, vous pouvez utiliser les tableaux `labels`, `datasetsData` et `backgroundColors`
+// pour construire votre graphique en utilisant une bibliothèque comme Chart.js
+
 
 	// Configuration du graphique
 	var ctx = document.getElementById('chart2').getContext('2d');
