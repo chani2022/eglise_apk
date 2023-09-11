@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
@@ -54,6 +55,9 @@ class Article
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: Galerie::class, cascade: ["persist", "remove"])]
     private Collection $galerie;
 
+    #[ORM\OneToMany(mappedBy: 'article', targetEntity: Comments::class)]
+    private Collection $comments;
+
 
     public function __construct()
     {
@@ -62,6 +66,7 @@ class Article
         $this->created_at = $date_now;
         $this->updated_at = $date_now;
         $this->galerie = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -227,6 +232,36 @@ class Article
                 $galerie->setArticle(null);
             }
         }
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comments>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comments $comment): static
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comments $comment): static
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getArticle() === $this) {
+                $comment->setArticle(null);
+            }
+        }
+
         return $this;
     }
 }

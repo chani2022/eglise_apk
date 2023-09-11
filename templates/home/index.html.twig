@@ -135,8 +135,12 @@
 												{{ populaire_recent.updatedAt|date("M-d-Y") }}</a>
 										</li>
 										<li>
-											<a href="#" id="comment_populaire_post">
-												<i class="fa fa-comments-o"></i>10 Comment</a>
+											{# + '<a href="#" class="comments-bx comments" id="' + article.id_article + '" data-toggle="modal" data-target="#comments">' + nb_comments + ' commentaires</a>' #}
+											<a href="#" id="comment_populaire_post" class="comments-bx comments" id="{{ populaire_recent.getId() }}">
+												<i class="fa fa-comments-o"></i>
+												{{ populaire_recent.comments|length }}
+												Commentaire
+											</a>
 										</li>
 									</ul>
 									<div class="widget widget_gallery gallery-grid-4">
@@ -190,8 +194,11 @@
 															{{ date }}</a>
 													</li>
 													<li>
-														<a href="#">
-															<i class="fa fa-comments-o"></i>15 Commentaire</a>
+														<a href="#" class="show-dialog" data-toggle="modal" data-target="#comments">
+															<i class="fa fa-comments-o"></i>
+															{{ populaire.comments|length }}
+															Commentaire
+														</a>
 													</li>
 												</ul>
 											</div>
@@ -680,6 +687,7 @@
 		<!-- end loading -->
 	</div>
 </div><!-- Recent News End -->{% endblock %}{% block javascripts %}
+<script src=" {{ asset ('js/comments/commentsManager.js') }}" defer></script>
 <script>
 	jQuery(document).ready(function () {
 var ttrevapi;
@@ -793,6 +801,7 @@ disableFocusListener: false
 let articlesPop = '{{ array_populaire_js|e('js')|raw }}'
 Article.articlesPopulaires = JSON.parse(articlesPop)
 Article.clickToshowArticlePopulaire()
+
 });
 </script>
 <script src="{{ asset('js/infinityScroll/articleRecentInfinityScroll.js')}}" defer></script>{# <script src="{{ asset('js/infinityScroll/articlePopulaireInfinityScroll.js')}}" defer></script> #}{% endblock %}
