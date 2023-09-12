@@ -8,7 +8,7 @@
 		<div class="form signup" style="box-shadow: 2px 6px 16px 1px rgba(0, 0, 0, 0.2);">
 			<div class="form-content">
 				<a href="{{ path ('app_home') }}">
-					<center><img width="150" height="150" src="assets/images/logo.png" alt=""></center>
+					<center> <img width="150" height="150" src="{{ asset('assets/images/logo.png') }}" alt=""/></center>
 				</a>
 				<header>S'inscrire</header>
 				{{ form_start(registrationForm, {'attr': {'class': 'contact-bx'}}) }}

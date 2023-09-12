@@ -16,6 +16,18 @@
 }
 
 </style>
+<style>
+    .scrollable-container {
+        max-height: 300px;
+        overflow-y: scroll;
+    }
+
+    .sticky-header {
+        position: sticky;
+        top: 0;
+        background-color: #f8f9fa;
+    }
+</style>
 	<!--Main container start -->
 	<div class="container-fluid" id="container" data-categorie=" {{ categorie }}">
 		<div class="db-breadcrumb">
@@ -88,25 +100,36 @@
         }
     });
 
-    // Définir un tableau de couleurs pour les barres du graphique
-    var colors = [
-        'rgba(0, 255, 0, 1)',  // Rouge
-        'rgba(255, 0, 0, 1)',  // Bleu
-        'rgba(255, 206, 86, 0.2)',  // Jaune
-        'rgba(75, 192, 192, 0.2)',  // Vert
-        // Ajoutez d'autres couleurs ici si nécessaire
-    ];
+    var predefinedColors = [
+    'rgba(255, 99, 132, 0.7)',
+    'rgba(54, 162, 235, 0.7)',
+    'rgba(255, 206, 86, 0.7)',
+    'rgba(75, 192, 192, 0.7)',
+    'rgba(153, 102, 255, 0.7)'
+];
 
-    var chartData = {
-        labels: Object.keys(categories),
-        datasets: [{
-            label: 'Nombre d\'articles par categories',
-            data: Object.values(categories),
-            backgroundColor: colors.slice(0, Object.keys(categories).length), // Utilisez les couleurs pour chaque catégorie
-            borderColor: colors.slice(0, Object.keys(categories).length),
-            borderWidth: 1
-        }]
-    };
+function getRandomBrightColor() {
+    var r = Math.floor(Math.random() * 155) + 100; // Valeurs de rouge plus élevées
+    var g = Math.floor(Math.random() * 155) + 100; // Valeurs de vert plus élevées
+    var b = Math.floor(Math.random() * 155) + 100; // Valeurs de bleu plus élevées
+    return 'rgba(' + r + ', ' + g + ', ' + b + ', 0.8)';
+}
+
+var combinedColors = predefinedColors.concat(
+    Array.from({ length: Object.keys(categories).length - predefinedColors.length }, function () {
+        return getRandomBrightColor();
+    })
+);
+
+var chartData = {
+    labels: Object.keys(categories),
+    datasets: [{
+        label: 'Nombre d\'articles par catégories',
+        data: Object.values(categories),
+        backgroundColor: combinedColors
+    }]
+};
+
 
     // Créer le graphique avec Chart.js
     var ctx = document.getElementById('articleChart').getContext('2d');
@@ -165,65 +188,71 @@
     }
 });
 			</script>
-				<div class="container mt-4">
-					<h4>Tableau d'Articles</h4>
-					<div class="table-responsive">
-						<table class="table">
-							<thead>
-								<tr>
-									<th>Titre</th>
-									<th>Créé le</th>
-									<th>Mis à jour le</th>
-									<th>Catégorie</th>
-									<th>Langue</th>
-									<th>Utilisateur</th>
-								</tr>
-							</thead>
-							<tbody>
-								<script>
-									data2.forEach(function(article) {
-										document.write("<tr>");
-										document.write("<td>" + article.titre + "</td>");
-										document.write("<td>" + article.created_at + "</td>");
-										document.write("<td>" + article.updated_at + "</td>");
-										document.write("<td>" + article.categorie.type + "</td>");
-										document.write("<td>" + article.langue.type + "</td>");
-										document.write("<td>" + article.user.nom + " " + article.user.prenom + "</td>");
-										document.write("</tr>");
-									});
-								</script>
-							</tbody>
-						</table>
-						
-					</div>
-				</div>
+<div class="container mt-4">
+    <h4>Tableau d'Articles</h4>
+    <div class="scrollable-container">
+        <table class="table">
+            <thead class="sticky-header">
+                <tr>
+                    <th>Titre</th>
+                    <th>Créé le</th>
+                    <th>Mis à jour le</th>
+                    <th>Catégorie</th>
+                    <th>Langue</th>
+                    <th>Utilisateur</th>
+                </tr>
+            </thead>
+            <tbody>
+                <script>
+                    data2.forEach(function(article) {
+                        document.write("<tr>");
+                        document.write("<td>" + article.titre + "</td>");
+                        document.write("<td>" + article.created_at + "</td>");
+                        document.write("<td>" + article.updated_at + "</td>");
+                        document.write("<td>" + article.categorie.type + "</td>");
+                        document.write("<td>" + article.langue.type + "</td>");
+                        document.write("<td>" + article.user.nom + " " + article.user.prenom + "</td>");
+                        document.write("</tr>");
+                    });
+                </script>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
 				
 
 <!-- Your Profile Views Chart -->
-			<table class="table table-bordered">
-				<thead class="thead-light">
-					<tr>
-						<th>Titre de l'article</th>
-						<th>Total des commentaires</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% set totalCommentsSum = 0 %}
-					{% for userId, user in usersWithArticles %}
-						{% for articleId, article in user.articles %}
-							<tr class="{{ loop.index is odd ? 'odd-row' : 'even-row' }}">
-								<td>{{ article.titre }}</td>
-								<td>{{ article.commentaire|split(' ')|length }}</td>
-							</tr>
-							{% set totalCommentsSum = totalCommentsSum + article.commentaire|split(' ')|length %}
-						{% endfor %}
-					{% endfor %}
-					<tr class="table-secondary">
-						<td><strong>Somme totale des commentaires :</strong></td>
-						<td>{{ totalCommentsSum }}</td>
-					</tr>
-				</tbody>
-			</table>
+<div class="container mt-4">
+    <h4>Tableau d'Articles</h4>
+    <div class="scrollable-container">
+        <table class="table table-bordered">
+            <thead class="thead-light sticky-header">
+                <tr>
+                    <th>Titre de l'article</th>
+                    <th>Total des commentaires</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% set totalCommentsSum = 0 %}
+                {% for userId, user in usersWithArticles %}
+                    {% for articleId, article in user.articles %}
+                        <tr class="{{ loop.index is odd ? 'odd-row' : 'even-row' }}">
+                            <td>{{ article.titre }}</td>
+                            <td>{{ article.commentaire|split(' ')|length }}</td>
+                        </tr>
+                        {% set totalCommentsSum = totalCommentsSum + article.commentaire|split(' ')|length %}
+                    {% endfor %}
+                {% endfor %}
+                <tr class="table-secondary">
+                    <td><strong>Somme totale des commentaires :</strong></td>
+                    <td>{{ totalCommentsSum }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 			
 
 			
@@ -375,11 +404,11 @@
 											{% if  article.isIsPublished() %}
 												<strong>Status:
 												</strong>:
-												<span style="color:#1bd111">{% trans %}Publier{% endtrans %}</span><br/>
+												<span style="color:#1bd111">{% trans %}Publié{% endtrans %}</span><br/>
 											{% else %}
 												<strong>{% trans %}Status:{% endtrans %}
 												</strong>:
-												<span style="color:#ff2e2e">{% trans %}Dépublier{% endtrans %}</span><br/>
+												<span style="color:#ff2e2e">{% trans %}Dépublié{% endtrans %}</span><br/>
 
 											{% endif %}
 
@@ -390,19 +419,45 @@
 									<div class="row card-courses-dec">
 										<div class="col-md-12">
 											<p>
-												{{ article.getCommentaire()|markdown_to_html }}
+												{{ article.getCommentaire()|markdown_to_html|split(' ')|slice(0, 20)|join(' ') |striptags|raw }}...
 											</p>
 										</div>
 										<div class="col-md-12">
-											<a href="#" title="Visionner" class="btn radius-xl">
+											<button type="button" class="btn radius-xl" data-toggle="modal" data-target="#articleModal{{ article.getId() }}">
 												<i class="fa fa-eye"></i>
-											</a>
+											</button>
+											<div class="modal fade" id="articleModal{{ article.getId() }}" tabindex="-1" role="dialog" aria-labelledby="articleModalLabel" aria-hidden="true">
+												<div class="modal-dialog" role="document">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h5 class="modal-title" id="articleModalLabel">{{ article.titre }}</h5>
+															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																<span aria-hidden="true">&times;</span>
+															</button>
+														</div>
+														<div class="modal-body">
+															{{ article.getCommentaire()|markdown_to_html }}
+											
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+														</div>
+													</div>
+												</div>
+											</div>
 											<a href="{{ path ('app_article', {'article_get': article.getId(), 'option':'update' })}}" title="Modifier" class="btn radius-xl">
 												<i class="fa fa-edit"></i>
 											</a>
-											<a href="{{ path('app_article', {'article_get': article.getId(), 'option': 'delete'})}}" title="Supprimer" class="btn radius-xl">
-												<i class="fa fa-trash-o"></i>
+											{% if articles|length >= 6 %}
+												<a href="#" title="Supprimer" class="btn radius-xl" onclick="return confirmDelete('{{ path('app_article', {'article_get': article.getId(), 'option': 'delete'}) }}');">
+													<i class="fa fa-trash-o"></i>
+												</a>
+											{% else %}
+											<a href="#" title="Le nombre d'articles doit être supérieur ou égal à 6 pour activer la suppression." class="btn btn-danger radius-xl" >
+												<i class="fa fa-question-circle"></i>
 											</a>
+												
+											{% endif %}
 											{% set class = "fa fa-check" %}
 											{% set option = "publish" %}
 											{% set style = "" %}
@@ -433,6 +488,15 @@
 {% endblock %}
 {% block javascripts %}
 	{{parent()}}
+	<script>
+		function confirmDelete(deleteUrl) {
+    if (confirm("Êtes-vous sûr de vouloir supprimer cet article ?")) {
+        window.location.href = deleteUrl;
+        return true;
+    }
+    return false;
+}
+	</script>
 	<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin" defer></script>
 	<script src="https://cdn.jsdelivr.net/npm/@tinymce/tinymce-jquery@1/dist/tinymce-jquery.min.js" defer></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js" defer></script>
