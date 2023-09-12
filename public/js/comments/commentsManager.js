@@ -14,14 +14,32 @@ var Comments = {
         $('#modal-commentaire-comment').html(paragraphe)
     },
 
-    showDialog: function (id_article) {
-        let img = $('#image-article-recent-' + id_article).attr("src")
-        let auteur = $('#auteur-article-recent-' + id_article).text()
-        let date = $('#date-article-recent-' + id_article).text()
-        let commentaire = document.querySelector('#commentaire-article-recent-' + id_article).dataset.commentaire
-        let titre = $('#titre-article-recent-' + id_article).text()
+    showDialog: function (id_article, isPostRecent) {
+        let img, auteur, date, commentaire, titre;
         Comments.id_article = id_article
+        if (isPostRecent) {
+            img = $('#image-article-recent-' + id_article).attr("src")
+            auteur = $('#auteur-article-recent-' + id_article).text()
+            date = $('#date-article-recent-' + id_article).text()
+            commentaire = document.querySelector('#commentaire-article-recent-' + id_article).dataset.commentaire
+            titre = $('#titre-article-recent-' + id_article).text()
+            // Comments.id_article = id_article
 
+
+        } else {
+            // const elmnt = $('#' + id_article + " .comments")
+            $('.comments').each(function () {
+                if ($(this).attr("id") == id_article) {
+                    const data = $(this).data()
+                    img = data.image
+                    auteur = data.auteur
+                    commentaire = data.commentaire
+                    date = data.date
+                    titre = data.titre
+                }
+            })
+        }
+        $('#comments-article').empty()
         Comments.setModalDialog(Comments.id_article, img, auteur, date, titre, commentaire)
         Comments.loadComments()
         Comments.sendComments()

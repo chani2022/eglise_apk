@@ -70,7 +70,7 @@ class ArticleService
                         "date" => $comment->getCreatedAt(),
                         "contenu" => $comment->getContenu()
                     ];
-                    $articles[$i]->addComments($comment);
+                    $articles[$i]->addComment($comment);
                 }
             }
             if ($i == 0) {

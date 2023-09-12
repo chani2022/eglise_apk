@@ -35,7 +35,11 @@ click: function (event) {
 const $elmnt = $(event.target)
 if ($elmnt.hasClass('comments')) {
 const id_article = $elmnt.attr("id")
-Comments.showDialog(id_article)
+let isPostRecent = true
+if ($elmnt.hasClass('post-populaire')) {
+isPostRecent = false
+}
+Comments.showDialog(id_article, isPostRecent)
 }
 }
 })
