@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\Galerie;
 use App\Repository\ArticleRepository;
+use App\Repository\CommentsRepository;
 use App\Repository\LangueRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -11,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class ArticleService
 {
-    public function __construct(private RequestStack $requestStack, private EntityManagerInterface $em, private ArticleRepository $articleRep, private LangueRepository $langueRep)
+    public function __construct(private RequestStack $requestStack, private EntityManagerInterface $em, private ArticleRepository $articleRep, private LangueRepository $langueRep, private CommentsRepository $commentsRepository)
     {
     }
 
@@ -38,7 +39,9 @@ class ArticleService
                 "langue_article" => $article->getLangue()->getType(),
                 "image_article" => $article->getImage(),
                 "extrait_commentaire" => substr($article->getCommentaire(), 0, 100),
-                "date_event" => $article->getEventAt()
+                "date_event" => $article->getEventAt(),
+                "nb_comments" => 0,
+                "comments" => []
             ];
 
             $galeries = $this->em->createQueryBuilder()
@@ -48,15 +51,33 @@ class ArticleService
                 ->setParameter("article", $article)
                 ->getQuery()
                 ->getResult();
+
+
             foreach ($galeries as $galerie) {
                 $articles[$i]->addGalerie($galerie);
                 $array_populaires[$i]['galeries'][] = $galerie->getNomImage();
+            }
+
+            $comments = $this->commentsRepository->findBy([
+                "article" => $article
+            ]);
+
+            if (count($comments) > 0) {
+                $array_populaires[$i]['nb_comments'] = count($comments);
+                foreach ($comments as $comment) {
+                    $array_populaires[$i]['comments'][] = [
+                        "user" => $comment->getUser()->getNom() ? $comment->getUser()->getNom() . ' ' . $comment->getUser()->getPrenom() : $comment->getUser()->getUsername(),
+                        "date" => $comment->getCreatedAt(),
+                        "contenu" => $comment->getContenu()
+                    ];
+                    $articles[$i]->addComment($comment);
+                }
             }
             if ($i == 0) {
                 $populaire_recent = $articles[$i];
             }
         }
-
+        // dd($populaire_recent, $articles, $array_populaires);
         return [
             'articles' => $articles,
             "populaire_recent" => $populaire_recent,

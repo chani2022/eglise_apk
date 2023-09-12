@@ -36,7 +36,6 @@ function runInfinityScroll(
                             item = Article.createItemForAllArticle(article)
                         }
                         frag.appendChild(item);
-                        // console.log("infinity", article.categorie_article)
 
                     }
                     frag.childNodes.forEach((child) => {

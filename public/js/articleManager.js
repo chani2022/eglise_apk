@@ -60,6 +60,7 @@ var Article = {
         const titre = article.titre
         const extrait_commentaire = marked.parse(article.extrait_commentaire) + ' ...'
         const commentaire = article.commentaire.replace(/"(.*?)"/g, '«$1»')
+        const nb_comments = article.nb_comments
 
         if (article.date_event) {
             date = this.date(article.date_event)
@@ -90,7 +91,7 @@ var Article = {
                     + '</div>'
                     + '<p id="commentaire-article-recent-' + article.id_article + '" data-commentaire="' + commentaire + '" style="overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;line-clamp: 2;-webkit-box-orient: vertical;">' + extrait_commentaire + '</p>'
                     + '<div class="post-extra">'
-                    + '<a href="#" class="comments-bx"></a> 0 commentaire'
+                    + '<a href="#" class="comments-bx comments" id="' + article.id_article + '" data-toggle="modal" data-target="#comments">' + nb_comments + ' commentaires</a>'
                     + '</div>'
                     + '</div>'
                     + '</div>'
@@ -198,6 +199,7 @@ var Article = {
         const titre = article.titre
         const extrait_commentaire = marked.parse(article.extrait_commentaire) + ' ...'
         const commentaire = article.commentaire.replace(/"(.*?)"/g, '«$1»')
+        const nb_comments = article.nb_comments
 
         if (article.date_event) {
             dateEvent = this.date(article.date_event, "slash")
@@ -205,7 +207,7 @@ var Article = {
         let template = '<div class="action-card col-xl-12 col-lg-12 col-md-12 col-sm-6 pending infinityScrollRecent" id="' + article.id_article + '">'
             + '<div class="recent-news cours-bx">'
             + '<div class="action-box">'
-            + '<img src="' + image + '" alt id="image-article-recent-' + article.id_article + '">'
+            + '<img src="' + image + '" alt="photo" id="image-article-recent-' + article.id_article + '">'
             + '<a href="#" class="btn lire-suite" id="' + article.id_article + '" data-toggle="modal" data-target="#exampleModalCenter">Lire la suite</a>'
             + '</div>'
             + '<div class="info-bx">'
@@ -226,7 +228,7 @@ var Article = {
             + '</div>'
             + '<p id="commentaire-article-recent-' + article.id_article + '" data-commentaire="' + commentaire + '" style="overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;line-clamp: 2;-webkit-box-orient: vertical;">' + extrait_commentaire + '</p>'
             + '<div class="post-extra">'
-            + '<a href="#" class="comments-bx"></a> 0 commentaire'
+            + '<a href="#" class="comments-bx comments" id="' + article.id_article + '" data-toggle="modal" data-target="#comments">' + nb_comments + ' commentaire </a>'
             + '</div>'
             + '</div>'
             + '</div>'
@@ -370,6 +372,7 @@ var Article = {
         } else {
             elmnt = selectorNameOrObj
         }
+
         elmnt.each(function () {
             $(this).click(function (e) {
                 e.preventDefault()
