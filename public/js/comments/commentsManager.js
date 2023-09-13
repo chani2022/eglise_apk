@@ -42,7 +42,7 @@ var Comments = {
         $('#comments-article').empty()
         Comments.setModalDialog(Comments.id_article, img, auteur, date, titre, commentaire)
         Comments.loadComments()
-        Comments.sendComments()
+
     },
     sendComments: function () {
         let emojiarea = null
