@@ -37,6 +37,7 @@ class RegistrationController extends AbstractController
                 $this->addFlash("error", $trans->trans("Veuillez valider le recaptcha"));
                 return $this->redirectToRoute("app_register");
             }
+
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
