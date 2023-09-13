@@ -85,26 +85,33 @@ var Comments = {
         const contenu = data.contenu
         const name = data.user.nom ? data.user.nom + ' ' + data.user.prenom : data.user.username
 
+        const defaultAvatar = '{{ asset("assets/images/profil.jpg") }}'; // Utilisez le chemin de votre image par défaut
+
+        // Vérifie si photo est null
+        const avatarSrc = photo !== null ? photo : defaultAvatar;
+        
         const li = '<li class="d-flex justify-content-between mb-4 row item-comments" id="' + id + '">'
-            + '<p class="col-md-2 col-lg-2 col-xl-2 m-0">'
-            + '<img src="' + photo + '" alt="avatar" class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">'
-            + '</p>'
-            + '<div class="col-md-10 col-lg-10 col-xl-10">'
-            + '<div class="card" height="75px;">'
-            + '<div class="card-header d-flex justify-content-between p-3">'
-            + '<p class="fw-bold mb-0">' + name + '</p>'
-            + '<p class="text-muted small">'
-            + '<i class="fa fa-clock-o"></i> '
-            + time + '</p>'
-            + '</div>'
-            + '<div class="card-body">'
-            + '<p class="mb-0">'
-            + contenu
-            + '</p>'
-            + '</div>'
-            + '</div>'
-            + '</div>'
-            + '</li>'
+                    + '<p class="col-md-2 col-lg-2 col-xl-2 m-0">'
+                    + '<img src="' + avatarSrc + '" alt="avatar" class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">'
+                    + '</p>'
+                    + '<div class="col-md-10 col-lg-10 col-xl-10">'
+                    + '<div class="card" height="75px;">'
+                    + '<div class="card-header d-flex justify-content-between p-3">'
+                    + '<p class="fw-bold mb-0">' + name + '</p>'
+                    + '<p class="text-muted small">'
+                    + '<i class="fa fa-clock-o"></i> '
+                    + time + '</p>'
+                    + '</div>'
+                    + '<div class="card-body">'
+                    + '<p class="mb-0">'
+                    + contenu
+                    + '</p>'
+                    + '</div>'
+                    + '</div>'
+                    + '</div>'
+                    + '</li>';
+        
+        
 
         if (isInfinity) {
             let item = document.createElement('div');
