@@ -92,7 +92,7 @@ var Comments = {
         
         const li = '<li class="d-flex justify-content-between mb-4 row item-comments" id="' + id + '">'
                     + '<p class="col-md-2 col-lg-2 col-xl-2 m-0">'
-                    + '<img src="' + avatarSrc + '" alt="avatar" class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">'
+                    + '<img src="' + avatarSrc + '" alt="photo_p" class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">'
                     + '</p>'
                     + '<div class="col-md-10 col-lg-10 col-xl-10">'
                     + '<div class="card" height="75px;">'
