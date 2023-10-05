@@ -23,7 +23,11 @@ rel="stylesheet" href="https://rawgit.com/mervick/emojionearea/master/dist/emoji
 					<ul class="list-unstyled" id="comments-article"></ul>
 					<img src="{{ asset ('assets/images/spinner/spinner.gif') }}" id="loading-comments"/>
 				</div>
+				{% if app.user is not null %}
 				<input type="text" id="emojionearea1"/>
+				{% else %}
+				<span>Pour laisser un commentaire, veuillez vous connecter <a href="{{ path('app_login') }}"><strong>ici</strong></a>.</span>
+				{% endif %}
 			</div>
 		</div>
 

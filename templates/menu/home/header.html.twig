@@ -2,12 +2,61 @@
 	<div class="top-bar">
 		<div class="container">
 			<div class="ttr-header-wrapper">
-				<div class="topbar-left">
-					<ul>
-						<li><a href="#"><i class="fa fa-question-circle"></i>{% trans %}Question{% endtrans %}</a></li>
-						<li><a href="javascript:;"><i class="fa fa-envelope-o"></i>designer.eline@gmail.com</a></li>
-					</ul>
-				</div>
+				<!-- Bouton "Faire un don" -->
+<div class="topbar-left">
+    <ul>
+        <li><a href="#"><i class="fa fa-question-circle"></i>{% trans %}Question{% endtrans %}</a></li>
+        <li>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#donModal">
+                <img width="20" height="20" src="{{ asset('assets/images/don.png') }}">&nbsp;Faire un don
+            </button>
+        </li>
+    </ul>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="donModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="color: #007bff;">Faire un don</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #007bff;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Contenu du formulaire de don -->
+                <div class="form-group">
+                    <label for="montantDon" style="color: #333;">
+                        <i class="fa fa-phone" style="color: #007bff;"></i> Par Mvola : +261 34 16 000 05 (Alain José Ramiadamandimbimanana)
+                    </label>
+                    <label for="montantDon" style="color: #333;">
+                        <i class="fa fa-envelope" style="color: #007bff;"></i> Contact par email : designer.eline@gmail.com
+                    </label>
+                    <label for="montantDon" style="color: #333;">
+                        <i class="fa fa-facebook" style="color: #007bff;"></i> Contact par Facebook : <a style="color: red;" href="https://www.facebook.com/alain.jose.58" target="_blank">Cliquer ici</a>
+                    </label>
+                </div>
+                <!-- Texte de remerciement -->
+                <p style="color: #333;">
+					Nous vous remercions sincèrement pour votre généreux don. Votre contribution fait une réelle différence dans notre mission d'améliorer le site web, de servir la communauté et d'aider ceux dans le besoin.
+				</p>
+
+                <!-- Citation de la Bible sur les dons -->
+                <blockquote style="text-align: center; color: #007bff;">
+                    "Chacun donne ce qu'il a décidé dans son cœur, sans regret ni contrainte, car Dieu aime celui qui donne avec joie." - 2 Corinthiens 9:7
+                </blockquote>
+                <!-- Image centrée -->
+                <div style="text-align: center;">
+                    <img src="{{ asset('assets/images/image_don.png') }}" alt="Faire un don" >
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 				<div class="topbar-right">
 					<ul>
 						<li>
@@ -265,18 +314,19 @@
 						{% trans %}Spiritualité{% endtrans %}</i>
 				</li>
 			</a>
+			
 		</li>
 		{# <li class="nav-dashboard">
-																																																																																																																								        <a href="javascript:;">
-																																																																																																																								            <i class="fa fa-book"></i>&nbsp;Pages
-																																																																																																																								            <i class="fa fa-chevron-down"></i>
-																																																																																																																								        </a>
-																																																																																																																								        <ul class="sub-menu">
-																																																																																																																								            <li>
-																																																																																																																								            <a href="#">Panneau de configuration</a>
-																																																																																																																								            </li>
-																																																																																																																								        </ul>
-																																																																																																																								        </li> #}
+		<a href="javascript:;">
+			<i class="fa fa-book"></i>&nbsp;Pages
+			<i class="fa fa-chevron-down"></i>
+		</a>
+		<ul class="sub-menu">
+			<li>
+			<a href="#">Panneau de configuration</a>
+			</li>
+		</ul>
+		</li> #}
 	</ul>
 	<div class="nav-social-link">
 		<a href="javascript:;">

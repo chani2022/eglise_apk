@@ -10,6 +10,31 @@
 			overflow-y: auto;
 		}
 	</style>
+	<style>
+        /* Style pour le conteneur des commentaires */
+        .comment-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+            flex-direction: column;
+        }
+
+        /* Style pour la zone des commentaires Facebook */
+        .comment-box {
+            max-height: 300px; /* Hauteur maximale */
+            overflow: auto; /* Activation de la barre de défilement */
+        }
+
+        /* Style pour le champ d'insertion de commentaire */
+        .comment-input {
+            position: sticky;
+            bottom: 0;
+            background-color: white; /* Fond blanc pour le contraste */
+            padding: 10px;
+            width: 100%;
+        }
+    </style>
 {% endblock %}
 
 {% block body %}
@@ -104,8 +129,22 @@
 
 
 	<br/><br/>
+	
 	<!-- Breadcrumb row END -->
-	<div class="content-block">
+	<div class="section-area section-sp1">
+	 <div class="container">
+			<div id="crolltou" class="col-md-12 heading-bx left">
+				<h2 class="title-head">{% trans %}Laisser nous un commentaire.{% endtrans %}
+				</h2>
+			</div>
+		 <div style="display: flex; justify-content: center; align-items: center; height: 30vh;">
+			<div style="max-height: 300px; overflow: auto;">
+				<div class="fb-comments" data-href="https://apokalypsy.com/" data-width="1024" data-numposts="3"></div>
+		   </div>	 
+		</div>
+    </div>
+	
+	<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fapokalypsy.com%2F&tabs=timeline&width=0&height=0&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1637705346456944" width="0" height="0" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 		{% if populaire_recent %}
 
 			<div class="section-area section-sp1">
@@ -167,6 +206,7 @@
 						</div>
 						<!-- Left part END -->
 						<!-- Side bar start -->
+						<div id="fb-root"></div>
 						<div class="col-lg-4 col-xl-4">
 							<aside class="side-bar sticky-top" id="scroll-container-populaire">
 								<div class="widget recent-posts-entry" id="populaire-post-container">
@@ -375,7 +415,7 @@
 										</p><br/>
 										<p>
 											<strong>Mail:</strong>
-											contact[at]apocalypse-mada.com
+											designer.eline@gmail.com
 										</p>
 									</div>
 									<div class="profile-social">
@@ -697,6 +737,8 @@
 		<!-- end loading -->
 	</div>
 </div><!-- Recent News End -->{% endblock %}{% block javascripts %}
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v18.0&appId=1637705346456944" nonce="IfS95kSa"></script>
+
 <script src=" {{ asset ('js/comments/commentsManager.js') }}" defer></script>
 <script>
 	jQuery(document).ready(function () {
