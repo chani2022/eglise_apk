@@ -1,22 +1,102 @@
 App\Entity\Article:
-    article_populaire_{1..4}:
+    article_populaire_fr_{1..30}:
         titre: <text(30)>
         commentaire: <text(300)>
-        created_at: <dateTime()>
-        updated_at: <dateTime()>
+        created_at: <immutableDateTime()>
+        updated_at: <immutableDateTime()>
+        categorie: '@populaire*'
+        langue: '@fr*'
+        user: '@redacteur*'
+        is_published: true
+
+    article_pop_fr:
+        titre: <text(30)>
+        commentaire: <text(300)>
+        created_at: <immutableDateTime()>
+        updated_at: <immutableDateTime()>
+        categorie: '@populaire*'
+        langue: '@fr*'
+        user: '@redacteur*'
+        is_published: true
+        # comments: ['@comments*', '@comments*']
+
+    article_recent_fr_{1..30}: 
+        titre: <text(30)>
+        commentaire: <text(300)>
+        created_at: <immutableDateTime()>
+        updated_at: <immutableDateTime()>
+        categorie: '@recent*'
+        langue: '@fr*'
+        user: '@redacteur*'
+        is_published: true
+
+    article_event_fr_{1..30}: 
+        titre: <text(30)>
+        commentaire: <text(300)>
+        created_at: <immutableDateTime()>
+        updated_at: <immutableDateTime()>
+        categorie: '@event*'
+        langue: '@fr*'
+        user: '@redacteur*'
+        is_published: true
+
+    article_populaire_en_{1..30}: 
+        titre: <text(30)>
+        commentaire: <text(300)>
+        created_at: <immutableDateTime()>
+        updated_at: <immutableDateTime()>
         categorie: '@populaire*'
         langue: '@en*'
-    article_evenement_{1..4}:
+        user: '@redacteur*'
+        is_published: true
+    
+    article_recent_en_{1..30}: 
         titre: <text(30)>
         commentaire: <text(300)>
-        created_at: <dateTime()>
-        updated_at: <dateTime()>
-        categorie: '@calendrier*'
-        langue: '@fr*'
-    article_recent_{1..4}:
+        created_at: <immutableDateTime()>
+        updated_at: <immutableDateTime()>
+        categorie: '@recent*'
+        langue: '@en*'
+        user: '@redacteur*'
+        is_published: true
+
+    article_event_en_{1..30}: 
         titre: <text(30)>
         commentaire: <text(300)>
-        created_at: <dateTime()>
-        updated_at: <dateTime()>
+        created_at: <immutableDateTime()>
+        updated_at: <immutableDateTime()>
+        categorie: '@event*'
+        langue: '@en*'
+        user: '@redacteur*'
+        is_published: true
+
+    article_populaire_mg_{1..30}: 
+        titre: <text(30)>
+        commentaire: <text(300)>
+        created_at: <immutableDateTime()>
+        updated_at: <immutableDateTime()>
+        categorie: '@populaire*'
+        langue: '@mg*'
+        user: '@redacteur*'
+        is_published: true
+
+    article_recent_mg_{1..30}: 
+        titre: <text(30)>
+        commentaire: <text(300)>
+        created_at: <immutableDateTime()>
+        updated_at: <immutableDateTime()>
         categorie: '@recent*'
         langue: '@mg*'
+        user: '@redacteur*'
+        is_published: true
+
+    article_event_mg_{1..30}: 
+        titre: <text(30)>
+        commentaire: <text(300)>
+        created_at: <immutableDateTime()>
+        updated_at: <immutableDateTime()>
+        categorie: '@event*'
+        langue: '@mg*'
+        user: '@redacteur*'
+        is_published: true
+        

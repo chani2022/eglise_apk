@@ -11,37 +11,36 @@
 		}
 	</style>
 	<style>
-        /* Style pour le conteneur des commentaires */
-        .comment-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 50vh;
-            flex-direction: column;
-        }
+		/* Style pour le conteneur des commentaires */
+		.comment-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 50vh;
+			flex-direction: column;
+		}
 
-        /* Style pour la zone des commentaires Facebook */
-        .comment-box {
-            max-height: 300px; /* Hauteur maximale */
-            overflow: auto; /* Activation de la barre de défilement */
-        }
+		/* Style pour la zone des commentaires Facebook */
+		.comment-box {
+			max-height: 300px; /* Hauteur maximale */
+			overflow: auto; /* Activation de la barre de défilement */
+		}
 
-        /* Style pour le champ d'insertion de commentaire */
-        .comment-input {
-            position: sticky;
-            bottom: 0;
-            background-color: white; /* Fond blanc pour le contraste */
-            padding: 10px;
-            width: 100%;
-        }
-    </style>
+		/* Style pour le champ d'insertion de commentaire */
+		.comment-input {
+			position: sticky;
+			bottom: 0;
+			background-color: white; /* Fond blanc pour le contraste */
+			padding: 10px;
+			width: 100%;
+		}
+	</style>
 {% endblock %}
 
 {% block body %}
-
+	{# {{ dump(populaire_recent) }} #}
 	<!-- Our Services -->
-	<div class="section-area content-inner service-info-bx">
-		<div class="container">
+		<div class="section-area content-inner service-info-bx"> <div class="container">
 			<div class="row">
 				<div class="col-lg-3 col-md-3 col-sm-6">
 					<div class="service-bx">
@@ -129,22 +128,22 @@
 
 
 	<br/><br/>
-	
+
 	<!-- Breadcrumb row END -->
 	<div class="section-area section-sp1">
-	 <div class="container">
+		<div class="container">
 			<div id="crolltou" class="col-md-12 heading-bx left">
 				<h2 class="title-head">{% trans %}Laisser nous un commentaire.{% endtrans %}
 				</h2>
 			</div>
-		 <div style="display: flex; justify-content: center; align-items: center; height: 30vh;">
-			<div style="max-height: 300px; overflow: auto;">
-				<div class="fb-comments" data-href="https://apokalypsy.com/" data-width="1024" data-numposts="3"></div>
-		   </div>	 
+			<div style="display: flex; justify-content: center; align-items: center; height: 30vh;">
+				<div style="max-height: 300px; overflow: auto;">
+					<div class="fb-comments" data-href="https://apokalypsy.com/" data-width="1024" data-numposts="3"></div>
+				</div>
+			</div>
 		</div>
-    </div>
-	
-	<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fapokalypsy.com%2F&tabs=timeline&width=0&height=0&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1637705346456944" width="0" height="0" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+
+		<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fapokalypsy.com%2F&tabs=timeline&width=0&height=0&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1637705346456944" width="0" height="0" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 		{% if populaire_recent %}
 
 			<div class="section-area section-sp1">
@@ -259,13 +258,13 @@
 					</div>
 				</div>
 				<div class="text-center">
-					<a href="{{ path ("app_article_by_categorie", {'type': 'Populaire'}) }}" class="btn view-all-event">Voir tous les Actualité populaire</a>
+					<a href="{{ path ("app_article_by_categorie", {'type': 'Populaire'}) }}" class="btn view-all-event article-populaires">Voir tous les Actualité populaire</a>
 				</div>
 				<!-- Our Services END -->
 			</div>
 		{% else %}
 			<div class="text-center">
-				<p class="text-danger">
+				<p class="text-danger article-populaire-null">
 					<i class="fa fa-info-circle"></i>
 					{% trans %}
 					Aucune article populaire pour le moment{% endtrans %}</p>
@@ -298,7 +297,7 @@
 						{% set dayEvent = calendrier.eventAt|date('d') %}
 						{% set monthEvent = calendrier.eventAt|date('F') %}
 						{% set hoursEvent = calendrier.eventAt|date('H:i') %}
-						
+
 						<div class="item">
 							<div class="event-bx">
 								<div class="action-box">
@@ -332,7 +331,7 @@
 										</ul>
 										<p style="{{ classParag }}">
 											{{ calendrier.commentaire|markdown_to_html|split(' ')|slice(0, 20)|join(' ') |striptags|raw }}...
-										
+
 										</p>
 									</div>
 								</div>
@@ -450,8 +449,7 @@
 										<div class="tab-pane active" id="courses">
 											<div class="courses-filter">
 												<div class="clearfix" id="post-recent">
-													<ul id="masonry" style="list-style: none;" class="ttr-gallery-listing magnific-image row">
-													</ul>
+													<ul id="masonry" style="list-style: none;" class="ttr-gallery-listing magnific-image row"></ul>
 												</div>
 											</div>
 										</div>

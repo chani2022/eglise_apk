@@ -267,7 +267,7 @@ class AdminController extends AbstractController
         $articles = $articleRepository->findAllOrdered($user, $langue);
         $articlesWriteByUser = $articleService->getArticlesByUser($user);
 
-        dump($articlesWriteByUser);
+        dump($articles);
         return $this->render('admin/article.html.twig', [
             'form' => $form->createView(),
             'articles' => $articles,

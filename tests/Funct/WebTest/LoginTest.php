@@ -2,10 +2,13 @@
 
 namespace App\Tests\Funct\WebTest;
 
+use App\Entity\User;
+use App\Service\RecaptchaService;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Liip\TestFixturesBundle\Services\DatabaseToolCollection;
 use Liip\TestFixturesBundle\Services\DatabaseTools\AbstractDatabaseTool;
+use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\HttpFoundation\Request;
 
 class LoginTest extends WebTestCase
 {
@@ -15,26 +18,29 @@ class LoginTest extends WebTestCase
     /** @var  KernelBrowser $client*/
     private $client;
 
-    private $user;
+    private array $user;
+
+    private Container $container;
 
     public function setUp(): void
     {
         parent::setUp();
         $this->client = static::createClient();
 
-        $this->databaseTool = static::getContainer()->get(DatabaseToolCollection::class)->get();
+        $this->container = static::getContainer();
+        $dir_fixtures = $this->container->getParameter('fixtures');
+        $files = [
+            $dir_fixtures . '/User.yaml',
+        ];
 
-        $this->user = $this->databaseTool->loadAliceFixture([
-            dirname(__DIR__) . '/../../fixtures/User.yaml',
-        ]);
-        // or with Symfony < 5.3
-        // static::bootKernel();
-        // $this->databaseTool = self::$container->get(DatabaseToolCollection::class)->get();
+        $loader = $this->container->get('fidry_alice_data_fixtures.loader.doctrine');
+        $this->user = $loader->load($files);
     }
 
     public function testLoginSuccessWithEmailAndPassword(): void
     {
-        // dd($this->user);
+
+
         $crawler = $this->client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
@@ -42,19 +48,28 @@ class LoginTest extends WebTestCase
 
         $link = $crawler->selectLink('Se connecter')->link();
 
-        $this->client->click($link);
+        $crawler = $this->client->click($link);
 
         $this->assertSelectorExists("#form_signIn");
 
+        // $recaptcha = new RecaptchaService($this->container->getParameter('google_recaptcha_site_key'));
+        // $recaptcha->verify(Request::create("/", "GET"))
+        $redac = $this->user['redacteur'];
+
         $form = $crawler->selectButton('Se connecter')->form();
+        $form->setValues([
+            "email" => $redac->getEmail(),
+            "password" => $redac->getPassword(),
+            "g-recaptcha-response" => true
+        ]);
 
-        $this->client->submit($form);
+        $crawler = $this->client->submit($form);
 
-        $this->client->followRedirect();
+        $crawler = $this->client->followRedirect();
 
         $this->assertResponseIsSuccessful();
 
-        $this->assertSelectorTextContains("#signIn", $this->user['user']->getEmail());
+        $this->assertSelectorTextContains("#signIn", $redac->getEmail());
     }
 
     protected function tearDown(): void

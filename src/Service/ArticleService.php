@@ -10,11 +10,19 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\User\UserInterface;
 use App\Entity\Article;
+use App\Entity\Categorie;
+use App\Repository\CategorieRepository;
 
 class ArticleService
 {
-    public function __construct(private RequestStack $requestStack, private EntityManagerInterface $em, private ArticleRepository $articleRep, private LangueRepository $langueRep, private CommentsRepository $commentsRepository)
-    {
+    public function __construct(
+        private RequestStack $requestStack,
+        private EntityManagerInterface $em,
+        private ArticleRepository $articleRep,
+        private LangueRepository $langueRep,
+        private CommentsRepository $commentsRepository,
+        private CategorieRepository $categorieRep
+    ) {
     }
 
     public function getArticles(string $categorie): array
@@ -159,5 +167,17 @@ class ArticleService
         }
 
         return $array_users;
+    }
+    /**
+     * @param string $typeCategory
+     * @return Article[]
+     */
+    public function getAllArticleByType($typeCategory): array
+    {
+        $locale = $this->requestStack->getCurrentRequest()->getLocale();
+        $langue = $this->langueRep->findOneBy(["type" => $locale]);
+        $category = $this->categorieRep->findOneBy(["type" => $typeCategory]);
+        // dump($this->articleRep->getArticlePublishedByCatAndLangue($category, $langue));
+        return $this->articleRep->getArticlePublishedByCatAndLangue($category, $langue);
     }
 }

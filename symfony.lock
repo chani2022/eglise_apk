@@ -60,7 +60,7 @@
         ]
     },
     "hautelook/alice-bundle": {
-        "version": "2.12",
+        "version": "2.10",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -76,7 +76,7 @@
         "version": "2.6.0"
     },
     "nelmio/alice": {
-        "version": "3.12",
+        "version": "3.10",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -341,7 +341,7 @@
         ]
     },
     "theofidry/alice-data-fixtures": {
-        "version": "1.6",
+        "version": "1.5",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",

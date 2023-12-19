@@ -1,0 +1,7 @@
+App\Entity\Categorie:
+    populaire:
+        type: "Populaire"
+    recent:
+        type: "Récent"
+    event:
+        type: "Calendrier d'évènement"

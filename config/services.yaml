@@ -8,6 +8,7 @@ parameters:
     app_dir_galerie: '%kernel.project_dir%/public/galerie'
     app_dir_photo_user: '%kernel.project_dir%/public/photo'
     google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
+    fixtures: '%kernel.project_dir%/fixtures'
 
 services:
     # default configuration for services in *this* file
@@ -32,6 +33,16 @@ services:
     App\Service\RecaptchaService:
         arguments:
             $google_recaptcha: '%env(GOOGLE_RECAPTCHA_SECRET)%'
+
+    App\Provider\CategorieProviderFaker:
+        tags: [ { name: nelmio_alice.faker.provider } ]
+
+    App\Provider\LangueProviderFaker:
+        tags: [ { name: nelmio_alice.faker.provider } ]
+
+    App\Provider\DateTimeImmutableFaker:
+        tags: [ { name: nelmio_alice.faker.provider } ]
+
 
 
 

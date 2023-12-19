@@ -62,7 +62,11 @@ class ArticleRepository extends ServiceEntityRepository
 
     public function findAllOrdered(?UserInterface $user = null, Langue $langue = null): array
     {
-        $qb = $this->createQueryBuilder('a');
+        $qb = $this->createQueryBuilder('a')
+            ->addSelect(["lan", "cat", "u"])
+            ->innerJoin("a.langue", "lan")
+            ->innerJoin("a.categorie", "cat")
+            ->innerJoin("a.user", "u");
         if ($user) {
             $qb->where('a.user = :user')
                 ->setParameter('user', $user);
@@ -129,6 +133,30 @@ class ArticleRepository extends ServiceEntityRepository
             ->setMaxResults(10)
             ->getQuery()
             ->getArrayResult();
+    }
+    /**
+     * @param Categorie $category
+     * @param Langue $langue
+     * @return Article[]
+     */
+    public function getArticlePublishedByCatAndLangue($category, $langue): array
+    {
+        return $this->createQueryBuilder("a")
+            ->addSelect(["us", "lang", "cat", "coms", "gal"])
+            ->join("a.categorie", "cat")
+            ->join("a.langue", "lang")
+            ->join("a.user", "us")
+            ->leftJoin('a.comments', "coms") //left join comments peut etre vide
+            ->leftJoin('a.galerie', "gal") //left join galerie peut être vide
+            ->where("a.categorie = :cat")
+            ->andWhere("a.langue = :lang")
+            ->andWhere('a.is_published = :is_published')
+            ->setParameter("cat", $category)
+            ->setParameter("lang", $langue)
+            ->setParameter("is_published", true)
+            ->orderBy("a.updated_at", "DESC")
+            ->getQuery()
+            ->getResult();
     }
 
     //    /**

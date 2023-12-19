@@ -24,7 +24,7 @@ class Comments
     private ?string $contenu = null;
 
 
-    #[ORM\ManyToOne(inversedBy: 'comments')]
+    #[ORM\ManyToOne(inversedBy: 'comments', cascade: ["persist", "remove"])]
     #[Assert\NotBlank()]
     private ?Article $article = null;
 

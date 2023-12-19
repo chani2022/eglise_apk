@@ -1,7 +1,7 @@
 App\Entity\Langue:
     fr:
-      type: 'fr'
+        type: "Fr"
     en:
-      type: 'en'
+        type: "En"
     mg:
-      type: 'mg'
+        type: "Mg"

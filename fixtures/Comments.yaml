@@ -1,0 +1,6 @@
+App\Entity\Comments:
+    comments_{1..3}:
+        created_at: <immutableDateTime()>
+        contenu: <text(300)>
+        user: '@redacteur*'
+        article: '@article_pop_fr*'
