@@ -1,0 +1,22 @@
+App\Entity\Article:
+    article_populaire_{1..4}:
+        titre: <text(30)>
+        commentaire: <text(300)>
+        created_at: <dateTime()>
+        updated_at: <dateTime()>
+        categorie: '@populaire*'
+        langue: '@en*'
+    article_evenement_{1..4}:
+        titre: <text(30)>
+        commentaire: <text(300)>
+        created_at: <dateTime()>
+        updated_at: <dateTime()>
+        categorie: '@calendrier*'
+        langue: '@fr*'
+    article_recent_{1..4}:
+        titre: <text(30)>
+        commentaire: <text(300)>
+        created_at: <dateTime()>
+        updated_at: <dateTime()>
+        categorie: '@recent*'
+        langue: '@mg*'

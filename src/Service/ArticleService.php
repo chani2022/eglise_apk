@@ -9,6 +9,7 @@ use App\Repository\LangueRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\User\UserInterface;
+use App\Entity\Article;
 
 class ArticleService
 {
@@ -26,12 +27,13 @@ class ArticleService
         $array_populaires = [];
         $populaire_recent = null;
 
-
+        /** @var Article $article */
         foreach ($articles as $i => $article) {
             $array_populaires[] = [
                 "id_article" => $article->getId(),
                 "ids_unread_article" => $article->getIdsUnreadNotification(),
                 "email_author" => $article->getUser()->getEmail(),
+                "fullName" => $article->getUser()->getNom() . ' ' . $article->getUser()->getPrenom(),
                 "date_created" => $article->getUpdatedAt()->format("Y-m-d H:i:s"),
                 "titre" => $article->getTitre(),
                 "commentaire" => $article->getCommentaire(),

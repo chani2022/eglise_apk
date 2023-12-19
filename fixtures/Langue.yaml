@@ -1,0 +1,7 @@
+App\Entity\Langue:
+    fr:
+      type: 'fr'
+    en:
+      type: 'en'
+    mg:
+      type: 'mg'
