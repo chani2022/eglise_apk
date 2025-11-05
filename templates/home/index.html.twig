@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Apokalypsy
+{% block title %}flexifood
 {% endblock %}
 {% block stylesheets %}
 	{{ parent() }}
@@ -49,15 +49,15 @@
 						</div>
 						<div class="info-bx text-center">
 							<div class="feature-box-sm radius bg-white">
-								<i class="fa fa-eye text-primary pulse-button2" style="border-radius: 50%;"></i>
+								<i class="fa fa-cutlery text-primary" style="border-radius: 50%;"></i>
 								<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-danger">
 									15+
 								</span>
 							</div>
 							<h4>
-								<a href="{{ path ('app_static_apocalypse_et_la_prophetie') }}">{% trans %}L'apocalypse et la prophétie du jour{% endtrans %}</a>
+								<a href="#">{% trans %}Une génération engagée{% endtrans %}</a>
 							</h4>
-							<a href="{{ path ('app_static_apocalypse_et_la_prophetie') }}" class="btn radius-xl">
+							<a href="#" class="btn radius-xl">
 								<i class="fa fa-eye"></i>
 								{% trans %}Lire{% endtrans %}</a>
 
@@ -71,12 +71,12 @@
 						</div>
 						<div class="info-bx text-center">
 							<div class="feature-box-sm radius bg-white">
-								<i class="fa fa-bank text-primary"></i>
+								<i class="fa fa-cutlery text-primary"></i>
 							</div>
 							<h4>
-								<a href="{{ path ('app_static_a_propos') }}">{% trans %}A propos de l'Eglise Apokalypsy{% endtrans %}</a>
+								<a href="#">{% trans %}Des repas zéro déchet{% endtrans %}</a>
 							</h4>
-							<a href="{{ path ('app_static_a_propos') }}" class="btn radius-xl">
+							<a href="#" class="btn radius-xl">
 								<i class="fa fa-eye"></i>
 								{% trans %}Lire{% endtrans %}</a>
 						</div>
@@ -89,13 +89,13 @@
 						</div>
 						<div class="info-bx text-center">
 							<div class="feature-box-sm radius bg-white">
-								<i class="fa fa-book text-primary"></i>
+								<i class="fa fa-cutlery text-primary"></i>
 							</div>
 							<h4>
-								<a href="{{ path ('app_static_livre-apokalypsy') }}">{% trans %}Etude du livre de l'apokalypsy{% endtrans %}
+								<a href="#">{% trans %}Un futur plus responsable{% endtrans %}
 								</a>
 							</h4>
-							<a href="{{ path ('app_static_livre-apokalypsy') }}" class="btn radius-xl">
+							<a href="#" class="btn radius-xl">
 								<i class="fa fa-eye"></i>
 								{% trans %}Lire{% endtrans %}</a>
 						</div>
@@ -108,15 +108,15 @@
 						</div>
 						<div class="info-bx text-center">
 							<div class="feature-box-sm radius bg-white">
-								<i class="fa fa-podcast text-primary"></i>
+								<i class="fa fa-cutlery text-primary"></i>
 								<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-danger">
 									3+
 								</span>
 							</div>
 							<h4>
-								<a href="{{ path ('app_static_radio') }}">RFA Radio fanambarana</a>
+								<a href="#">Repas éthiques et délicieux</a>
 							</h4>
-							<a class="btn radius-xl" href="{{ path ('app_static_radio') }}">
+							<a class="btn radius-xl" href="#">
 								<i class="fa fa-eye"></i>
 								{% trans %}Lire{% endtrans %}</a>
 						</div>
@@ -130,233 +130,110 @@
 	<br/><br/>
 
 	<!-- Breadcrumb row END -->
-	<div class="section-area section-sp1">
-		<div class="container">
-			<div id="crolltou" class="col-md-12 heading-bx left">
-				<h2 class="title-head">{% trans %}Laisser nous un commentaire.{% endtrans %}
-				</h2>
-			</div>
-			<div style="display: flex; justify-content: center; align-items: center; height: 30vh;">
-				<div style="max-height: 300px; overflow: auto;">
-					<div class="fb-comments" data-href="https://apokalypsy.com/" data-width="1024" data-numposts="3"></div>
-				</div>
-			</div>
-		</div>
-
-		<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fapokalypsy.com%2F&tabs=timeline&width=0&height=0&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1637705346456944" width="0" height="0" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-		{% if populaire_recent %}
-
-			<div class="section-area section-sp1">
-				<div class="container">
-					<div class="row">
-						<div class="row">
-							<div id="crolltou" class="col-md-12 heading-bx left">
-								<h2 class="title-head">{% trans %}Actualités{% endtrans %}
-								</h2>
-								<p>{% trans %}Retrouvez toute l'actualité en direct, en photos et en vidéo ici{% endtrans %}</p>
-								<strong class="title-head">{% trans %}Actualité le plus populaire{% endtrans %}</strong>
-							</div>
-						</div>
-						<!-- Left part start -->
-						<div
-							class="col-lg-8 col-xl-8">
-							<!-- blog start -->
-							<div class="recent-news blog-lg">
-								<div class="action-box blog-lg" id="image_article_populaire">
-									<img src="{{ asset('article/'~ populaire_recent.image) }}" alt="{{ asset('article/'~ populaire_recent.image) }}">
-								</div>
-								<div class="info-bx">
-									<ul class="media-post">
-										<li>
-											<a href="#" id="date_populaire_post">
-												<i class="fa fa-calendar"></i>
-												{{ populaire_recent.updatedAt|date("M-d-Y") }}</a>
-										</li>
-										<li>
-											{# + '<a href="#" class="comments-bx comments" id="' + article.id_article + '" data-toggle="modal" data-target="#comments">' + nb_comments + ' commentaires</a>' #}
-											<a href="#" class="comments-bx comments post-populaire" id="{{ populaire_recent.getId() }}" data-toggle="modal" data-target="#comments" id=" {{ populaire_recent.id }} " data-date=" {{ populaire_recent.updatedAt|date(" m-d-y") }} " data-titre=" {{ populaire_recent.titre }} " data-commentaire=" {{ populaire_recent.commentaire }} " data-image="article/{{ populaire_recent.image }} " data-auteur=" {{ populaire_recent.user.nom ? populaire_recent.user.nom ~' '~ populaire_recent.user.prenom: populaire_recent.user.username }} ">
-												<i class="fa fa-comments-o"></i>
-												{{ populaire_recent.comments|length }}
-												Commentaire
-											</a>
-										</li>
-									</ul>
-									<div class="widget widget_gallery gallery-grid-4">
-										<h6 class="widget-title">{% trans %}Galery{% endtrans %}
-										</h6>
-										<ul class="magnific-image galerie-post">
-											{% for gal in populaire_recent.galerie %}
-												<li>
-													<a href="{{ asset('galerie/'~ gal.nomImage) }}" class="magnific-anchor"><img src={{ asset('galerie/'~ gal.nomImage) }} alt=""></a>
-												</li>
-											{% endfor %}
-										</ul>
-									</div>
-
-									<h5 class="post-title" id="titre_article_populaire">
-										<a href="#">{{populaire_recent.titre}}</a>
-									</h5>
-									<div id="comment_article_populaire">
-										{{ populaire_recent.commentaire|raw }}
-									</div>
-								</div>
-							</div>
-							<!-- blog END -->
-						</div>
-						<!-- Left part END -->
-						<!-- Side bar start -->
-						<div id="fb-root"></div>
-						<div class="col-lg-4 col-xl-4">
-							<aside class="side-bar sticky-top" id="scroll-container-populaire">
-								<div class="widget recent-posts-entry" id="populaire-post-container">
-									<h6 class="widget-title">{% trans %}Recent Posts{% endtrans %}</h6>
-									{# {{ dump (populaires)}} #}
-
-									{% for populaire in populaires %}
-										{% set image = 'article/'~ populaire.image %}
-										{% set date = populaire.updatedAt|date('d M Y') %}
-										{% set titre = populaire.titre %}
-										{% set commentaire = populaire.commentaire %}
-										{% set auteur = populaire.user.nom ? populaire.user.nom ~' '~ populaire.user.prenom: populaire.user.username %}
-										{# {% set galerie = value %} #}
-
-
-										<div class="widget-post clearfix item-post-populaire" id="{{ populaire.id }}">
-											<div class="ttr-post-media">
-												<img src="{{ asset(image) }}" width="200" height="143" alt="Loading...">
-											</div>
-											<div class="ttr-post-info">
-												<div class="ttr-post-header">
-													<h6 class="post-title" id="{{ populaire.id }}">
-														<a href="" class="article-populaire" id="{{ populaire.id }}">{{ titre }}</a>
-													</h6>
-												</div>
-												<ul class="media-post">
-													<li>
-														<a href="#">
-															<i class="fa fa-calendar"></i>
-															{{ date }}</a>
-													</li>
-													<li>
-														<a href="#" class="show-dialog comments post-populaire" data-toggle="modal" data-target="#comments" id="{{ populaire.id }}" data-date="{{ date }}" data-titre="{{ titre }}" data-commentaire="{{ commentaire }}" data-image="{{ image }}" data-auteur="{{ auteur }}">
-															<i class="fa fa-comments-o"></i>
-															{{ populaire.comments|length }}
-															Commentaire
-														</a>
-													</li>
-												</ul>
-											</div>
-										</div>
-
-									{% endfor %}
-								</div>
-							</aside>
-						</div>
-
-
-						<!-- Side bar END -->
-					</div>
-				</div>
-				<div class="text-center">
-					<a href="{{ path ("app_article_by_categorie", {'type': 'Populaire'}) }}" class="btn view-all-event article-populaires">Voir tous les Actualité populaire</a>
-				</div>
-				<!-- Our Services END -->
-			</div>
-		{% else %}
-			<div class="text-center">
-				<p class="text-danger article-populaire-null">
-					<i class="fa fa-info-circle"></i>
-					{% trans %}
-					Aucune article populaire pour le moment{% endtrans %}</p>
-			</div>
-		{% endif %}
-	</div>
+	
 
 
 	<div class="section-area section-sp2">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 text-center heading-bx">
-					<h2 class="title-head m-b0">{% trans %}Calendrier{% endtrans %}
-						<span>{% trans %}d'évènements{% endtrans %}</span>
-					</h2>
-					<p class="m-b0">{% trans %}Maintenant et après.{% endtrans %}
-					</p>
-				</div>
-			</div>
-			<div class="row event-list">
-				<div class="upcoming-event-carousel owl-carousel owl-btn-center-lr owl-btn-1 col-12 p-lr0  m-b30 ">
-					{% for calendrier in calendriers %}
-						{% set classParag = "overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;line-clamp: 2;-webkit-box-orient: vertical;" %}
-						{% if loop.index % 2 == 0 %}
-							{% set classParag = "" %}
-						{% endif %}
-						{% set image = 'article/'~ calendrier.image %}
-						{# {% set date = calendrier.updatedAt|date('d M Y') %} #}
-						{% set titre = calendrier.titre %}
-						{% set dayEvent = calendrier.eventAt|date('d') %}
-						{% set monthEvent = calendrier.eventAt|date('F') %}
-						{% set hoursEvent = calendrier.eventAt|date('H:i') %}
-
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 text-center heading-bx">
+							<h2 class="title-head m-b0">Notre engagement local et sociétal</h2>
+							<p class="m-b0">Maintenant et après. </p>
+						</div>
+					</div>
+					<div class="row">
+					<div class="upcoming-event-carousel owl-carousel owl-btn-center-lr owl-btn-1 col-12 p-lr0  m-b30">
 						<div class="item">
 							<div class="event-bx">
 								<div class="action-box">
-									<img src="{{ asset (image) }}" alt="photo">
+									<img src="assets/images/event/pic4.jpg" alt="">
 								</div>
 								<div class="info-bx d-flex">
 									<div>
 										<div class="event-time">
-											<div class="event-date">{{ dayEvent }}</div>
-											<div class="event-month">{{ monthEvent }}</div>
+											<div class="event-date">31</div>
+											<div class="event-month">Octobre</div>
 										</div>
 									</div>
-
 									<div class="event-info">
 										<h4 class="event-title">
-											<a href="#" style="font-size:16px;">
-												{{ titre }}
-											</a>
-										</h4>
+										<a href="#">
+											Soutenir l’économie locale
+										</a></h4>
 										<ul class="media-post">
-											<li>
-												<a href="#">
-													<i class="fa fa-clock-o"></i>
-													{{ hoursEvent }}</a>
-											</li>
-											<li>
-												<a href="#">
-													<i class="fa fa-map-marker"></i>
-													Antananarivo</a>
-											</li>
+											<li><a href="#"><i class="fa fa-clock-o"></i> 7:00am 8:00am</a></li>
+											<li><a href="#"><i class="fa fa-map-marker"></i> France</a></li>
 										</ul>
-										<p style="{{ classParag }}">
-											{{ calendrier.commentaire|markdown_to_html|split(' ')|slice(0, 20)|join(' ') |striptags|raw }}...
-
-										</p>
+										
 									</div>
 								</div>
 							</div>
 						</div>
-					{% endfor %}
+						<div class="item">
+							<div class="event-bx">
+								<div class="action-box">
+									<img src="assets/images/event/pic3.jpg" alt="">
+								</div>
+								<div class="info-bx d-flex">
+									<div>
+										<div class="event-time">
+											<div class="event-date">31</div>
+											<div class="event-month">Octobre</div>
+										</div>
+									</div>
+									<div class="event-info">
+										<h4 class="event-title"><a href="#">Un impact social et humain fort</a></h4>
+										<ul class="media-post">
+											<li><a href="#"><i class="fa fa-clock-o"></i> 7:00am 8:00am</a></li>
+											<li><a href="#"><i class="fa fa-map-marker"></i> France</a></li>
+										</ul>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="event-bx">
+								<div class="action-box">
+									<img src="assets/images/event/pic2.jpg" alt="">
+								</div>
+								<div class="info-bx d-flex">
+									<div>
+										<div class="event-time">
+											<div class="event-date">30</div>
+											<div class="event-month">Octobre</div>
+										</div>
+									</div>
+									<div class="event-info">
+										<h4 class="event-title"><a href="#">Un projet reconnu et soutenu</a></h4>
+										<ul class="media-post">
+											<li><a href="#"><i class="fa fa-clock-o"></i> 7:00am 8:00am</a></li>
+											<li><a href="#"><i class="fa fa-map-marker"></i> Berlin, Germany</a></li>
+										</ul>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					</div>
+					<div class="text-center">
+						<a href="#" class="btn">Voir tous les menus</a>
+					</div>
 				</div>
-
 			</div>
-		</div>
-		<div class="text-center">
-			<a href=" {{ path ('app_article_by_categorie', {'type':'Calendrier d\'évènement'}) }}" class="btn view-all-event">Voir tous les évènements</a>
-		</div>
-	</div>
-</div><!-- Our Story ==== --><div class="section-area section-sp1 our-story">
+</div>
+<!-- Our Story ==== --><div class="section-area section-sp1 our-story">
 	<div class="container">
 		<div class="row align-items-center d-flex">
 			<div class="col-lg-5 col-md-12 heading-bx">
-				<h2 class="m-b10">{% trans %}La plus grande Église d’Afrique{% endtrans %}
+				<h2 class="m-b10">{% trans %}Une équipe jeune, audacieuse et pleine d’énergie ! {% endtrans %}
 				</h2>
 				<h5 class="fw4">
 					{% trans %}La construction est en route malgré les obstacles{% endtrans %}
 				</h5>
 				<p style="margin-bottom: 10px;font-size: 14px;color: #242424;text-align: justify;">
-					{% trans %}L’année 2016 est une année charnière dans l’histoire de FAM (Fiangonana Apokalypsy eto Madagasikara). C’est celle où la construction de l’Église centrale à Ambohimarina a été lancée. Avec ses 137 m de longueur et ses 75 m de largeur, ce temple sera sans doute la plus grande d’Afrique selon le Pasteur Mailhol, le fondateur international de l’Église Apocalypse. D’un côté, l’édifice se dresse sur trois étages divisés en plusieurs secteurs. Il constitue l’église centrale qui peut accueillir jusqu’à 300 000 fidèles tous les sabbats. De l’autre côté, de grands bâtiments abritent le centre administratif de l’église. Ils comprennent notamment les bureaux du Conseil d’Administration, ainsi que les projets d’expansion de l’église, la GTV (Gasy TV), le site web Apokalypsy, etc.{% endtrans %}
+					{% trans %}Chez FlexiFood, nous croyons qu’une entreprise responsable ne se contente pas de bien faire, elle fait le bien autour d’elle. Notre projet est né d’une conviction simple : réconcilier plaisir, durabilité et solidarité en donnant du sens à chaque repas.{% endtrans %}
 				</p>
 				<a href="#" class="btn">{% trans %}Lire la suite{% endtrans %}</a>
 			</div>
@@ -373,7 +250,7 @@
 </div>
 <!-- Our Story END ==== -->
 <!-- Recent News -->
-<div class="section-area section-sp2">
+<div style="display:none" class="section-area section-sp2">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 heading-bx left">
@@ -394,53 +271,8 @@
 									<div class="user-profile-thumb">
 										<img src="assets/images/logo.png" alt=""/>
 									</div>
-									<div class="profile-info">
-										<h4>{% trans %}Contact{% endtrans %}</h4>
-										<p>
-											<strong>{% trans %}Adresse:{% endtrans %}</strong>
-											IVO 69 b Bis Antohomadinika Atsimo
-										</p><br/>
-										<p>Antananarivo 101 – BP 7562
-										</p><br/>
-										<p>
-											<strong>Tél.</strong>
-											(+261) 22 657 87
-											<br/>
-											032 02 029 56
-											<br/>
-											033 14 064 70
-											<br/>
-											034 01 745 13
-										</p><br/>
-										<p>
-											<strong>Mail:</strong>
-											designer.eline@gmail.com
-										</p>
-									</div>
-									<div class="profile-social">
-										<ul class="list-inline m-a0">
-											<li>
-												<a href="#">
-													<i class="fa fa-facebook"></i>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<i class="fa fa-twitter"></i>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<i class="fa fa-linkedin"></i>
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<i class="fa fa-google-plus"></i>
-												</a>
-											</li>
-										</ul>
-									</div>
+									
+									
 								</div>
 							</div>
 							<div class="col-lg-6 col-md-8 col-sm-12 m-b30">
@@ -453,274 +285,13 @@
 												</div>
 											</div>
 										</div>
-										<div class="tab-pane" id="quiz-results">
-											<div class="profile-head">
-												<h3>{% trans %}Quiz Results{% endtrans %}</h3>
-											</div>
-											<div class="courses-filter">
-												<div class="row">
-													<div class="col-md-6 col-lg-6">
-														<ul class="course-features">
-															<li>
-																<i class="ti-book"></i>
-																<span class="label">{% trans %}Lectures{% endtrans %}</span>
-																<span class="value">8</span>
-															</li>
-															<li>
-																<i class="ti-help-alt"></i>
-																<span class="label">{% trans %}Quizzes{% endtrans %}</span>
-																<span class="value">1</span>
-															</li>
-															<li>
-																<i class="ti-time"></i>
-																<span class="label">{% trans %}Duration{% endtrans %}</span>
-																<span class="value">{% trans %}60 hours{% endtrans %}</span>
-															</li>
-															<li>
-																<i class="ti-stats-up"></i>
-																<span class="label">{% trans %}Skill level{% endtrans %}</span>
-																<span class="value">{% trans %}Beginner{% endtrans %}</span>
-															</li>
-															<li>
-																<i class="ti-smallcap"></i>
-																<span class="label">{% trans %}Language{% endtrans %}
-																</span>
-																<span class="value">{% trans %}English{% endtrans %}</span>
-															</li>
-															<li>
-																<i class="ti-user"></i>
-																<span class="label">{% trans %}Students{% endtrans %}</span>
-																<span class="value">32</span>
-															</li>
-															<li>
-																<i class="ti-check-box"></i>
-																<span class="label">{% trans %}Assessments{% endtrans %}</span>
-																<span class="value">{% trans %}Yes{% endtrans %}</span>
-															</li>
-														</ul>
-													</div>
-													<div class="col-md-6 col-lg-6">
-														<ul class="course-features">
-															<li>
-																<i class="ti-book"></i>
-																<span class="label">{% trans %}Lectures{% endtrans %}</span>
-																<span class="value">8</span>
-															</li>
-															<li>
-																<i class="ti-help-alt"></i>
-																<span class="label">{% trans %}Quizzes{% endtrans %}</span>
-																<span class="value">1</span>
-															</li>
-															<li>
-																<i class="ti-time"></i>
-																<span class="label">{% trans %}Duration{% endtrans %}</span>
-																<span class="value">{% trans %}60 hours{% endtrans %}</span>
-															</li>
-															<li>
-																<i class="ti-stats-up"></i>
-																<span class="label">{% trans %}Skill level{% endtrans %}</span>
-																<span class="value">{% trans %}Beginner{% endtrans %}</span>
-															</li>
-															<li>
-																<i class="ti-smallcap"></i>
-																<span class="label">{% trans %}Language{% endtrans %}
-																</span>
-																<span class="value">{% trans %}English{% endtrans %}</span>
-															</li>
-															<li>
-																<i class="ti-user"></i>
-																<span class="label">{% trans %}Students{% endtrans %}</span>
-																<span class="value">32</span>
-															</li>
-															<li>
-																<i class="ti-check-box"></i>
-																<span class="label">{% trans %}Assessments{% endtrans %}</span>
-																<span class="value">{% trans %}Yes{% endtrans %}</span>
-															</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="tab-pane" id="edit-profile">
-											<div class="profile-head">
-												<h3>Edit Profile</h3>
-											</div>
-											<form class="edit-profile">
-												<div class="">
-													<div class="form-group row">
-														<div class="col-12 col-sm-9 col-md-9 col-lg-10 ml-auto">
-															<h3>1. Personal Details</h3>
-														</div>
-													</div>
-													<div class="form-group row">
-														<label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Full Name</label>
-														<div class="col-12 col-sm-9 col-md-9 col-lg-7">
-															<input class="form-control" type="text" value="Mark Andre">
-														</div>
-													</div>
-													<div class="form-group row">
-														<label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Occupation</label>
-														<div class="col-12 col-sm-9 col-md-9 col-lg-7">
-															<input class="form-control" type="text" value="CTO">
-														</div>
-													</div>
-													<div class="form-group row">
-														<label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Company Name</label>
-														<div class="col-12 col-sm-9 col-md-9 col-lg-7">
-															<input class="form-control" type="text" value="EduChamp">
-															<span class="help">If you want your invoices addressed to a company. Leave blank to use your full name.</span>
-														</div>
-													</div>
-													<div class="form-group row">
-														<label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Phone No.</label>
-														<div class="col-12 col-sm-9 col-md-9 col-lg-7">
-															<input class="form-control" type="text" value="+120 012345 6789">
-														</div>
-													</div>
-
-													<div class="seperator"></div>
-
-													<div class="form-group row">
-														<div class="col-12 col-sm-9 col-md-9 col-lg-10 ml-auto">
-															<h3>2. Address</h3>
-														</div>
-													</div>
-													<div class="form-group row">
-														<label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Address</label>
-														<div class="col-12 col-sm-9 col-md-9 col-lg-7">
-															<input class="form-control" type="text" value="5-S2-20 Dummy City, UK">
-														</div>
-													</div>
-													<div class="form-group row">
-														<label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">City</label>
-														<div class="col-12 col-sm-9 col-md-9 col-lg-7">
-															<input class="form-control" type="text" value="US">
-														</div>
-													</div>
-													<div class="form-group row">
-														<label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">State</label>
-														<div class="col-12 col-sm-9 col-md-9 col-lg-7">
-															<input class="form-control" type="text" value="California">
-														</div>
-													</div>
-													<div class="form-group row">
-														<label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Postcode</label>
-														<div class="col-12 col-sm-9 col-md-9 col-lg-7">
-															<input class="form-control" type="text" value="000702">
-														</div>
-													</div>
-
-													<div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-2x"></div>
-
-													<div class="form-group row">
-														<div class="col-12 col-sm-9 col-md-9 col-lg-10 ml-auto">
-															<h3 class="m-form__section">3. Social Links</h3>
-														</div>
-													</div>
-
-													<div class="form-group row">
-														<label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Linkedin</label>
-														<div class="col-12 col-sm-9 col-md-9 col-lg-7">
-															<input class="form-control" type="text" value="www.linkedin.com">
-														</div>
-													</div>
-													<div class="form-group row">
-														<label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Facebook</label>
-														<div class="col-12 col-sm-9 col-md-9 col-lg-7">
-															<input class="form-control" type="text" value="www.facebook.com">
-														</div>
-													</div>
-													<div class="form-group row">
-														<label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Twitter</label>
-														<div class="col-12 col-sm-9 col-md-9 col-lg-7">
-															<input class="form-control" type="text" value="www.twitter.com">
-														</div>
-													</div>
-													<div class="form-group row">
-														<label class="col-12 col-sm-3 col-md-3 col-lg-2 col-form-label">Instagram</label>
-														<div class="col-12 col-sm-9 col-md-9 col-lg-7">
-															<input class="form-control" type="text" value="www.instagram.com">
-														</div>
-													</div>
-												</div>
-												<div class="">
-													<div class="">
-														<div class="row">
-															<div class="col-12 col-sm-3 col-md-3 col-lg-2"></div>
-															<div class="col-12 col-sm-9 col-md-9 col-lg-7">
-																<button type="reset" class="btn">Save changes</button>
-																<button type="reset" class="btn-secondry">Cancel</button>
-															</div>
-														</div>
-													</div>
-												</div>
-											</form>
-										</div>
-										<div class="tab-pane" id="change-password">
-											<div class="profile-head">
-												<h3>Change Password</h3>
-											</div>
-											<form class="edit-profile">
-												<div class="">
-													<div class="form-group row">
-														<div class="col-12 col-sm-8 col-md-8 col-lg-9 ml-auto">
-															<h3>Password</h3>
-														</div>
-													</div>
-													<div class="form-group row">
-														<label class="col-12 col-sm-4 col-md-4 col-lg-3 col-form-label">Current Password</label>
-														<div class="col-12 col-sm-8 col-md-8 col-lg-7">
-															<input class="form-control" type="password" value="">
-														</div>
-													</div>
-													<div class="form-group row">
-														<label class="col-12 col-sm-4 col-md-4 col-lg-3 col-form-label">New Password</label>
-														<div class="col-12 col-sm-8 col-md-8 col-lg-7">
-															<input class="form-control" type="password" value="">
-														</div>
-													</div>
-													<div class="form-group row">
-														<label class="col-12 col-sm-4 col-md-4 col-lg-3 col-form-label">Re Type New Password</label>
-														<div class="col-12 col-sm-8 col-md-8 col-lg-7">
-															<input class="form-control" type="password" value="">
-														</div>
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-12 col-sm-4 col-md-4 col-lg-3"></div>
-													<div class="col-12 col-sm-8 col-md-8 col-lg-7">
-														<button type="reset" class="btn">Save changes</button>
-														<button type="reset" class="btn-secondry">Cancel</button>
-													</div>
-												</div>
-
-											</form>
-										</div>
+										
+										
+										
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-3 col-md-4 col-sm-12 m-b30">
-								<div class="profile-bx text-center">
-									<div class="user-profile-thumb">
-										<img src="assets/images/icon/icon1.jpg" alt=""/>
-									</div>
-									<div class="profile-info">
-										<h4>RFA Radio fanambarana</h4>
-										<p>98.4 FM</p>
-
-									</div>
-									<div class="user-profile-thumb">
-										<img src="assets/images/oliva_ambohimarina.jpg" alt=""/>
-									</div>
-									<div class="profile-info">
-										<h4>Tanora Oliva</h4>
-										<p>Mail: olivareztana@gmail.com</p>
-
-									</div>
-								</div>
-
-							</div>
+							
 
 						</div>
 					</div>
@@ -734,7 +305,222 @@
 
 		<!-- end loading -->
 	</div>
-</div><!-- Recent News End -->{% endblock %}{% block javascripts %}
+</div>
+<!-- contact area -->
+        <div class="content-block">
+            <!-- Your Faq -->
+            <div class="section-area section-sp1">
+                <div class="container">
+					<div class="row">
+						<div class="col-lg-8 col-md-12">
+							<div class="heading-bx left">
+								<h2 class="m-b10 title-head">Notre  <span> mission</span></h2>
+							</div>
+							<p class="m-b10">Chez FlexiFood, nous avons une conviction simple : bien manger ne devrait jamais se faire au détriment de la planète.
+Notre mission est de rendre l’alimentation durable accessible à tous, en alliant plaisir, technologie et responsabilité.</p>
+							<p>Nous concevons des repas sains, locaux et zéro déchet, servis dans des box réutilisables et connectées.
+Grâce à l’intelligence artificielle, nous adaptons chaque menu à vos besoins, tout en favorisant les circuits courts et la solidarité alimentaire.</p>
+<p>Chaque box FlexiFood est une action concrète pour un monde plus durable, une alimentation plus juste et un quotidien plus simple.</p>
+<p>FlexiFood, c’est l’alliance du goût, de l’innovation et de l’engagement.</p>
+							
+							
+							
+							<div class="ttr-accordion m-b30 faq-bx" id="accordion1">
+								<div class="panel">
+									<div class="acod-head">
+										<h6 class="acod-title"> 
+											<a data-toggle="collapse" href="#faq1" class="collapsed" data-parent="#faq1">
+											Notre engagement local et sociétal</a> </h6>
+									</div>
+									<div id="faq1" class="acod-body collapse">
+										<div class="acod-content">Chez FlexiFood, nous croyons qu’une entreprise responsable ne se contente pas de bien faire, elle fait le bien autour d’elle.
+Notre projet est né d’une conviction simple : réconcilier plaisir, durabilité et solidarité en donnant du sens à chaque repas.
+<br/>
+
+									
+
+</div>
+									</div>
+									
+								</div>
+								<div class="panel">
+									<div class="acod-head">
+										<h6 class="acod-title"> 
+											<a data-toggle="collapse" href="#faq2" class="collapsed" data-parent="#faq2">
+											Soutenir l’économie locale</a> </h6>
+									</div>
+									<div id="faq2" class="acod-body collapse">
+										<div class="acod-content">
+										Nous travaillons main dans la main avec des producteurs, artisans et partenaires de la région, convaincus que la richesse culinaire se trouve à deux pas de chez nous.
+<br/>Chaque ingrédient, chaque emballage, chaque collaboration est pensée pour valoriser le savoir-faire alsacien et réduire notre empreinte carbone.
+<br/>Nous favorisons les circuits courts, les matières premières locales et les fournisseurs engagés dans une démarche écoresponsable.
+<br/>Du champ à la box, chaque maillon de la chaîne participe à une économie plus circulaire et plus juste.
+
+
+										</div>
+									</div>
+								</div>
+								<div class="panel">
+									<div class="acod-head">
+										<h6 class="acod-title"> 
+											<a data-toggle="collapse"  href="#faq3" class="collapsed"  data-parent="#faq3">
+											Un impact social et humain fort </a> </h6>
+									</div>
+									<div id="faq3" class="acod-body collapse">
+										<div class="acod-content">FlexiFood, c’est aussi une aventure collective qui place l’humain au centre.
+<br/>Nous collaborons avec des structures inclusives comme les ESAT pour certaines étapes de production et de décoration de nos box, afin de favoriser l’insertion professionnelle des personnes en situation de handicap.
+<br/>Cette approche solidaire fait partie intégrante de notre identité : consommer FlexiFood, c’est soutenir une chaîne de valeurs humaines et responsables.
+
+</div>
+									</div>
+								</div>
+								<div class="panel">
+									<div class="acod-head">
+										<h6 class="acod-title"> 
+											<a data-toggle="collapse"  href="#faq4" class="collapsed"  data-parent="#faq4">
+											Un projet reconnu et soutenu </a> </h6>
+									</div>
+									<div id="faq4" class="acod-body collapse">
+										<div class="acod-content">
+										Notre engagement a été reconnu par l’Agence de Développement ADIRA, qui nous a décerné le label “À Cœur” — une distinction attribuée aux initiatives régionales porteuses de sens, d’innovation et de valeurs humaines fortes.
+<br/>Ce label symbolise notre fierté d’être un acteur du changement en Alsace, et notre volonté de prouver qu’innovation et responsabilité peuvent aller de pair.</div>
+<br/>💬 « Recevoir le label À Cœur, c’est une reconnaissance de notre vision : celle d’une restauration durable, locale et solidaire, portée par la nouvelle génération. »
+									</div>
+								</div>
+								<div class="panel">
+									<div class="acod-head">
+										<h6 class="acod-title"> 
+											<a data-toggle="collapse"  href="#faq5" class="collapsed"  data-parent="#faq5">
+											Agir aujourd’hui pour demain </a> </h6>
+									</div>
+									<div id="faq5" class="acod-body collapse">
+										<div class="acod-content">
+										Notre démarche ne s’arrête pas à la cuisine : elle s’inscrit dans une logique globale de transition écologique et sociétale.
+<br/>Réduction des déchets, logistique responsable, traçabilité par QR code, box réutilisables… chaque détail compte.
+<br/>Nous voulons inspirer d’autres jeunes, d’autres entreprises, à construire un modèle d’alimentation plus respectueux, plus local et plus humain.
+<br/>FlexiFood, c’est la preuve qu’un repas peut nourrir bien plus que le corps : il peut nourrir la société, l’emploi local et la planète. 
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+							
+						<div class="col-lg-4 col-md-12">
+							<form class="contact-bx dzForm" action="">
+							<div class="dzFormMsg"></div>
+								<div class="heading-bx left">
+									<h2 class="title-head">Prenez <span>Contact</span></h2>
+								</div>
+								<div class="row placeani">
+									<div class="col-lg-6 ">
+										<div class="form-group">
+											<div class="input-group">
+												<label>Votre nom</label>
+												<input name="dzName" type="text" required class="form-control">
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<div class="input-group"> 
+												<label>Email</label>
+												<input name="dzEmail" type="email" class="form-control" required >
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<div class="input-group">
+												<label>Téléphone</label>
+												<input name="dzOther[Phone]" type="text" required class="form-control">
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="form-group">
+											<div class="input-group">
+												<label>Sujet</label>
+												<input name="dzOther[Subject]" type="text" required class="form-control">
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-12">
+										<div class="form-group">
+											<div class="input-group">
+												<label>Message</label>
+												<textarea name="dzMessage" rows="4" class="form-control" required ></textarea>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-12">
+										<div class="form-group">
+											<div class="input-group">
+												<div class="g-recaptcha" data-sitekey="6LefsVUUAAAAADBPsLZzsNnETChealv6PYGzv3ZN" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></div>
+												<input class="form-control d-none" style="display:none;" data-recaptcha="true" required data-error="Please complete the Captcha">
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-12">
+										<button name="submit" type="submit" value="Submit" class="btn button-md"> Envoyer</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					
+                </div>
+            </div>
+            <!-- Your Faq End -->
+        </div>
+		<!-- contact area END -->
+			
+			
+        </div>
+		<!-- contact area END -->
+    </div>
+    <!-- Content END-->
+	<!-- Footer ==== -->
+    <footer>
+        <div class="footer-top">
+			<div class="pt-exebar">
+				
+			</div>
+            <div class="container">
+                <div class="row">
+					
+
+					<div class="col-12 col-lg-3 col-md-4 col-sm-12 footer-col-4">
+                        <h5 class="footer-title">Adresse</h5>
+						<p class="text-capitalize m-b20">Adresse: 5 Rue De La Gare <br/> 68000 Colmar <br/> Haut-rhin, France</p>
+                    </div>
+					<div class="col-12 col-lg-3 col-md-4 col-sm-12 footer-col-4">
+		<h5 class="footer-title">Itinéraire vers notre adresse :</h5>
+			
+<iframe
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2707.5352052644736!2d7.353708315786856!3d48.07735317922368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4790b78e3c7f020f%3A0x2ff16cb7e1012997!2s5%20Rue%20de%20la%20Gare%205%2C%2068000%20Colmar%2C%20France!5e0!3m2!1sfr!2sfr!4v1698598230000!5m2!1sfr!2sfr"
+  width="500"
+  height="250"
+  style="border:0;"
+  allowfullscreen=""
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+</div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 text-center"> <a href="#">Tous droits réservés © FlexiFood 2025</a></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer END ==== -->
+    <button class="back-to-top fa fa-chevron-up" ></button>
+</div>
+<!-- Recent News End -->{% endblock %}{% block javascripts %}
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v18.0&appId=1637705346456944" nonce="IfS95kSa"></script>
 
 <script src=" {{ asset ('js/comments/commentsManager.js') }}" defer></script>

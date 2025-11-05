@@ -1,177 +1,5 @@
 <header class="header rs-nav ttr-header">
-	<div class="top-bar">
-		<div class="container">
-			<div
-				class="ttr-header-wrapper">
-				<!-- Bouton "Faire un don" -->
-				<div class="topbar-left">
-					<ul>
-						<li>
-							<a href="#">
-								<i class="fa fa-question-circle"></i>
-								{% trans %}Question{% endtrans %}</a>
-						</li>
-						<li>
-							<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#donModal">
-								<img width="20" height="20" src="{{ asset('assets/images/don.png') }}">&nbsp;Faire un don
-							</button>
-						</li>
-					</ul>
-				</div>
-
-				<!-- Modal -->
-				<div class="modal fade" id="donModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel" style="color: #007bff;">Faire un don</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #007bff;">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div
-								class="modal-body">
-								<!-- Contenu du formulaire de don -->
-								<div class="form-group">
-									<label for="montantDon" style="color: #333;">
-										<i class="fa fa-phone" style="color: #007bff;"></i>
-										Par Mvola : +261 34 16 000 05 (Alain José Ramiadamandimbimanana)
-									</label>
-									<label for="montantDon" style="color: #333;">
-										<i class="fa fa-envelope" style="color: #007bff;"></i>
-										Contact par email : designer.eline@gmail.com
-									</label>
-									<label for="montantDon" style="color: #333;">
-										<i class="fa fa-facebook" style="color: #007bff;"></i>
-										Contact par Facebook :
-										<a style="color: red;" href="https://www.facebook.com/alain.jose.58" target="_blank">Cliquer ici</a>
-									</label>
-								</div>
-								<!-- Texte de remerciement -->
-								<p style="color: #333;">
-									Nous vous remercions sincèrement pour votre généreux don. Votre contribution fait une réelle différence dans notre mission d'améliorer le site web, de servir la communauté et d'aider ceux dans le besoin.
-								</p>
-
-								<!-- Citation de la Bible sur les dons -->
-								<blockquote style="text-align: center; color: #007bff;">
-									"Chacun donne ce qu'il a décidé dans son cœur, sans regret ni contrainte, car Dieu aime celui qui donne avec joie." - 2 Corinthiens 9:7
-								</blockquote>
-								<!-- Image centrée -->
-								<div style="text-align: center;">
-									<img src="{{ asset('assets/images/image_don.png') }}" alt="Faire un don">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-				<div class="topbar-right">
-					<ul>
-						<li>
-							<div class="dropdown">
-								<div class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									{% set flag_current = app.request.locale %}
-									{% set flags_info = [{"fr": "flags/flags/shiny/ico/France.ico"}, {"en": "flags/flags/shiny/ico/United-Kingdom.ico"}, {"mg": "flags/flags/shiny/ico/Madagascar.ico"}] %}
-									{% set icon_flag = "" %}
-									{% for flag in flags_info %}
-										{% for key,fl in flag %}
-											{% if key == flag_current %}
-												{% set icon_flag = fl %}
-											{% endif %}
-										{% endfor %}
-									{% endfor %}
-									<i>
-										<img src="{{ asset (icon_flag) }}" width="20" height="20" alt="photo">
-										{{ flag_current }}
-									</i>
-								</div>
-								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-									<a class="dropdown-item" href="{{ path ('app_langue', {_locale: 'fr'}) }}"><img src="{{ asset ('flags/flags/shiny/ico/France.ico') }}" width="20" height="20" alt="photo">
-										Fr</a>
-									<a class="dropdown-item" href="{{ path ('app_langue', {_locale: 'en'}) }}"><img src="{{ asset ('flags/flags/shiny/ico/United-Kingdom.ico') }}" width="20" height="20" alt="photo">
-										En</a>
-									<a class="dropdown-item" href="{{ path ('app_langue', {_locale: 'mg'}) }}"><img src="{{ asset ('flags/flags/shiny/ico/Madagascar.ico') }}" width="20" height="20" alt="photo">
-										Mg</a>
-								</div>
-							</div>
-						</li>
-						<li>
-							<a href="#" class="ttr-material-button ttr-search-toggle">
-								<i title={% trans %} "Recherche rapide" {% endtrans %} class="fa fa-search"></i>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:;" class="btn-link">
-								<i title={% trans %} "Page facebook officielle" {% endtrans %} class="fa fa-facebook"></i>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:;" class="btn-link">
-								<i title={% trans %} "Page youtube officielle" {% endtrans %} class="fa fa-youtube"></i>
-							</a>
-						</li>
-
-						{% if app.user %}
-							{% if app.user.roles[0] == 'ROLE_ADMIN' %}
-								<li>
-									<a href="{{ path('app_dashboard') }}" class="btn-link" title="Retour au panneau">
-										<i class="fa fa-cog"></i>
-									</a>
-								</li>
-							{% endif %}
-						{% endif %}
-
-
-						{% if app.user %}
-							{% if app.user.roles[0] == 'ROLE_REDACTEUR' %}
-								<li>
-									<a href="{{ path('app_article') }}" class="btn-link" title="Retour à la création de l'article">
-										<i class="fa fa-commenting-o"></i>
-									</a>
-								</li>
-							{% endif %}
-						{% endif %}
-
-						<li>
-							{% set href= path('app_login')  %}
-							{% set label = "Se connecter"|trans %}
-							{% if app.user %}
-								{% set href = "" %}
-								{% set label = app.user.nom ? app.user.prenom ~' '~ app.user.nom : app.user.getEmail() %}
-							{% endif %}
-							<a id="signIn" href="{{ href }}">
-								{{label}}
-							</a>
-						</li>
-						<li>
-							{% if app.user is null %}
-								<a href="{{ path('app_register') }}">{% trans %}S'inscrire{% endtrans %}</a>
-							{% else %}
-								<a href="{{ path('app_logout') }}">{% trans %}Déconnexion{% endtrans %}</a>
-							{% endif %}
-						</li>
-
-					</ul>
-
-				</div>
-				<div class="ttr-search-bar">
-					<form class="ttr-search-form">
-						<div class="ttr-search-input-wrapper">
-							<input type="text" name="qq" placeholder="Recherche rapide..." class="ttr-search-input">
-							<button type="submit" name="search" class="ttr-search-submit">
-								<i class="ti-arrow-right"></i>
-							</button>
-						</div>
-						<span class="ttr-search-close ttr-search-toggle">
-							<i class="ti-close"></i>
-						</span>
-					</form>
-				</div>
-				<br/>
-			</div>
-		</div>
-	</div>
+	
 	<div class="sticky-header navbar-expand-lg">
 		<div class="menu-bar clearfix">
 			<div
@@ -284,59 +112,56 @@
 				</div>
 				<!-- Navigation Menu ==== -->
 				<div class="menu-links navbar-collapse collapse justify-content-start" id="menuDropdown">
-					<div class="menu-logo">
-						<a href="{{ path ('app_home') }}"><img src="{{ asset ('assets/images/logo.png') }}" alt="logo"></a>
-					</div>
-					<ul class="nav navbar-nav">
-						<li class="active">
-							<a href="{{ path ('app_home') }}" class="test">
-								<i class="fa fa-home"></i>
-								{% trans %}Accueil{% endtrans %}</i>
-						</li>
-					</a>
-				</li>
-				<li>
-					<a href="javascript:;">
-						<i class="fa fa-question-circle"></i>
-						{% trans %}A savoir{% endtrans %}
-						<i class="fa fa-chevron-down"></i>
-					</a>
-					<ul class="sub-menu add-menu">
-						<li class="add-menu-left">
-							<h5 class="menu-adv-title">{% trans %}Personnel{% endtrans %}</h5>
-							<ul>
-								<li><a href="#">{% trans %}Président fondateur{% endtrans %}</a></li>
-								<li><a href="#">{% trans %}Secrétaire Générale{% endtrans %}</a></li>
-								<li><a href="#">{% trans %}Trésorier{% endtrans %}</a></li>
-								<li><a href="#">{% trans %}Organisation{% endtrans %}</a></li>
-								<li><a href="#">{% trans %}Archives apokalypsy{% endtrans %}</a></li>
-							</ul>
-						</li>
-						<li class="add-menu-right">
-							<img src="{{ asset ('assets/images/adv/adv.jpg') }}" alt=""/>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="javascript:;">
-						<i class="fa fa-fire"></i>
-						{% trans %}Spiritualité{% endtrans %}</i>
-				</li>
-			</a>
-
-		</li>
-		{# <li class="nav-dashboard">
-										<a href="javascript:;">
-											<i class="fa fa-book"></i>&nbsp;Pages
-											<i class="fa fa-chevron-down"></i>
-										</a>
-										<ul class="sub-menu">
-											<li>
-											<a href="#">Panneau de configuration</a>
+							<div class="menu-logo">
+								<a href="{{ path ('app_home') }}"><img src="{{ asset ('assets/images/logo.png') }}" alt="logo"></a>
+							</div>
+							<ul class="nav navbar-nav">
+									<li class="active">
+										<a href="{{ path ('app_home') }}" class="test">
+											<i class="fa fa-home"></i>
+											{% trans %}Accueil{% endtrans %}</i>
 											</li>
-										</ul>
-										</li> #}
-	</ul>
+										</a>
+									</li>
+									</a>
+							</li>
+	
+		
+							<li class="nav-dashboard">
+								<a href="javascript:;">
+									<i class="fa fa-book"></i>&nbsp;	{% trans %}Tableau de bord{% endtrans %}
+									<i class="fa "></i>
+								</a>
+								<ul class="sub-menu">
+									<li>
+									<a href="#">Accédez à votre espace personnalisé pour suivre vos commandes et vos préférences.</a>
+									</li>
+								</ul>
+							</li> 
+							<li class="nav-dashboard">
+								<a href="javascript:;">
+									<i class="fa fa-book"></i>&nbsp;{% trans %}QR Code{% endtrans %}</i>
+									<i class="fa "></i>
+								</a>
+								<ul class="sub-menu">
+									<li>
+									<a href="#"> Scannez vos box pour obtenir toutes les informations sur vos repas.</a>
+									</li>
+								</ul>
+							</li> 
+							<li class="nav-dashboard">
+								<a href="javascript:;">
+									<i class="fa fa-book"></i>&nbsp;{% trans %}IA Flexi{% endtrans %}</i>
+									<i class="fa "></i>
+								</a>
+								<ul class="sub-menu">
+									<li>
+									<a href="#"> Découvrez notre coach santé et sport pour des conseils personnalisés.</a>
+									</li>
+								</ul>
+							</li>
+				
+					</ul>
 	<div class="nav-social-link">
 		<a href="javascript:;">
 			<i class="fa fa-facebook"></i>
@@ -348,5 +173,88 @@
 			<i class="fa fa-linkedin"></i>
 		</a>
 	</div>
+	<div class="topbar-right">
+						<ul>
+						<li>
+							<div class="dropdown">
+								<div class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									{% set flag_current = app.request.locale %}
+									{% set flags_info = [{"fr": "flags/flags/shiny/ico/France.ico"}, {"en": "flags/flags/shiny/ico/United-Kingdom.ico"}, {"mg": "flags/flags/shiny/ico/Madagascar.ico"}] %}
+									{% set icon_flag = "" %}
+									{% for flag in flags_info %}
+										{% for key,fl in flag %}
+											{% if key == flag_current %}
+												{% set icon_flag = fl %}
+											{% endif %}
+										{% endfor %}
+									{% endfor %}
+									<i>
+										<img src="{{ asset (icon_flag) }}" width="20" height="20" alt="photo">
+										{{ flag_current }}
+									</i>
+								</div>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									<a class="dropdown-item" href="{{ path ('app_langue', {_locale: 'fr'}) }}"><img src="{{ asset ('flags/flags/shiny/ico/France.ico') }}" width="20" height="20" alt="photo">
+										Fr</a>
+									<a class="dropdown-item" href="{{ path ('app_langue', {_locale: 'en'}) }}"><img src="{{ asset ('flags/flags/shiny/ico/United-Kingdom.ico') }}" width="20" height="20" alt="photo">
+										En</a>
+								</div>
+							</div>
+						</li>
+						
+						<li>
+							<a href="https://www.facebook.com/profile.php?id=61580403998664" class="btn-link" target="blank">
+								<i title={% trans %} "Page facebook officielle" {% endtrans %} class="fa fa-facebook"></i>
+							</a>
+						</li>
+						<li>
+							<a href="https://www.instagram.com/flexifood_colmar/" class="btn-link" target="blank">
+								<i title={% trans %} "Page youtube officielle" {% endtrans %} class="fa fa-instagram"></i>
+							</a>
+						</li>
+
+						{% if app.user %}
+							{% if app.user.roles[0] == 'ROLE_ADMIN' %}
+								<li>
+									<a href="{{ path('app_dashboard') }}" class="btn-link" title="Retour au panneau">
+										<i class="fa fa-cog"></i>
+									</a>
+								</li>
+							{% endif %}
+						{% endif %}
+
+
+						{% if app.user %}
+							{% if app.user.roles[0] == 'ROLE_REDACTEUR' %}
+								<li>
+									<a href="{{ path('app_article') }}" class="btn-link" title="Retour à la création de l'article">
+										<i class="fa fa-commenting-o"></i>
+									</a>
+								</li>
+							{% endif %}
+						{% endif %}
+
+						<li>
+							{% set href= path('app_login')  %}
+							{% set label = "Se connecter"|trans %}
+							{% if app.user %}
+								{% set href = "" %}
+								{% set label = app.user.nom ? app.user.prenom ~' '~ app.user.nom : app.user.getEmail() %}
+							{% endif %}
+							<a id="signIn" href="{{ href }}">
+								{{label}}
+							</a>
+						</li>
+						<li>
+							{% if app.user is null %}
+								<a href="{{ path('app_register') }}">{% trans %}S'inscrire{% endtrans %}</a>
+							{% else %}
+								<a href="{{ path('app_logout') }}">{% trans %}Déconnexion{% endtrans %}</a>
+							{% endif %}
+						</li>
+
+					</ul>
+					</div>
 </div>
+
 <!-- Navigation Menu END ==== --></div></div></div></header><!-- Header Top END ==== --><!-- Content -->

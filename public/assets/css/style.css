@@ -1895,7 +1895,7 @@ button.back-to-top {
     z-index: 999999999;
     background-image: url(../images/loading.gif);
     background-repeat: no-repeat;
-    background-size: 70px;
+    background-size: 400px;
     background-position: center;
 }
 /*========================
@@ -2008,7 +2008,6 @@ button.back-to-top {
 	margin-bottom: 10px;
 	font-size: 14px;
 	color:#242424;
-	
 }
 /* Popular Courses */
 .cours-bx .info-bx{
@@ -2218,7 +2217,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff5e14', end
 }
 .event-time{
 	color: #fff;
-    background-color: rgb(82, 101, 174);
+    background-color:#45aa6e;
     text-align: center;
     padding: 15px 10px;
     border-radius: 4px;
@@ -2456,6 +2455,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 	font-weight: 400;
 	color: #606060;
 	position: absolute;
+	top: 10px;
 	left: 0;
 	transition:all 0.5s;
 	-moz-transition:all 0.5s;
@@ -2465,6 +2465,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 }
 .courses-search-bx .focused .input-group label,
 .contact-bx .focused .input-group label{
+	top: -8px;
 	font-size: 10px;
 	color:var(--primary);
 }
@@ -3379,4 +3380,3 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 		margin-bottom: 5px;
 	}
 }
-
